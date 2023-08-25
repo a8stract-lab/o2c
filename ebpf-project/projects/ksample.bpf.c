@@ -4,6 +4,7 @@
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
 #include <bpf/bpf_core_read.h>
+#include "ksample.h"
 
 char LICENSE[] SEC("license") = "Dual BSD/GPL";
 
@@ -16,70 +17,82 @@ struct {
 	__type(value, u64);
 } record SEC(".maps");
 
-// SEC("tp/syscalls/sys_enter_write")
-// int handle_tp(void *ctx)
-// {
-// 	int pid = bpf_get_current_pid_tgid() >> 32;
+struct {
+	__uint(type, BPF_MAP_TYPE_RINGBUF);
+	__uint(max_entries, 256 * 1024);
+} rb SEC(".maps");
 
-// 	if (pid != my_pid)
-// 		return 0;
 
-// 	bpf_printk("BPF triggered from PID %d.\n", pid);
 
-// 	return 0;
-// }
-#define STRNCMP_STR_SZ 32
-	const char cache32[STRNCMP_STR_SZ] = "kmalloc-cg-32";
-	char filename[STRNCMP_STR_SZ];
 
 int cnt = 0;
 int CNT = 0;
 
-int strncmp(char *s1, u32 sz, char *s2)
-{
-	for (int i = 0;i < sz;i++) {
-		if (s1[i] != s2[i]) {
-			return i;
-		}
-	}
-	// bpf_printk("%s:%s", s1, s2);
-	return 0;
-}
 
-// seq_open(struct file *file, const struct seq_operations *op)
-SEC("kprobe/seq_open")
-int BPF_KPROBE(handle0, struct file *file, struct seq_operations *op)
+SEC("tp/kmem/kmalloc")
+int handle_kmalloc(struct trace_event_raw_kmalloc *ctx)
 {
-	u64 k = (u64) op;
-	u64 v = 0;
-	bpf_map_update_elem(&record, &k, &v, BPF_ANY);
+	u64 k = (u64) ctx->ptr;
+	u64 v = (u64) ctx->call_site;
+	// 1. all memory is allocated from kmalloc-xxx, not kmalloc-cg/kmalloc-dma
+	if ((ctx->gfp_flags & KMALLOC_NOT_NORMAL_BITS) == 0 && ctx->bytes_alloc == ALLOC_SZ) {
+		bpf_map_update_elem(&record, &k, &v, BPF_ANY);
+	}
 	return 0;
 }
 
 SEC("kprobe/__kmem_cache_free")
 int BPF_KPROBE(do_kfree, struct kmem_cache *s, void *x)
 {
+	struct event *e;
 	u64 k = (u64) x;
+	u64 s_size = BPF_CORE_READ(s, size);
+	u64 *s_name_addr = BPF_CORE_READ(s, name);
 
-	u64 *addr = BPF_CORE_READ(s, name);
-	
+	u64 *pv = bpf_map_lookup_elem(&record, &k);
+	if (pv) {
+		e = bpf_ringbuf_reserve(&rb, sizeof(*e), 0);
+		if (!e)
+			return 0;
+		
+		bpf_core_read_str(e->cache, 32, s_name_addr);
+		e->sz = s_size;
+		e->call_site = *pv;
+		bpf_core_read(e->content, ALLOC_SZ, k);
 
-	bpf_core_read_str(filename, STRNCMP_STR_SZ, addr);
-
-	// bpf_printk("%016lx:%s\n", addr, filename);
-	// filename = BPF_CORE_READ(s, name);
-	// if (bpf_strncmp(cache32, 32, filename) == 0) 
-	// 	bpf_printk("%s\n", filename);
-	if (strncmp(cache32, 32, filename) == 0) 
-	{
-		++CNT;
-		// bpf_printk("%s\n", filename);
-		u64 *pv = bpf_map_lookup_elem(&record, &k);
-		if (pv) {
-			++cnt;
-			bpf_map_delete_elem(&record, &k);
-			bpf_printk("%ld/%ld\n", cnt, CNT);
-		}
+		bpf_map_delete_elem(&record, &k);
+		bpf_ringbuf_submit(e, 0);
 	}
+
 	return 0;
 }
+
+
+// SEC("kprobe/__kmem_cache_free")
+// int BPF_KPROBE(do_kfree, struct kmem_cache *s, void *x)
+// {
+// 	struct event *e;
+// 	u64 k = (u64) x;
+// 	u64 *addr = BPF_CORE_READ(s, name);
+// 	bpf_core_read_str(filename, STRNCMP_STR_SZ, addr);
+// 	int cmp = bpf_strncmp(filename, STRNCMP_STR_SZ, cache32);		
+// 	if (cmp == 0)  // here is the problem
+// 	{
+// 		++CNT;
+// 		e = bpf_ringbuf_reserve(&rb, sizeof(*e), 0);
+// 		if (!e)
+// 			return 0;
+// 		e->type = 0;
+// 		u64 *pv = bpf_map_lookup_elem(&record, &k);
+// 		if (pv) {
+// 			++cnt;
+// 			bpf_map_delete_elem(&record, &k);
+// 			e->type = 1;
+// 			bpf_printk("%ld/%ld\n", cnt, CNT);
+// 		}
+
+// 		bpf_core_read((e->x), 32, x);
+// 		bpf_ringbuf_submit(e, 0);
+// 	}
+// 	return 0;
+// }

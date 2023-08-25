@@ -12,3 +12,4 @@
 /ksyscall
 /cmake-build-debug/
 /cmake-build-release/
+/*.csv
