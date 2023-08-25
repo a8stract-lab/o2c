@@ -33,3 +33,13 @@ Attaching 1 probe...
 @[64]: 55306
 @[16]: 121119
 ```
+
+# klifecycle
+
+calculate the lifecycle of each object allocated from `kmalloc-xxx`
+
+because the data allocation is huge, we only measure 30s.
+
+the results shows >= 96% object last less than 1s, average lifetime is 0.18s, median is 0.0025.
+
+![distribution](../figs/lifecycle%20distribution.png)

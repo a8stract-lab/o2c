@@ -47,7 +47,7 @@ int BPF_KPROBE(do_kfree, struct kmem_cache *s, void *x)
 	struct event *e;
 	u64 k = (u64) x;
 	u64 s_size = BPF_CORE_READ(s, size);
-	u64 *s_name_addr = BPF_CORE_READ(s, name);
+	const char *s_name_addr = BPF_CORE_READ(s, name);
 
 	u64 *pv = bpf_map_lookup_elem(&record, &k);
 	if (pv) {

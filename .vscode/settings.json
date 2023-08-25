@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "bpf.h": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "klifecycle.h": "c"
     }
 }

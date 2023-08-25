@@ -24,7 +24,10 @@ INCLUDES := -I$(OUTPUT) -I../libbpf/include/uapi -I$(dir $(VMLINUX)) -I$(LIBBLAZ
 CFLAGS := -g -Wall
 ALL_LDFLAGS := $(LDFLAGS) $(EXTRA_LDFLAGS)
 
-APPS = minimal bootstrap ksample
+# =============================================================================================
+APPS = minimal bootstrap ksample klifecycle
+
+# =============================================================================================
 
 CARGO ?= $(shell which cargo)
 ifeq ($(strip $(CARGO)),)
