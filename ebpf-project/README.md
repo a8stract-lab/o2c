@@ -4,7 +4,7 @@ fork from [![Github Actions](https://github.com/libbpf/libbpf-bootstrap/actions/
 
 
 
-# ksample
+# 1. ksample
 
  dump `kmalloc-xxx` allocation **function and content** from kernel.
 
@@ -34,7 +34,7 @@ Attaching 1 probe...
 @[16]: 121119
 ```
 
-# klifecycle
+# 2. klifecycle
 
 calculate the lifecycle of each object allocated from `kmalloc-xxx`
 
@@ -43,3 +43,69 @@ because the data allocation is huge, we only measure 30s.
 the results shows >= 96% object last less than 1s, average lifetime is 0.18s, median is 0.0025.
 
 ![distribution](../figs/lifecycle%20distribution.png)
+
+
+# 3. count allocations per second
+
+`sudo bpftrace -e 'tracepoint:kmem:kmalloc { @counts[args->bytes_alloc] = count(); @sum=count(); } interval:s:1 { print(@counts); print(@sum);clear(@sum); clear(@counts); printf("\n\n\n");}'`
+
+- os: ubuntu-desktop 22.04 (tons of i1915 graphics objects)
+- cpu: intel-i9 13900hx, 32 cores
+- ram: 64GB
+
+
+```c
+Attaching 2 probes...
+@counts[16384]: 2
+@counts[8192]: 4
+@counts[256]: 19
+@counts[96]: 36
+@counts[192]: 36
+@counts[128]: 72
+@counts[2048]: 80
+@counts[8]: 110
+@counts[16]: 245
+@counts[1024]: 249
+@counts[64]: 321
+@counts[512]: 387
+@counts[32]: 1245
+@counts[4096]: 1323
+@sum: 4165
+
+
+
+@counts[16384]: 2
+@counts[8192]: 5
+@counts[256]: 15
+@counts[96]: 29
+@counts[192]: 45
+@counts[2048]: 74
+@counts[32]: 100
+@counts[128]: 109
+@counts[8]: 135
+@counts[4096]: 199
+@counts[16]: 200
+@counts[1024]: 228
+@counts[64]: 282
+@counts[512]: 341
+@sum: 1839
+
+
+
+@counts[16384]: 1
+@counts[8192]: 6
+@counts[256]: 20
+@counts[192]: 55
+@counts[128]: 73
+@counts[96]: 73
+@counts[2048]: 95
+@counts[8]: 187
+@counts[1024]: 252
+@counts[64]: 357
+@counts[16]: 379
+@counts[512]: 394
+@counts[32]: 1314
+@counts[4096]: 1362
+@sum: 4642
+
+```
