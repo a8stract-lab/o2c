@@ -1,7 +1,8 @@
 #ifndef __KSAMPLE_H
 #define __KSAMPLE_H
 
-#define ALLOC_SZ 96
+#define ALLOC_SZ 8192
+int count;
 
 struct event {
 	unsigned long call_site;

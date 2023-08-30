@@ -14,6 +14,10 @@ static int libbpf_print_fn(enum libbpf_print_level level, const char *format, va
 	return vfprintf(stderr, format, args);
 }
 
+int cnt = 0;
+static volatile bool exiting = false;
+#define MAX_ITEMS 1000000
+
 static int handle_event(void *ctx, void *data, size_t data_sz)
 {
 	const struct event *e = data;
@@ -24,15 +28,19 @@ static int handle_event(void *ctx, void *data, size_t data_sz)
 		return -1;
 	}
 
-	printf("%s,%016lx,%s,", e->cache, e->call_site, sym->name);
+	printf("%s,", sym->name);
 	for (int i = 0;i < ALLOC_SZ/8;i++) {
-		printf("%016lx ", e->content[i]);
+		printf("%016lx", e->content[i]);
 	}
 	printf("\n");
+
+	if (++cnt >= MAX_ITEMS) {
+		exiting = true;
+	}
 	return 0;
 }
 
-static volatile bool exiting = false;
+
 
 static void sig_handler(int sig)
 {
