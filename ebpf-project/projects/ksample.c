@@ -16,7 +16,7 @@ static int libbpf_print_fn(enum libbpf_print_level level, const char *format, va
 
 int cnt = 0;
 static volatile bool exiting = false;
-#define MAX_ITEMS 1000000
+#define MAX_ITEMS 600000
 
 static int handle_event(void *ctx, void *data, size_t data_sz)
 {
@@ -28,7 +28,7 @@ static int handle_event(void *ctx, void *data, size_t data_sz)
 		return -1;
 	}
 
-	printf("%s,", sym->name);
+	printf("%s,%d,", sym->name, ALLOC_SZ);
 	for (int i = 0;i < ALLOC_SZ/8;i++) {
 		printf("%016lx", e->content[i]);
 	}
