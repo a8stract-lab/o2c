@@ -1,5 +1,7 @@
 # on-the-fly-compartment
 
+https://docs.google.com/presentation/d/1fVZlfJtHDvP3GEj31bMvFD9OVvtb9nGEMj6EDqXMRcI/edit#slide=id.p
+
 ## Insight: 
 
 on-the-fly kernel compartmentalization can quickly remediate the 0-day hotspots (i.e. 0-day Vulnerability Highly Exposed Areas), 2 research questions are solved,
