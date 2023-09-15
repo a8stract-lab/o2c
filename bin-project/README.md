@@ -20,7 +20,7 @@ What we need is
 little optimization required on memory access range: 
 1. stack only?  `$rsp / $rbp`
 2. global only?  `$rip / 0xaddr`
-3. must not stack / global / code
+3. must not `stack / global / code`
 
 
 
@@ -58,6 +58,6 @@ memory write:
 - must be global / stack: check global / stack
 - rest: 
     - slub: phase0: ML , phase 1:slab caches according to the page
-    - buddy: phase0: ML / if the compartment need such content?, phase 1: recorded
+    - buddy: phase0: ML, phase 1: recorded
     - vmalloc: `__vmalloc_node` always have a caller `IP`
         

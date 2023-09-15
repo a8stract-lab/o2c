@@ -1,0 +1,1392 @@
+Patch
+vlan: Fix VLAN 0 memory leak
+xsk: Fix xsk_diag use-after-free error during socket cleanup
+net/team: do not use dynamic lockdep key
+vlan: Fix VLAN 0 memory leak
+xfrm: interface: use DEV_STATS_INC()
+vlan: Fix VLAN 0 memory leak
+vlan: Fix VLAN 0 memory leak
+wifi/mac80211: check for station first in client probe
+wifi/mac80211: check S1G action frame size
+wifi/cfg80211: ocb: don't leave if not joined
+net: Remove low_thresh in ip defrag
+wifi: ath9k: don't allow to overwrite ENDPOINT0 attributes
+net: Remove low_thresh in ip defrag
+af_unix: Skip SCM_PIDFD if scm->pid is NULL.
+arm64: csum: Fix OoB access in IP checksum code for negative lengths
+tcx: Fix splat in ingress_destroy upon tcx_entry_free
+tcx: Fix splat in ingress_destroy upon tcx_entry_free
+tcx: Fix splat during dev unregister
+tcx: Fix splat during dev unregister
+tcp: annotate data-races around tcp_rsk(req)->txhash
+tcp: annotate data-races around tcp_rsk(req)->ts_recent
+sch_netem: fix issues in netem_change() vs get_dist_table()
+netlink: fix potential deadlock in netlink_set_err()
+netlink: do not hard code device address lenth in fdb dumps
+netlink: convert nlk->flags to atomic flags
+netlink: Add __sock_i_ino() for __netlink_diag_dump().
+net: remove sk_is_ipmr() and sk_is_icmpv6() helpers
+net: omit ndo_hwtstamp_get() call when possible in dev_set_hwtstamp_phylib()
+net/lapbether: only support ethernet devices
+net/flower: fix stack-out-of-bounds in fl_set_key_cfm()
+net: do not allow gso_size to be set to GSO_BY_FRAGS
+net: annotate data-races around sock->ops
+net/sched: taprio: fix slab-out-of-bounds Read in taprio_dequeue_from_txq
+net/sched: qdisc_destroy() old ingress and clsact Qdiscs before grafting c7cfbd115001 net/sched: sch_ingress: Only create under TC_H_INGRESS
+9p: p9_client_create: use p9_client_destroy on failure
+net/sched: fq_pie: avoid stalls in fq_pie_timer()
+net/sched: fq_pie: avoid stalls in fq_pie_timer()
+net/sched: fq_pie: avoid stalls in fq_pie_timer()
+net/sched: fq_pie: avoid stalls in fq_pie_timer()
+net/sched: fix a qdisc modification with ambiguous command request
+mptcp: ensure listener is unhashed before updating the sk status
+vlan: Fix VLAN 0 memory leak
+mm/gup.c: Fix return value for __gup_longterm_locked()
+xsk: fix refcount underflow in error path
+macsec: use DEV_STATS_INC()
+kcm: Fix unnecessary psock unreservation.
+kcm: Fix memory leak in error path of kcm_sendmsg()
+ipv6: fix a typo in ip6mr_sk_ioctl()
+ipv6: also use netdev_hold() in ip6_route_check_nh()
+ipv4: fix data-races around inet->inet_id
+ipv4: fix data-races around inet->inet_id
+ipv4: annotate data-races around fi->fib_dead
+ip_tunnels: use DEV_STATS_INC()
+ip, ip6: Fix splice to raw and ping sockets
+inet: fix IP_TRANSPARENT error handling
+hsr: Fix uninit-value access in fill_frame_info()
+net/sched: fq_pie: ensure reasonable TCA_FQ_PIE_QUANTUM values
+net/sched: add rcu annotations around qdisc->qdisc_sleeping
+vhost: Fix crash during early vhost_transport_send_pkt calls
+net: annotate sk->sk_err write from do_recvmmsg()
+tcp: add annotations around sk->sk_shutdown accesses
+net/nsh: Use correct mac_offset to unwind gso skb in nsh_gso_segment()
+udplite: Fix NULL pointer dereference in __sk_mem_raise_allocated().
+xfrm: Reject optional tunnel/BEET mode templates in outbound policies
+vlan: fix a potential uninit-value in vlan_dev_hard_start_xmit()
+tcp: deny tcp_disconnect() when threads are waiting
+net: deal with most data-races in sk_wait_event()
+netlink: annotate accesses to nlk->cb_running
+net/sched: act_pedit: free pedit keys on bail from offset check
+net/tunnels: annotate lockless accesses to dev->needed_headroom
+net/ethtool: fix NULL pointer dereference in pause_prepare_data()
+arm64: cmpxchg_double*: hazard against entire exchange variable
+inet: control sockets should not use current thread task_frag
+rxrpc: Fix potential data race in rxrpc_wait_to_be_connected()
+ethtool: Fix uninitialized number of lanes
+neighbour: annotate lockless accesses to n->nud_state
+wifi: mac80211: fix memory leak in ieee80211_if_add()
+net/sched: fix error recovery in qdisc_create()
+plca.c: fix obvious mistake in checking retval
+net/sched: Retire tcindex classifier
+neighbour: annotate lockless accesses to n->nud_state
+bpf, test_run: fix crashes due to XDP frame overwriting/corruption
+vsock/loopback: use only sk_buff_head.lock to protect the packet queue
+objtool: Fix ORC 'signal' propagation
+devlink: Fix netdev notifier chain corruption
+smc: Fix use-after-free in tcp_write_timer_handler().
+smc: Fix use-after-free in tcp_write_timer_handler().
+net/caif: Fix use-after-free in cfusbl_device_notify()
+net/sched: sch_taprio: fix possible use-after-free
+erspan: do not use skb_mac_header() in ndo_start_xmit()
+net/qrtr: Fix an uninit variable access bug in qrtr_tx_resume()
+net/tls: avoid hanging tasks on the tx_lock
+devlink: Fix netdev notifier chain corruption
+net/sched: fix error recovery in qdisc_create()
+net: fix kfree_skb_list use of skb_mark_not_on_list
+veth: rely on rtnl_dereference() instead of on rcu_dereference() in veth_set_xdp_features()
+veth: rely on rtnl_dereference() instead of on rcu_dereference() in veth_set_xdp_features()
+netlink: annotate data races around nlk->portid
+l2tp: close all race conditions in l2tp_tunnel_register()
+net/sched: sch_qfq: prevent slab-out-of-bounds in qfq_activate_agg
+raw: Fix NULL deref in raw_get_next().
+net/sched: sch_taprio: do not schedule in taprio_reset()
+ila: do not generate empty messages in ila_xlat_nl_cmd_get_mapping()
+icmp: guard against too small mtu
+bpf: Check IS_ERR for the bpf_map_get() return value
+net/qrtr: Fix a refcount bug in qrtr_recvmsg()
+bpf, sockmap: Revert buggy deadlock fix in the sockhash and sockmap
+devlink: Fix netdev notifier chain corruption
+net: initialize net->notrefcnt_tracker earlier
+bonding: fix lockdep splat in bond_miimon_commit()
+bpf, sockmap: Check for any of tcp_bpf_prots when cloning a listener
+l2tp: close all race conditions in l2tp_tunnel_register()
+net/sched: flower: fix fl_change() error recovery path
+l2tp: prevent lockdep issue in l2tp_tunnel_register()
+nfc: fix memory leak of se_io context in nfc_genl_se_io
+net/sched: tcindex: search key must be 16 bits
+UPSTREAM: sit: update dev->needed_headroom in ipip6_tunnel_bind_dev()
+net/tunnels: annotate lockless accesses to dev->needed_headroom
+rxrpc: Fix wrong error return in rxrpc_connect_call()
+rxrpc: Move client call connection to the I/O thread 03fc55adf876 rxrpc: Only disconnect calls in the I/O thread
+devlink: Fix netdev notifier chain corruption
+net: avoid skb end_offset change in __skb_unclone_keeptruesize()
+devlink: keep the instance mutex alive until references are gone
+ipv6: Fix an uninit variable access bug in __ip6_make_skb()
+bonding: restore bond's IFF_SLAVE flag if a non-eth dev enslave fails
+net/sched: fix memory leak in tcindex_set_parms
+xfrm: Zero padding when dumping algos and encap
+net/sched: flower: fix fl_change() error recovery path
+inet: control sockets should not use current thread task_frag
+l2tp: prevent lockdep issue in l2tp_tunnel_register()
+net/sched: fix error recovery in qdisc_create()
+netlink: annotate lockless accesses to nlk->max_recvmsg_len
+net: avoid skb end_offset change in __skb_unclone_keeptruesize()
+riscv: Bump COMMAND_LINE_SIZE value to 1024
+splice: Add a func to do a splice from an O_DIRECT file without ITER_PIPE
+dccp/tcp: Fixup bhash2 bucket when connect() fails.
+net: fix refcount bug in sk_psock_get (2)
+NFC: nci: Allow to create multiple virtual nci devices
+can: isotp: convert struct tpcon::{idx,len} to unsigned int 7c759040c1dd can: isotp: fix potential CAN frame reception race in isotp_rcv()
+wifi: mac80211: do not abuse fq.lock in ieee80211_do_stop() wifi: mac80211: do not abuse fq.lock in ieee80211_do_stop()
+ip_gre: test csum_start instead of transport header
+rxrpc: fix a race in rxrpc_exit_net()
+inet: ping: fix recent breakage
+net-timestamp: convert sk->sk_tskey to atomic_t
+mm: Consider __GFP_NOWARN flag for oversized kvmalloc() calls
+tcp: annotate data-race around challenge_timestamp
+skmsg: pass gfp argument to alloc_sk_msg()
+ipvlan: Fix out-of-bound bugs caused by unset skb->mac_header
+llc: only change llc->dev when bind() succeeds
+tcp: Clean up kernel listener's reqsk in inet_twsk_purge()
+bpf, sockmap: fix race in sock_map_free()
+net/openvswitch: add missing .resv_start_op
+ppp: associate skb with a device at tx
+net: Add a second bind table hashed by port and address
+net/tun: unlink NAPI from device on destruction
+net_sched: add __rcu annotation to netdev->qdisc
+net: add skb_set_end_offset() helper
+riscv: Increase stack size under KASAN
+crypto: af_alg - get rid of alg_memory_allocated
+tcp: prohibit TCP_REPAIR_OPTIONS if data was already sent
+net/tls: fix tls_sk_proto_close executed repeatedly
+l2tp: Don't sleep and disable BH under writer-side sk_callback_lock
+net_sched: reject TCF_EM_SIMPLE case for complex ematch module
+ipv6: fix NULL deref in ip6_rcv_core()
+net/tun: Fix use-after-free in tun_detach()
+rxrpc: Fix I/O thread startup getting skipped eaa02390adb0 rxrpc: Fix NULL deref in rxrpc_unuse_local()
+af_key: Fix send_acquire race with pfkey_register
+riscv: Increase stack size under KASAN
+devlink: Fix warning when unregistering a port
+net/sched: cls_u32: Avoid memcpy() false-positive warning
+macsec: don't free NULL metadata_dst
+NFC: nci: fix memory leak in nci_rx_data_packet()
+vsock: Fix memory leak in vsock_connect()
+netlink: do not reset transport header in netlink_recvmsg()
+net: Add a second bind table hashed by port and address
+riscv: Increase stack size under KASAN
+inet: ping: fix recent breakage
+tunnels: do not assume mac header is set in skb_tunnel_check_pmtu()
+wifi: mac80211: unlock on error in ieee80211_can_powered_addr_change()
+net/ping6: Fix memleak in ipv6_renew_options().
+kcm: fix strp_init() order and cleanup
+net/tun: call napi_schedule_prep() to ensure we own a napi
+net/af_packet: make sure to pull mac header
+net/bonding: fix possible NULL deref in rlb code
+tcp: make sure treq->af_specific is initialized
+veth: fix races around rq->rx_notify_masked
+ipv6: ensure sane device mtu in tunnels
+ipvlan: Fix out-of-bound bugs caused by unset skb->mac_header
+ipmr: fix a lockdep splat in ipmr_rtm_dumplink()
+NFC: nci: Allow to create multiple virtual nci devices
+net/smc: Avoid overwriting the copies of clcsock callback functions
+net/hsr: avoid possible NULL deref in skb_clone()
+ipv6: fix data-race in fib6_info_hw_flags_set / fib6_purge_rt
+macsec: fix UAF bug for real_dev
+sctp: fix kernel-infoleak for SCTP sockets
+net: Add a second bind table hashed by port and address
+virtio: find_vqs() add arg sizes
+tcp: cdg: allow tcp_cdg_release() to be called multiple times
+NFC: nci: Allow to create multiple virtual nci devices
+tcp: fix tcp_mtup_probe_success vs wrong snd_cwnd
+net/smc: use GFP_ATOMIC allocation in smc_pnet_add_eth()
+bpf: test_run: Fix OOB access in bpf_prog_test_run_xdp
+net/smc: Fix slab-out-of-bounds issue in fallback
+af_packet: fix data-race in packet_setsockopt / packet_setsockopt
+kcm: fix strp_init() order and cleanup
+net/tun: Fix use-after-free in tun_detach()
+net/asix: add proper error handling of usb read errors
+kcm: annotate data-races around kcm->rx_wait
+devlink: Fix warning when unregistering a port
+ipv6: fix lockdep splat in in6_dump_addrs()
+vhost/vsock: don't check owner in vhost_vsock_stop() while releasing
+ipv6: ping: fix wrong checksum for large frames
+net/dev: Convert sa_data to flexible array in struct sockaddr
+ipvlan: Fix out-of-bound bugs caused by unset skb->mac_header
+tls: rx: release the sock lock on locking timeout
+ipv6: fix lockdep splat in in6_dump_addrs()
+riscv: Increase stack size under KASAN
+l2tp: Don't sleep and disable BH under writer-side sk_callback_lock
+devlink: Fix warning when unregistering a port
+net/rds: acquire refcount on TCP sockets
+dccp/tcp: Fixup bhash2 bucket when connect() fails.
+xfrm: Update ipcomp_scratches with NULL when freed
+net/tun: call napi_schedule_prep() to ensure we own a napi
+net/genl: fix error path memory leak in policy dumping
+ipv6: annotate accesses to fn->fn_sernum
+mptcp: fix tracking issue in mptcp_subflow_create_socket()
+llc: only change llc->dev when bind() succeeds
+net/tun: call napi_schedule_prep() to ensure we own a napi
+bonding: fix data-races around agg_select_timer
+llc: only change llc->dev when bind() succeeds
+tcp: allocate tcp_death_row outside of struct netns_ipv4
+net/packet: fix slab-out-of-bounds access in packet_recvmsg()
+vhost: fix hung thread due to erroneous iotlb entries
+net/hsr: avoid possible NULL deref in skb_clone()
+bonding: fix missed rcu protection
+net/bonding: fix possible NULL deref in rlb code
+l2tp: Don't sleep and disable BH under writer-side sk_callback_lock
+tcp: cdg: allow tcp_cdg_release() to be called multiple times
+wifi: wext: use flex array destination for memcpy()
+ipv6: make ip6_rt_gc_expire an atomic_t
+NFC: nci: Allow to create multiple virtual nci devices
+drop_monitor: fix data-race in dropmon_net_event / trace_napi_poll_hit
+net: add more debug info in skb_checksum_help()
+vlan: fix memory leak in vlan_newlink()
+wifi: mac80211: properly skip link info driver update
+net/openvswitch: add missing .resv_start_op
+bpf, test_run: Fix overflow in XDP frags bpf_test_finish
+9p/fd: fix issue of list_del corruption in p9_fd_cancel()
+mrp: introduce active flags to prevent UAF when applicant uninit
+kcm: avoid potential race in kcm_tx_work
+riscv: Increase stack size under KASAN
+net: fix refcount bug in sk_psock_get (2)
+nfc/nci: fix race with opening and closing
+kcm: annotate data-races around kcm->rx_psock
+NFC: nci: Bounds check struct nfc_target arrays
+usbnet: Fix memory leak in usbnet_disconnect()
+net/tun: unlink NAPI from device on destruction
+net: disable preemption in dev_core_stats_XXX_inc() helpers
+net: disable preemption in dev_core_stats_XXX_inc() helpers
+bpf, test_run: Fix packet size check for live packet mode
+net/smc: Fix NULL pointer dereference in smc_pnet_find_ib()
+net, neigh: Do not trigger immediate probes on NUD_FAILED from neigh_managed_work
+net/sched: fix race condition in qdisc_graft()
+ipv4: raw: lock the socket in raw_bind()
+llc: only change llc->dev when bind() succeeds
+net/hsr: fix suspicious RCU usage warning in hsr_node_get_first()
+9p: set req refcount to zero to avoid uninitialized usage
+llc: only change llc->dev when bind() succeeds
+tls: rx: react to strparser initialization errors
+xfrm: Fix oops in __xfrm_state_delete()
+skbuff: Introduce slab_build_skb()
+tcp: fix sock skb accounting in tcp_read_skb()
+ipmr,ip6mr: acquire RTNL before calling ip[6]mr_free_table() on failure path
+ethtool: pse-pd: fix null-deref on genl_info in dump
+fs/ntfs3: Validate attribute name offset
+net/sched: act_pedit: sanitize shift argument before usage
+ipv6: avoid use-after-free in ip6_fragment()
+llc: only change llc->dev when bind() succeeds
+vhost/vsock: don't check owner in vhost_vsock_stop() while releasing
+net_sched: reject TCF_EM_SIMPLE case for complex ematch module
+net/9p: use a dedicated spinlock for trans_fd
+ipv6/sit: use DEV_STATS_INC() to avoid data-races
+erspan: do not assume transport header is always set
+kcm: close race conditions on sk_receive_queue
+virtio: find_vqs() add arg sizes
+tcp: add a missing sk_defer_free_flush() in tcp_splice_read()
+ipvlan: Fix out-of-bound bugs caused by unset skb->mac_header
+wifi: nl80211: hold wdev mutex for tid config
+riscv: Increase stack size under KASAN
+tcp: add accessors to read/set tp->snd_cwnd
+wifi: cfg80211: handle IBSS in channel switch
+net/tun: call napi_schedule_prep() to ensure we own a napi
+ipv6: annotate some data-races around sk->sk_prot
+ip6mr: fix use-after-free in ip6mr_sk_done()
+net/smc: fix ref_tracker issue in smc_pnet_add()
+net/sched: fix use-after-free in tc_new_tfilter()
+net: clear msg_get_inq in __sys_recvfrom() and __copy_msghdr_from_user()
+net/smc: fix a memory leak in smc_sysctl_net_exit()
+net: fix cpu_max_bits_warn() usage in netif_attrmask_next{,_and}
+net: Add a second bind table hashed by port and address
+9p/trans_fd: always use O_NONBLOCK read/write
+net/smc: Fix sock leak when release after smc_shutdown()
+l2tp: Don't sleep and disable BH under writer-side sk_callback_lock
+mptcp: fix tracking issue in mptcp_subflow_create_socket()
+ip6_tunnel: fix possible NULL deref in ip6_tnl_xmit
+l2tp: Don't sleep and disable BH under writer-side sk_callback_lock
+wifi: mac80211: Fix UAF in ieee80211_scan_rx()
+riscv: Increase stack size under KASAN
+net/sched: limit TC_ACT_REPEAT loops
+net/sched: cls_u32: fix netns refcount changes in u32_change()
+igmp: respect RCU rules in ip_mc_source() and ip_mc_msfilter()
+bpf: Don't redirect packets with invalid pkt_len
+ipv4: fix data races in fib_alias_hw_flags_set
+net/tun: Fix use-after-free in tun_detach()
+rxrpc: Fix locking in rxrpc's sendmsg
+net/tun: Fix memory leaks of napi_get_frags
+rxrpc: Fix oops from calling udpv6_sendmsg() on AF_INET socket
+wifi: mac80211: Don't finalize CSA in IBSS mode if state is disconnected
+net/tls: fix slab-out-of-bounds bug in decrypt_internal
+netlink: af_netlink: Prevent empty skb by adding a check on len.
+epoll: Keep a reference on files added to the check list
+netlink: af_netlink: Prevent empty skb by adding a check on len.
+netlink: af_netlink: Prevent empty skb by adding a check on len.
+cfg80211: call cfg80211_stop_ap when switch from P2P_GO type
+net/xfrm/compat: Copy xfrm_spdattr_type_t atributes
+sit: do not call ipip6_dev_free() from sit_init_net()
+net: annotate data-race in neigh_output()
+ethtool: use ethnl_parse_header_dev_put()
+cfg80211: always free wiphy specific regdomain
+sit: do not call ipip6_dev_free() from sit_init_net()
+bonding: make tx_rebalance_counter an atomic
+inet_diag: fix kernel-infoleak for UDP sockets
+net/sched: sch_taprio: properly cancel timer from taprio_destroy()
+xfrm: fix rcu lock in xfrm_notify_userpolicy()
+ethtool: use ethnl_parse_header_dev_put()
+tcp: fix another uninit-value (sk_rx_queue_mapping)
+net: avoid uninit-value from tcp_conn_request
+netlink: annotate data races around nlk->bound
+ipv6: use GFP_ATOMIC in rt6_probe()
+sit: do not call ipip6_dev_free() from sit_init_net()
+net: fix possible NULL deref in sock_reserve_memory
+ethtool: use ethnl_parse_header_dev_put()
+smackfs: Fix use-after-free in netlbl_catmap_walk()
+bpf, test, cgroup: Use sk_{alloc,free} for test cases
+mptcp: never allow the PM to close a listener subflow
+mac80211: mesh: embedd mesh_paths and mpp_paths into ieee80211_if_mesh
+inet: fully convert sk->sk_rx_dst to RCU rules
+cfg80211: call cfg80211_stop_ap when switch from P2P_GO type
+af_unix: annote lockless accesses to unix_tot_inflight & gc_in_progress
+smackfs: use netlbl_cfg_cipsov4_del() for deleting cipso_v4_doi
+net/packet: rx_owner_map depends on pg_vec
+bpf, test, cgroup: Use sk_{alloc,free} for test cases
+net/sched: fq_pie: prevent dismantle issue
+ethtool: use ethnl_parse_header_dev_put()
+tun: avoid double free in tun_free_netdev
+mptcp: full disconnect implementation
+sch_cake: do not call cake_destroy() from cake_init()
+ethtool: use ethnl_parse_header_dev_put()
+mac80211: limit injected vht mcs/nss in ieee80211_parse_tx_radiotap
+tun: avoid double free in tun_free_netdev
+net/bridge: fix net device refcount tracking issue in error path
+devlink: Remove not-executed trap group notifications
+netlink: af_netlink: Prevent empty skb by adding a check on len.
+net/linkwatch: be more careful about dev->linkwatch_dev_tracker
+mptcp: remove tcp ulp setsockopt support
+mac80211: track only QoS data frames for admission control
+ethtool: use ethnl_parse_header_dev_put()
+net/smc: fix possible NULL deref in smc_pnet_add_eth()
+net/sched: do not allocate a tracker in tcf_exts_init()
+net/af_unix: fix a data-race in unix_dgram_poll
+net: prevent user from passing illegal stab size
+mac80211: fix locking in ieee80211_start_ap error path
+xdp: check prog type before updating BPF link
+net: dev_addr_list: handle first address in __hw_addr_add_ex
+Bluetooth: hci_sync: Push sync command cancellation to workqueue
+llc: fix out-of-bound array index in llc_sk_dev_hash()
+devlink: Add missed notifications iterators
+ipv4: update fib_info_cnt under spinlock protection
+tipc: use consistent GFP flags
+ethtool: fix null-ptr-deref on ref tracker
+ipv6: use GFP_ATOMIC in rt6_probe()
+9p/net: fix missing error check in p9_check_errors
+sch_qfq: prevent shift-out-of-bounds in qfq_init_qdisc
+net, neigh: clear whole pneigh_entry at alloc time
+net: annotate data-races on txq->xmit_lock_owner
+net-caif: avoid user-triggerable WARN_ON(1)
+mac80211-hwsim: fix late beacon hrtimer handling
+nfc: llcp: fix NULL error pointer dereference on sendmsg() after failed bind()
+net_sched: fix NULL deref in fifo_set_limit()
+net/smc: Avoid warning of possible recursive locking
+net/bridge: fix under estimation in br_get_linkxstats_size()
+phonet/pep: refuse to enable an unbound pipe
+inet: remove races in inet{6}_getname()
+ipv4: Check attribute length for RTA_GATEWAY in multipath route
+net: add and use skb_unclone_keeptruesize() helper
+net/vlan: fix a UAF in vlan_dev_real_dev()
+ref_tracker: use __GFP_NOFAIL more carefully
+xfrm: fix shift-out-of-bounds in xfrm_get_default
+net/linkwatch: be more careful about dev->linkwatch_dev_tracker
+mac80211: validate extended element ID is present
+bpf: Avoid races in __bpf_prog_run() for 32bit arches
+net/sched: Allow statistics reads from softirq.
+net: fix premature exit from NAPI state polling in napi_disable()
+netfilter: conntrack: serialize hash resizes and cleanups
+net/linkwatch: be more careful about dev->linkwatch_dev_tracker
+af_unix: Fix NULL pointer bug in unix_shutdown
+cipso,calipso: resolve a number of problems with the DOI refcounts 1165affd4848 net: mac802154: Fix general protection fault
+qrtr: Convert qrtr_ports from IDR to XArray
+net/usb: asix: do not call phy_disconnect() for ax88178
+net/hsr: check skb can contain struct hsr_ethhdr in fill_frame_info
+ipv6: remove extra dev_hold() for fallback tunnels
+net/sched: fq_pie: fix OOB access in the traffic path
+rcu: Reject RCU_LOCKDEP_WARN() false positives
+net/802/garp: fix memleak in garp_request_join()
+net: ensure mac header is set in virtio_net_hdr_to_skb()
+ethtool: strset: fix message length calculation
+pkt_sched: sch_qfq: fix qfq_change_class() error path
+net/igmp: fix data-race in igmp_ifc_timer_expire()
+net/llc: fix skb_over_panic
+sch_htb: Fix offload cleanup in htb_destroy on htb_init failure 93bde210c434 sch_htb: Fix select_queue for non-offload mode
+net/packet: annotate accesses to po->bind
+rcu: Reject RCU_LOCKDEP_WARN() false positives
+sock_map: Fix a potential use-after-free in sock_map_close()
+net/af_unix: fix a data-race in unix_dgram_sendmsg / unix_release_sock
+fq_codel: reject silly quantum parameters
+inet: annotate data race in inet_send_prepare() and inet_dgram_connect()
+ipv6: remove extra dev_hold() for fallback tunnels
+af_unix: fix potential NULL deref in unix_dgram_connect()
+xfrm: fix memory leak in xfrm_user_rcv_msg
+net/geneve: check skb is large enough for IPv4/IPv6 header
+net: annotate data race in sock_error()
+tcp: Reset tcp connections in SYN-SENT state
+net/geneve: check skb is large enough for IPv4/IPv6 header
+bonding: init notify_work earlier to avoid uninitialized use
+virtio-net: fix use-after-free in page_to_skb()
+net: ensure mac header is set in virtio_net_hdr_to_skb()
+udp: annotate data races around unix_sk(sk)->gso_size
+rcu: Reject RCU_LOCKDEP_WARN() false positives
+ip6_gre: proper dev_{hold|put} in ndo_[un]init methods
+inet: annotate data race in inet_send_prepare() and inet_dgram_connect()
+ipv6: Fix KASAN: slab-out-of-bounds Read in fib6_nh_flush_exceptions
+mac80211: remove warning in ieee80211_get_sband()
+qrtr: Convert qrtr_ports from IDR to XArray
+net/smc: Ensure correct state of the socket in send path
+net/packet: annotate accesses to po->ifindex
+net/qrtr: fix memory leaks
+vsock/virtio: free queued packets when closing socket
+netlink: disable IRQs for netlink_lock_table()
+inet: annotate data race in inet_send_prepare() and inet_dgram_connect()
+sch_red: fix off-by-one checks in red_check_params()
+NFS: fs_context: validate UDP retrans to prevent shift out-of-bounds
+USB: usbtmc: Fix RCU stall warning
+sock: unlock on error in sock_setsockopt()
+rcu: Reject RCU_LOCKDEP_WARN() false positives
+net/kcm: fix memory leak in kcm_sendmsg
+bpf, sockmap: Fix incorrect fwd_alloc accounting
+virtio-net: fix use-after-free in page_to_skb()
+lockdep: Allow tuning tracing capacity constants.
+net/caif: fix memory leak in caif_device_notify
+net/sched: validate stab values
+net/qrtr: Fix memory leak on qrtr_tx_wait failure
+net/nfc: fix use-after-free llcp_sock_bind/connect
+skmsg: Pass psock pointer to ->psock_update_sk_prot()
+inet: annotate date races around sk->sk_txhash
+rcu: Reject RCU_LOCKDEP_WARN() false positives
+lockdep: Allow tuning tracing capacity constants.
+rtnetlink: avoid RCU read lock when holding RTNL
+ipv6: remove extra dev_hold() for fallback tunnels
+nl80211: fix beacon head validation
+macvlan: macvlan_count_rx() needs to be aware of preemption
+vxlan: add missing rcu_read_lock() in neigh_reduce()
+ipv4: Fix refcount warning for new fib_info
+net/bridge: fix ioctl locking
+af_unix: fix holding spinlock in oob handling
+fix array-index-out-of-bounds in taprio_change
+net/sched: fix memory leak in tcindex_partial_destroy_work
+io_uring: fix queueing half-created requests
+net: annotate data race around sk_ll_usec
+drop_monitor: Perform cleanup upon probe registration failure
+ipv4: Fix refcount warning for new fib_info
+net/sched: validate stab values
+xfrm/compat: Cleanup WARN()s that can be user-triggered
+net: fix uninit-value in caif_seqpkt_sendmsg
+net/802/mrp: fix memleak in mrp_request_join()
+virtio-net: fix use-after-free in page_to_skb()
+bonding: fix null dereference in bond_ipsec_add_sa()
+tcp: fix tcp_init_transfer() to not reset icsk_ca_initialized
+smc: disallow TCP_ULP in smc_setsockopt()
+virtio-net: fix use-after-free in page_to_skb()
+sit: proper dev_{hold|put} in ndo_[un]init methods
+ip6_gre: proper dev_{hold|put} in ndo_[un]init methods
+ip6_gre: proper dev_{hold|put} in ndo_[un]init methods
+xfrm: fix shift-out-of-bounce
+mac80211: fix deadlock in AP/VLAN handling
+batman-adv: initialize "struct batadv_tvlv_tt_vlan_data"->reserved field
+net: fix a concurrency bug in l2tp_tunnel_register()
+net/tun: set tun->dev->addr_len during TUNSETLINK processing
+net/kcm: fix memory leak in kcm_sendmsg
+net_sched: reject silly cell_log in qdisc_get_rtab()
+cfg80211: fix netdev registration deadlock
+net/qrtr: Fix memory leak in qrtr_tun_open
+net/sched: fix police ext initialization
+net_sched: fix RTNL deadlock again caused by request_module()
+net: fix GSO for SG-enabled devices
+netdevsim: init u64 stats for 32bit hardware
+net_sched: fix RTNL deadlock again caused by request_module()
+virt_wifi: fix deadlock on RTNL
+net/qrtr: fix __netdev_alloc_skb call
+wext: call cfg80211_change_iface() with wiphy lock held
+net: fix up truesize of cloned skb in skb_prepare_for_shift()
+nl80211: call cfg80211_dev_rename() under RTNL
+cfg80211: call cfg80211_destroy_ifaces() with wiphy lock held
+mptcp: reset last_snd on subflow close
+net: fix GSO for SG-enabled devices
+net_sched: reject silly cell_log in qdisc_get_rtab()
+net_sched: gen_estimator: support large ewma log
+xsk: Fix memory leak for failed bind
+mac80211: free sta in sta_info_insert_finish() on errors
+net_sched: reject silly cell_log in qdisc_get_rtab()
+net_sched: avoid shift-out-of-bounds in tcindex_set_parms()
+net/sched: sch_taprio: reset child qdiscs before freeing them
+mac80211: free sta in sta_info_insert_finish() on errors
+mac80211: mesh: fix mesh_pathtbl_init() error path
+net/sit: unregister_netdevice on newlink's error path
+smc: fix out of bound access in smc_nl_get_sys_info()
+sctp: bring inet(6)_skb_parm back to sctp_input_cb
+mptcp: be careful on MPTCP-level ack.
+geneve: pull IP header before ECN decapsulation
+net/sched: prevent invalid Scell_log shift count
+cfg80211: Save the regulatory domain with a lock
+mptcp: fix locking in mptcp_disconnect()
+cls_flower: call nla_ok() before nla_next()
+xsk: Validate socket state in xsk_recvmsg, prior touching socket members
+net/sched: prevent invalid Scell_log shift count
+erspan: fix version 1 check in gre_parse_header()
+net/sched: prevent invalid Scell_log shift count
+xfrm/compat: memset(0) 64-bit padding at right place
+net/sched: prevent invalid Scell_log shift count
+rxrpc: Fix clearance of Tx/Rx ring when releasing a call
+mac80211: free sta in sta_info_insert_finish() on errors
+net/sched: prevent invalid Scell_log shift count
+mac80211: free sta in sta_info_insert_finish() on errors
+mac80211: free sta in sta_info_insert_finish() on errors
+net/smc: fix access to parent of an ib device
+mac80211: free sta in sta_info_insert_finish() on errors
+rxrpc: Fix memory leak in rxrpc_lookup_local
+cfg80211: Save the regulatory domain with a lock
+xfrm/compat: Translate by copying XFRMA_UNSPEC attribute
+net/sched: prevent invalid Scell_log shift count
+can: isotp: isotp_getname(): fix kernel information leak
+mac80211: mesh: fix mesh_pathtbl_init() error path
+mac80211: free sta in sta_info_insert_finish() on errors
+ethtool: fix string set id check
+net_sched: reject silly cell_log in qdisc_get_rtab()
+mac80211: free sta in sta_info_insert_finish() on errors
+net/smc: fix access to parent of an ib device
+ethtool: fix stack overflow in ethnl_parse_bitset()
+nl80211: validate key indexes for cfg80211_registered_device
+rxrpc: Fix clearance of Tx/Rx ring when releasing a call
+netfilter: x_tables: Switch synchronization to RCU
+mm/slub: fix a memory leak in sysfs_slab_add()
+wext: fix NULL-ptr-dereference with cfg80211's lack of commit()
+tun: correct header offsets in napi frags mode
+net: partially revert dynamic lockdep key changes
+mac80211: always wind down STA state
+xsk: Fix possible crash in socket_release when out-of-memory
+cfg80211: only allow S1G channels on S1G band
+mac80211: fix use of skb payload instead of header
+net_sched: keep alloc_hash updated after hash allocation
+tipc: fix a deadlock when flushing scheduled work
+ip_gre: set dev->hard_header_len and dev->needed_headroom properly
+net/9p: validate fds in p9_fd_open
+afs: Fix cell removal
+net_sched: check error pointer in tcf_dump_walker()
+net/9p: initialize sun_server.sun_path to have addr's value only when addr is valid
+tipc: fix uninit skb->data in tipc_nl_compat_dumpit()
+net/qrtr: ns: Protect radix_tree_deref_slot() using rcu read locks
+rxrpc: Fix race between recvmsg and sendmsg on immediate call failure
+net_sched: commit action insertions together
+ethtool: strset: allow ETHTOOL_A_STRSET_COUNTS_ONLY attr
+xfrm: Use correct address family in xfrm_state_find
+net_sched: check error pointer in tcf_dump_walker()
+mptcp: fix infinite loop on recvmsg()/worker() race.
+wireless/nl80211: fix out-of-bounds access in nl80211_del_key()
+rxrpc: Fix conn bundle leak in net-namespace exit
+net/core: use list_del_init() instead of list_del() in netdev_run_todo()
+net/nexthop: don't allow empty NHA_GROUP
+net/team: fix memory leak in __team_options_register
+net/nexthop: don't allow empty NHA_GROUP
+wireless/nl80211: fix out-of-bounds access in nl80211_del_key()
+xsk: Fix use-after-free in failed shared_umem bind
+netlink: policy: correct validation type check
+xsk: Fix possible segfault at xskmap entry insertion
+tipc: block BH before using dst_cache
+net_sched: commit action insertions together
+rxrpc: Fix bundle counting for exclusive connections
+net_sched: commit action insertions together
+xsk: Fix possible memory leak at socket close
+xsk: Fix possible segfault in xsk umem diagnostics
+net_sched: keep alloc_hash updated after hash allocation
+net/qrtr: ns: Protect radix_tree_deref_slot() using rcu read locks
+ipv6: avoid lockdep issue in fib6_del()
+net/qrtr: check skb_put_padto() return value
+netns: don't disable BHs when locking "nsid_lock"
+inet_diag: validate INET_DIAG_REQ_PROTOCOL attribute
+act_ife: load meta modules before tcf_idr_check_alloc()
+inet_diag: validate INET_DIAG_REQ_PROTOCOL attribute
+ip6_gre: fix null-ptr-deref in ip6gre_init_net()
+can: j1939: fix kernel-infoleak in j1939_sk_sock2sockaddr_can()
+net_sched: fix error path in red_init()
+net/smc: fix sock refcounting in case of termination
+net_sched: fix error path in red_init()
+bonding: check return value of register_netdevice() in bond_newlink()
+qrtr: orphan socket in qrtr_release()
+rxrpc: Fix race between recvmsg and sendmsg on immediate call failure
+net/qrtr: fix usage of idr in port assignment to socket
+net/nexthop: don't allow empty NHA_GROUP
+netlink: fix state reallocation in policy export
+devlink: Fix use-after-free when destroying health reporters
+bonding: fix a potential double-unregister
+vsock: fix potential null pointer dereference in vsock_poll()
+9p/trans_fd: Fix concurrency del of req_list in p9_fd_cancelled/p9_read_work
+geneve: fix an uninitialized value in geneve_changelink()
+net: optimize the sockptr_t for unified kernel/user address spaces
+xfrm: interface: not xfrmi_ipv6/ipip_handler twice
+net_sched: initialize timer earlier in red_init()
+net: optimize the sockptr_t for unified kernel/user address spaces
+bonding: don't need RTNL for ipsec helpers
+net: get rid of lockdep_set_class_and_subclass()
+tipc: block BH before using dst_cache
+net/qrtr: Fix an out of bounds read qrtr_endpoint_post()
+xfrm: fix a warning in xfrm_policy_insert_list
+llc: make sure applications use ARPHRD_ETHER
+net/qrtr: Fix an out of bounds read qrtr_endpoint_post()
+net_sched: fix a memory leak in atm_tc_init()
+hsr: fix interface leak in error path of hsr_dev_finalize()
+bpf: net: Avoid incorrect bpf_sk_reuseport_detach call
+net: get rid of lockdep_set_class_and_subclass()
+genetlink: get rid of family->attrbuf
+tcp: tcp_v4_err() icmp skb is named icmp_skb
+tcp: tcp_v4_err() icmp skb is named icmp_skb
+hsr: avoid to create proc file after unregister
+inet_diag: bc: read cgroup id only for full sockets
+ipmr: Add lockdep expression to ipmr_for_each_table macro
+kcov: check kcov_softirq in kcov_remote_stop()
+tipc: block BH before using dst_cache
+l2tp: add sk_family checks to l2tp_validate_socket
+net: stricter validation of untrusted gso packets
+net: stricter validation of untrusted gso packets
+ipv6: set msg_control_is_user in do_ipv6_getsockopt
+inet_diag: bc: read cgroup id only for full sockets
+kcov: check kcov_softirq in kcov_remote_stop()
+kcov: check kcov_softirq in kcov_remote_stop()
+erspan: Check IFLA_GRE_ERSPAN_VER is set.
+l2tp: do not use inet_hash()/inet_unhash()
+drivers: net: hamradio: Fix suspicious RCU usage warning in bpqether.c
+SUNRPC: fix use-after-free in rpc_free_client_work()
+cfg80211: fix debugfs rename crash
+tcp: tcp_v4_err() icmp skb is named icmp_skb
+tcp: fix error recovery in tcp_zerocopy_receive()
+ipmr: Fix RCU list debugging warning
+genetlink: fix memory leaks in genl_family_rcv_msg_dumpit()
+seg6: fix seg6_validate_srh() to avoid slab-out-of-bounds
+bpf, sockhash: Synchronize delete from bucket list on map free
+net: stricter validation of untrusted gso packets
+net: change addr_list_lock back to static key
+inet_diag: bc: read cgroup id only for full sockets
+net_sched: sch_skbprio: add message validation to skbprio_change()
+sch_sfq: validate silly quantum values
+tcp: annotate sk->sk_rcvbuf lockless reads
+ipv6: restrict IPV6_ADDRFORM operation
+net_sched: keep alloc_hash updated after hash allocation
+sched: etf: do not assume all sockets are full blown
+macvlan: fix null dereference in macvlan_device_event()
+sched: etf: do not assume all sockets are full blown
+net_sched: keep alloc_hash updated after hash allocation
+net_sched: hold rtnl lock in tcindex_partial_destroy_work()
+macsec: fix NULL dereference in macsec_upd_offload()
+net_sched: cls_route: remove the right filter from hashtable
+geneve: move debug check after netdev unregister
+net_sched: keep alloc_hash updated after hash allocation
+tcp: repair: fix TCP_QUEUE_SEQ implementation
+net_sched: keep alloc_hash updated after hash allocation
+netlink: check for null extack in cookie helpers
+hsr: fix general protection fault in hsr_addr_is_self()
+net_sched: cls_route: remove the right filter from hashtable
+net_sched: cls_route: remove the right filter from hashtable
+net_sched: cls_route: remove the right filter from hashtable
+net/sched: make newly activated qdiscs visible
+net_sched: fix a missing refcnt in tcindex_init()
+net_sched: cls_route: remove the right filter from hashtable
+net: ip_gre: Accept IFLA_INFO_DATA-less configuration
+net_sched: keep alloc_hash updated after hash allocation
+net/sched: act_ct: fix lockdep splat in tcf_ct_flow_table_get
+net_sched: add a temporary refcnt for struct tcindex_data
+macsec: restrict to ethernet devices
+net: use listified RX for handling GRO_NORMAL skbs
+net: use listified RX for handling GRO_NORMAL skbs
+net: add strict checks in netdev_name_node_alt_destroy()
+gre: fix uninit-value in __iptunnel_pull_header
+net/rtnetlink: fix bugs in rtnl_alt_ifname()
+net: add strict checks in netdev_name_node_alt_destroy()
+net: add strict checks in netdev_name_node_alt_destroy()
+net/rtnetlink: fix bugs in rtnl_alt_ifname()
+net/rtnetlink: fix bugs in rtnl_alt_ifname()
+slip: make slhc_compress() more robust against malicious packets
+net/smc: cancel event worker during device removal
+net/rtnetlink: fix bugs in rtnl_alt_ifname()
+ipv6: restrict IPV6_ADDRFORM operation
+ethtool: limit bitset size
+net: add strict checks in netdev_name_node_alt_destroy()
+net: add strict checks in netdev_name_node_alt_destroy()
+net/smc: fix leak of kernel memory to user space
+bonding/alb: make sure arp header is pulled before accessing it
+net/smc: check for valid ib_client_data
+net: add strict checks in netdev_name_node_alt_destroy()
+net/rtnetlink: fix bugs in rtnl_alt_ifname()
+net/memcg: fix lockdep splat in inet_csk_accept()
+ethtool: limit bitset size
+net: add strict checks in netdev_name_node_alt_destroy()
+bonding: fix lockdep warning in bond_get_stats()
+net: add strict checks in netdev_name_node_alt_destroy()
+net/rtnetlink: fix bugs in rtnl_alt_ifname()
+ethtool: limit bitset size
+net/rtnetlink: fix bugs in rtnl_alt_ifname()
+net/rtnetlink: fix bugs in rtnl_alt_ifname()
+net/rtnetlink: fix bugs in rtnl_alt_ifname()
+net: add strict checks in netdev_name_node_alt_destroy()
+vhost: Check docket sk_family instead of call getname
+net/rtnetlink: fix bugs in rtnl_alt_ifname()
+mptcp: add dummy icsk_sync_mss()
+vsock: fix potential deadlock in transport->release()
+net: add strict checks in netdev_name_node_alt_destroy()
+net: add strict checks in netdev_name_node_alt_destroy()
+net: add strict checks in netdev_name_node_alt_destroy()
+slip: make slhc_free() silently accept an error pointer
+gtp: make sure only SOCK_DGRAM UDP sockets are accepted
+tun: add mutex_unlock() call and napi.skb clearing in tun_get_user()
+devlink: Wait longer before warning about unset port type
+cfg80211: check for set_wiphy_params
+cls_rsvp: fix rsvp_policy
+netdevsim: fix nsim_fib6_rt_create() error path
+net/hsr: fix possible NULL deref in hsr_handle_frame()
+pkt_sched: fq: do not accept silly TCA_FQ_QUANTUM
+gtp: make sure only SOCK_DGRAM UDP sockets are accepted
+crypto: af_alg - Use bh_lock_sock in sk_destruct
+vlan: fix memory leak in vlan_dev_set_egress_priority
+net, sk_msg: Don't check if sock is locked when tearing down psock
+macvlan: do not assume mac_header is set in macvlan_broadcast()
+gtp: fix bad unlock balance in gtp_encap_enable_socket
+net_sched: ematch: reject invalid TCF_EM_SIMPLE
+skbuff: fix a data race in skb_queue_len()
+macvlan: do not assume mac_header is set in macvlan_broadcast()
+net_sched: fix datalen for ematch
+gtp: fix bad unlock balance in gtp_encap_enable_socket
+tcp: do not leave dangling pointers in tp->highest_sack
+netdevsim: fix nsim_fib6_rt_create() error path
+net/sched: act_ctinfo: fix memory leak
+net_sched: fix datalen for ematch
+pkt_sched: fq: do not accept silly TCA_FQ_QUANTUM
+pkt_sched: fq: do not accept silly TCA_FQ_QUANTUM
+net_sched: fix ops->bind_class() implementations
+net_sched: fix ops->bind_class() implementations
+tcp: do not leave dangling pointers in tp->highest_sack
+cfg80211: check for set_wiphy_params
+macvlan: do not assume mac_header is set in macvlan_broadcast()
+gtp: fix bad unlock balance in gtp_encap_enable_socket
+net: avoid updating qdisc_xmit_lock_key in netdev_update_lockdep_key()
+ipv6/addrconf: fix potential NULL deref in inet6_set_link_af()
+net/sched: act_ife: initalize ife->metalist earlier
+net/rtnetlink: validate IFLA_MTU attribute in rtnl_create_link()
+net_sched: walk through all child classes in tc_bind_tclass()
+net_sched: fix an OOB access in cls_tcindex
+net_sched: fix an OOB access in cls_tcindex
+rxrpc: Fix call RCU cleanup using non-bh-safe locks
+net_sched: walk through all child classes in tc_bind_tclass()
+tcp: ignore Fast Open on repair mode
+neighbour: remove neigh_cleanup() method
+hsr: fix slab-out-of-bounds Read in hsr_debugfs_rename()
+net/smc: add fallback check to connect()
+hsr: fix a race condition in node list insertion and deletion
+net/tls: fix page double free on TX cleanup
+ppp: fix out-of-bounds access in bpf_prog_create()
+net: fix a leak in register_netdevice()
+hrtimer: Annotate lockless access to timer->state
+inet: protect against too small mtu values.
+Bluetooth: Fix invalid-free in bcsp_close()
+Bluetooth: Fix invalid-free in bcsp_close()
+inet: do not call sublist_rcv on empty list
+net/tls: free the record on encryption error
+net: avoid potential false sharing in neighbor related code
+net/sched: annotate lockless accesses to qdisc->empty
+inet: do not call sublist_rcv on empty list
+inetpeer: fix data-race in inet_putpeer / inet_putpeer
+net: add annotations on hh->hh_len lockless accesses
+Bluetooth: Fix invalid-free in bcsp_close()
+net/devlink: fix reporter dump dumpit
+net: propagate errors correctly in register_netdevice()
+net: provide dev_lstats_read() helper
+net: add a READ_ONCE() in skb_peek_tail()
+net: silence data-races on sk_backlog.tail
+net: add a READ_ONCE() in skb_peek_tail()
+net: propagate errors correctly in register_netdevice()
+net/icmp: fix data-race in cmp_global_allow()
+net/sched: annotate lockless accesses to qdisc->empty
+tcp: fix data-race in tcp_recvmsg()
+tun: fix data-race in gro_normal_list()
+slip: Fix use-after-free Read in slip_open
+packet: fix data-race in fanout_flow_is_huge()
+net: propagate errors correctly in register_netdevice()
+tun: fix memory leak in error path
+net: propagate errors correctly in register_netdevice()
+net/sched: annotate lockless accesses to qdisc->empty
+Bluetooth: Fix invalid-free in bcsp_close()
+vsock: avoid to assign transport if its initialization fails
+net/smc: fix fastopen for non-blocking connect()
+net/smc: fix refcount non-blocking connect() -part 2
+net: fix data-race in neigh_event_send()
+ipv6: fixes rt6_probe() and fib6_nh->last_probe init
+net/tls: partially revert fix transition through disconnect with close
+rxrpc: Fix call crypto state cleanup
+net/tls: fix page double free on TX cleanup
+udp: fix data-race in udp_set_dev_scratch()
+net: add READ_ONCE() annotation in __skb_wait_for_more_packets()
+net/smc: fix refcounting for non-blocking connect()
+bonding: fix using uninitialized mode_lock
+net: use skb_queue_empty_lockless() in poll() handlers
+netdevsim: Fix use-after-free during device dismantle
+net: annotate accesses to sk->sk_incoming_cpu
+net: annotate accesses to sk->sk_incoming_cpu
+udp: use skb_queue_empty_lockless()
+udp: use skb_queue_empty_lockless()
+bonding: fix using uninitialized mode_lock
+net: add READ_ONCE() annotation in __skb_wait_for_more_packets()
+net: annotate lockless accesses to sk->sk_napi_id
+net: use skb_queue_empty_lockless() in busy poll contexts
+net: add READ_ONCE() annotation in __skb_wait_for_more_packets()
+net/9p/trans_fd.c: fix race-condition by flushing workqueue before the kfree()
+nsh: set mac len based on inner packet
+mfd: da9063: Replace regmap_add_irq_chip with devm counterpart
+net/9p/trans_fd.c: fix race by holding the lock
+net/9p/trans_fd.c: fix race by holding the lock
+net/9p/trans_fd.c: fix race-condition by flushing workqueue before the kfree()
+xfrm: validate template mode
+vti6: Properly adjust vti6 MTU from MTU of lower device
+bpf: sockmap only allow ESTABLISHED sock state
+9p: Add refcount to p9_req_t
+net/smc: propagate file from SMC to TCP socket
+bpf: in __bpf_redirect_no_mac pull mac only if present
+tipc: lock wakeup & inputq at tipc_link_reset()
+bpf: in __bpf_redirect_no_mac pull mac only if present
+tcp: annotate sk->sk_wmem_queued lockless reads
+tcp: annotate sk->sk_wmem_queued lockless reads
+tcp: annotate tp->write_seq lockless reads
+tcp: annotate tp->snd_nxt lockless reads
+tcp: annotate sk->sk_wmem_queued lockless reads
+tcp: annotate sk->sk_wmem_queued lockless reads
+tcp: annotate sk->sk_rcvbuf lockless reads
+xsk: Fix crash in poll when device does not support ndo_xsk_wakeup
+rxrpc: Fix call crypto state cleanup
+rxrpc: Fix call ref leak
+net: silence KCSAN warnings about sk->sk_backlog.len reads
+llc: fix sk_buff leak in llc_sap_state_process()
+net: silence KCSAN warnings around sk_add_backlog() calls
+net: avoid potential infinite loop in tc_ctl_action()
+tcp: annotate tp->copied_seq lockless reads
+rxrpc: Fix trace-after-put looking at the put peer record 9ebeddef58c4 rxrpc: rxrpc_peer needs to hold a ref on the rxrpc_local record
+tcp: annotate tp->rcv_nxt lockless reads
+llc: fix sk_buff leak in llc_conn_service()
+rxrpc: Fix possible NULL pointer access in ICMP handling
+net: silence KCSAN warnings about sk->sk_backlog.len reads
+xfrm: Add '_rcu' tag for rcu protected pointer in netns_xfrm
+xfrm: Validate address prefix lengths in the xfrm selector.
+xfrm_user: uncoditionally validate esn replay attribute struct
+xfrm: Add '_rcu' tag for rcu protected pointer in netns_xfrm
+xfrm: Add '_rcu' tag for rcu protected pointer in netns_xfrm
+xfrm: Add '_rcu' tag for rcu protected pointer in netns_xfrm
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+sch_netem: fix a divide by zero in tabledist()
+posix-cpu-timers: Always clear head pointer on dequeue
+ipv6: drop incoming packets having a v4mapped source address
+xsk: use state member for socket synchronization
+net/sched: sch_sfb: don't call qdisc_put() while holding tree lock
+ipv6: fix listify ip6_rcv_finish in case of forwarding
+tcp: fix slab-out-of-bounds in tcp_zerocopy_receive()
+net/sched: sch_htb: don't call qdisc_put() while holding tree lock
+sch_cbq: validate TCA_CBQ_WRROPT to avoid crash
+sch_dsmark: fix potential NULL deref in dsmark_init()
+net/sched: sch_sfb: don't call qdisc_put() while holding tree lock
+net/sched: fix possible crash in tcf_action_destroy()
+xdp: Fix race in dev_map_hash_update_elem() when replacing element
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+xfrm: policy: avoid warning splat when merging nodes
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+ipv6: addrconf_f6i_alloc - fix non-null pointer check to !IS_ERR()
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+net: sock_map, fix missing ulp check in sock hash case
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+sch_hhf: ensure quantum and hhf_non_hh_weight are non-zero
+net_sched: check cops->tcf_block in tc_bind_tclass()
+tipc: pass tunnel dev as NULL to udp_tunnel(6)_xmit_skb
+tipc: pass tunnel dev as NULL to udp_tunnel(6)_xmit_skb
+kcm: Fix use-after-free caused by clonned sockets
+tipc: pass tunnel dev as NULL to udp_tunnel(6)_xmit_skb
+net/sched: cbs: Set default link speed to 10 Mbps in cbs_set_port_rate
+net/packet: fix race in tpacket_snd()
+mld: fix memory leak in mld_del_delrec()
+rxrpc: Fix read-after-free in rxrpc_queue_local()
+net/tls: swap sk_write_space on close
+netlink: Fix nlmsg_parse as a wrapper for strict message parsing
+rxrpc: Fix local endpoint refcounting
+netlink: Fix nlmsg_parse as a wrapper for strict message parsing
+USB: CDC: fix sanity checks in CDC union parser
+rxrpc: Fix local endpoint replacement
+xfrm: policy: Fix out-of-bound array accesses in __xfrm_policy_unlink
+net/tls: remove close callback sock unlock/lock around TX work flush
+net/tls: partially revert fix transition through disconnect with close
+net/tls: partially revert fix transition through disconnect with close
+bpf: sockmap/tls, close can race with map free
+net/tls: partially revert fix transition through disconnect with close
+net/smc: do not schedule tx_work in SMC_CLOSED state
+net/tls: partially revert fix transition through disconnect with close
+bpf: sockmap/tls, close can race with map free
+net/tls: partially revert fix transition through disconnect with close
+net/tls: partially revert fix transition through disconnect with close
+net/tls: fix page double free on TX cleanup
+xdp: fix potential deadlock on socket mutex
+hsr: switch ->dellink() to ->ndo_uninit()
+igmp: fix memory leak in igmpv3_del_delrec()
+ipv6: fix potential crash in ip6_datagram_dst_update()
+inet: fix various use-after-free in defrags units
+bonding: validate ip header before check IPPROTO_IGMP
+af_key: fix leaks in key_pol_get_resp and dump_sp.
+net: fix use-after-free in kfree_skb_list
+inet: frags: fix use-after-free read in inet_frag_destroy_rcu
+xfrm: policy: fix bydst hlist corruption on hash rebuild
+ipv4: fix rcu lockdep splat due to wrong annotation
+ipv6: tcp: fix potential NULL deref in tcp_v6_send_reset()
+inet: frags: fix use-after-free read in inet_frag_destroy_rcu
+inet: frags: fix use-after-free read in inet_frag_destroy_rcu
+rxrpc: Fix send on a connected, but unbound socket
+ipv6: fix suspicious RCU usage in rt6_dump_route()
+hsr: implement dellink to clean up resources
+ipv6: Error when route does not have any valid nexthops
+net/packet: fix memory leak in packet_set_ring()
+net/smc: propagate file from SMC to TCP socket
+tipc: pass tunnel dev as NULL to udp_tunnel(6)_xmit_skb
+inet: clear num_timeout reqsk_alloc()
+tipc: pass tunnel dev as NULL to udp_tunnel(6)_xmit_skb
+neigh: fix use-after-free read in pneigh_get_next
+tipc: pass tunnel dev as NULL to udp_tunnel(6)_xmit_skb
+net: correct udp zerocopy refcnt also when zerocopy only on append
+tipc: pass tunnel dev as NULL to udp_tunnel(6)_xmit_skb
+neigh: fix use-after-free read in pneigh_get_next
+tipc: pass tunnel dev as NULL to udp_tunnel(6)_xmit_skb
+tipc: pass tunnel dev as NULL to udp_tunnel(6)_xmit_skb
+tipc: pass tunnel dev as NULL to udp_tunnel(6)_xmit_skb
+tipc: pass tunnel dev as NULL to udp_tunnel(6)_xmit_skb
+io_uring: fix memory leak of UNIX domain socket inode
+packet: unconditionally free po->rollover
+ipv6: prevent possible fib6 leaks
+ipv6: prevent possible fib6 leaks
+ipv6: prevent possible fib6 leaks
+ipv6: prevent possible fib6 leaks
+ipv6: prevent possible fib6 leaks
+ipv4/igmp: fix another memory leak in igmpv3_del_delrec()
+llc: fix skb leak in llc_build_and_send_ui_pkt()
+net: correct zerocopy refcnt with udp MSG_MORE
+ipv6: prevent possible fib6 leaks
+bpf: devmap: fix use-after-free Read in __dev_map_entry_free
+flow_dissector: disable preemption around BPF calls
+tcp: fix zerocopy and notsent_lowat issues
+tcp: fix zerocopy and notsent_lowat issues
+mm/memory.c: recheck page table entry with page table lock held
+xfrm: clean up xfrm protocol checks
+rtnetlink: fix rtnl_valid_stats_req() nlmsg_len check
+ipv4: ensure rcu_read_lock() in ipv4_link_failure()
+udp: fix GRO packet of death
+ipv4: add sanity checks in ipv4_link_failure()
+mac80211_hwsim: calculate if_combination.max_interfaces
+mac80211: don't attempt to rename ERR_PTR() debugfs dirs
+rtnetlink: fix rtnl_valid_stats_req() nlmsg_len check
+net-sysfs: Fix memory leak in netdev_register_kobject
+l2ip: fix possible use-after-free
+ipv6: fix races in ip6_dst_destroy()
+vhost: reject zero size iova range
+tipc: change to check tipc_own_id to return in tipc_net_stop
+NFS: Forbid setting AF_INET6 to "struct sockaddr_in"->sin_family.
+ila: Fix rhashtable walker list corruption
+ipv6: Fix dangling pointer when ipv6 fragment
+tun: add a missing rcu_read_unlock() in error path
+tipc: change to check tipc_own_id to return in tipc_net_stop
+tun: properly test for IFF_UP
+tun: properly test for IFF_UP
+net/sched: potential NULL dereference in tcf_block_find()
+aio: simplify - and fix - fget/fput for io_submit()
+fou, fou6: avoid uninit-value in gue_err() and gue6_err()
+net/hsr: fix possible crash in add_timer()
+gro_cells: make sure device is up in gro_cells_receive()
+l2tp: fix infoleak in l2tp_ip6_recvmsg()
+xsk: fix potential crash in xsk_diag_put_umem()
+fou, fou6: avoid uninit-value in gue_err() and gue6_err()
+xfrm: policy: fix infinite loop when merging src-nodes
+xfrm: policy: delete inexact policies from inexact list on hash rebuild
+xfrm: policy: fix infinite loop when merging src-nodes
+xfrm: policy: fix infinite loop when merging src-nodes
+smc: move unhash as early as possible in smc_release()
+xfrm: policy: fix infinite loop when merging src-nodes
+net/smc: fix TCP fallback socket release 26d92e951fe0 smc: move unhash as early as possible in smc_release()
+xfrm: policy: fix infinite loop when merging src-nodes
+tun: publish tfile after it's fully initialized
+xfrm: policy: fix infinite loop when merging src-nodes
+net/smc: fix TCP fallback socket release 26d92e951fe0 smc: move unhash as early as possible in smc_release()
+ipv6: fix kernel-infoleak in ipv6_local_error()
+fou6: Prevent unbounded recursion in GUE error handler
+nl80211: fix NLA_POLICY_NESTED() arguments
+xfrm: policy: fix infinite loop when merging src-nodes
+tcp: repaired skbs must init their tso_segs
+fou6: Prevent unbounded recursion in GUE error handler
+ipv6: make icmp6_send() robust against null skb->dev
+libceph: avoid KEEPALIVE_PENDING races in ceph_con_keepalive()
+xfrm: policy: fix infinite loop when merging src-nodes
+xfrm: policy: fix infinite loop when merging src-nodes
+team: avoid complex list operations in team_nl_cmd_options_set()
+xfrm: policy: fix infinite loop when merging src-nodes
+xfrm: policy: fix infinite loop when merging src-nodes
+mac80211_hwsim: check that n_limits makes sense
+xfrm: policy: fix infinite loop when merging src-nodes
+slab: alien caches must not be initialized if the allocation of the alien cache failed
+xfrm: policy: fix infinite loop when merging src-nodes
+bpf: in __bpf_redirect_no_mac pull mac only if present
+fou6: Prevent unbounded recursion in GUE error handler
+fou6: Prevent unbounded recursion in GUE error handler
+xfrm: policy: fix infinite loop when merging src-nodes
+xfrm: policy: fix infinite loop when merging src-nodes
+xfrm: policy: fix infinite loop when merging src-nodes
+fou, fou6: do not assume linear skbs
+net: ip6_gre: fix possible NULL pointer dereference in ip6erspan_set_version
+xfrm: policy: fix infinite loop when merging src-nodes
+xfrm: destroy xfrm_state synchronously on net exit path
+xfrm: policy: fix infinite loop when merging src-nodes
+xfrm: policy: fix infinite loop when merging src-nodes
+rxrpc: bad unlock balance in rxrpc_recvmsg
+fou, fou6: do not assume linear skbs
+net/smc: fix TCP fallback socket release
+tls: convert to generic sk_msg interface
+tls: convert to generic sk_msg interface
+tls: convert to generic sk_msg interface
+tls: convert to generic sk_msg interface
+tls: convert to generic sk_msg interface
+bpf: add tests for direct packet access from CGROUP_SKB
+sunrpc: handle ENOMEM in rpcb_getport_async
+ip: validate header length on virtual device xmit
+net/wan: fix a double free in x25_asy_open_tty()
+9p/net: put a lower bound on msize
+ip: validate header length on virtual device xmit
+ptr_ring: wrap back ->producer in __ptr_ring_swap_queue()
+neighbor: gc_list changes should be protected by table lock
+ipv6: tunnels: fix two use-after-free
+neighbor: gc_list changes should be protected by table lock
+ipv6: explicitly initialize udp6_addr in udp_sock_create6()
+neighbor: gc_list changes should be protected by table lock
+neighbor: gc_list changes should be protected by table lock
+dccp: initialize (addr,port) listening hashtable
+dccp: initialize (addr,port) listening hashtable
+neighbor: gc_list changes should be protected by table lock
+packet: validate address length
+tipc: compare remote and local protocols in tipc_udp_enable()
+neighbor: gc_list changes should be protected by table lock
+vhost/vsock: fix use-after-free in network stack callers
+rtnetlink: ndo_dflt_fdb_dump() only work for ARPHRD_ETHER devices
+vhost/vsock: fix use-after-free in network stack callers
+vhost/vsock: fix use-after-free in network stack callers
+rtnetlink: Disallow FDB configuration for non-Ethernet device
+9p: clear dangling pointers in p9stat_free 81c99089bce6 v9fs_dir_readdir: fix double-free on p9stat_read error
+rtnetlink: Disallow FDB configuration for non-Ethernet device
+net_sched: fix a crash in tc_new_tfilter()
+flow_dissector: lookup netns by skb->sk if skb->dev is NULL
+bpf: skmsg, fix psock create on existing kcm/tls port
+net_sched: fix a crash in tc_new_tfilter()
+ip_gre: fix parsing gre header in ipgre_err
+tcp, ulp: remove socket lock assertion on ULP cleanup
+net: Properly unlink GRO packets on overflow.
+tcp: do not release socket ownership in tcp_close()
+9p/trans_fd: abort p9_read_work if req status changed
+net/neigh: fix NULL deref in pneigh_dump_table()
+llc: do not use sk_eat_skb()
+net_sched: fix a crash in tc_new_tfilter()
+nsh: set mac len based on inner packet
+tipc: fix info leak from kernel tipc_event
+ipv6: mcast: fix a use-after-free in inet6_mc_check
+llc: set SOCK_RCU_FREE in llc_sap_add_socket()
+net/xfrm: fix out-of-bounds packet access
+net: make skb_partial_csum_set() more robust against overflows
+tun: napi flags belong to tfile
+tun: napi flags belong to tfile
+bonding: avoid possible dead-lock
+ipv6: take rcu lock in rawv6_send_hdrinc()
+bonding: avoid possible dead-lock
+tun: initialize napi_mutex unconditionally
+rtnl: limit IFLA_NUM_TX_QUEUES and IFLA_NUM_RX_QUEUES to 4096
+ipv4: fix use-after-free in ip_cmsg_recv_dstaddr()
+team: Forbid enslaving team device to itself
+ip6_tunnel: be careful when accessing the inner header
+pppoe: fix reception of frames with no mac header
+tcp/dccp: fix lockdep issue when SYN is backlogged
+xfrm_user: prevent leaking 2 bytes of kernel memory
+ceph: avoid a use-after-free in ceph_destroy_options()
+net: fix uninit-value in __hw_addr_add_ex()
+ipv6: use fib6_info_hold_safe() when necessary
+bpf: sockhash, disallow bpf_tcp_close and update in parallel
+mac80211_hwsim: require at least one channel
+l2tp: fix races with ipv4-mapped ipv6 addresses
+packet: in packet_snd start writing at link layer allocation
+9p: fix multiple NULL-pointer-dereferences
+l2tp: use sk_dst_check() to avoid race on sk->sk_dst_cache
+vhost: reset metadata cache when initializing new IOTLB
+llc: use refcount_inc_not_zero() for llc_sap_find()
+ila: make lockdep happy again
+l2tp: use sk_dst_check() to avoid race on sk->sk_dst_cache
+packet: refine ring v3 block size test to hold one frame
+vsock: split dwork to avoid reinitializations
+9p: validate PDU length 7913690dcc5e net/9p/client.c: version pointer uninitialized
+net: check extack._msg before print
+9p: fix multiple NULL-pointer-dereferences
+net/smc: move sock lock in smc_ioctl()
+net/9p/trans_fd.c: fix race by holding the lock
+net/smc: move sock lock in smc_ioctl()
+net/9p/trans_fd.c: fix race-condition by flushing workqueue before the kfree()
+mm,vmscan: Allow preallocating memory for register_shrinker().
+ipv6: use fib6_info_hold_safe() when necessary
+bonding: avoid lockdep confusion in bond_get_stats()
+ipv6: use fib6_info_hold_safe() when necessary
+net: skb_segment() should not return NULL
+net/ipv6: fix metrics leak
+ipv6: use fib6_info_hold_safe() when necessary
+ipv6: use fib6_info_hold_safe() when necessary
+ip: in cmsg IP(V6)_ORIGDSTADDR call pskb_may_pull
+ipv6: use fib6_info_hold_safe() when necessary
+net/ipv6: fix metrics leak
+xfrm_user: prevent leaking 2 bytes of kernel memory
+bpf: fix panic due to oob in bpf_prog_test_run_skb
+nsh: set mac len based on inner packet
+bpf: sockhash, disallow bpf_tcp_close and update in parallel
+bpf: sockhash, disallow bpf_tcp_close and update in parallel
+bpf: sockhash, disallow bpf_tcp_close and update in parallel
+bpf: sockhash, disallow bpf_tcp_close and update in parallel
+net/nfc: Avoid stalls when nfc_alloc_send_skb() returned NULL.
+net/smc: reduce sock_put() for fallback sockets
+KEYS: DNS: fix parsing multiple options
+nsh: set mac len based on inner packet
+tls: Stricter error checking in zerocopy sendmsg path
+net/smc: take sock lock in smc_ioctl()
+tcp: cleanup copied_seq and urg_data in tcp_disconnect
+bpf: fix panic due to oob in bpf_prog_test_run_skb
+packet: reset network header if packet shorter than ll reserved space
+net/smc: reduce sock_put() for fallback sockets
+packet: fix bitfield update race
+l2tp: fix races in tunnel creation
+packet: in packet_snd start writing at link layer allocation
+net/ipv6: Fix gfp_flags arg to addrconf_prefix_route
+bpf: reject any prog that failed read-only lock
+tcp: add TCP_ZEROCOPY_RECEIVE support for zerocopy receive
+vhost: fix info leak due to uninitialized memory
+bpf: reject passing modified ctx to helper functions
+tcp: add TCP_ZEROCOPY_RECEIVE support for zerocopy receive
+bpf: reject passing modified ctx to helper functions
+net/packet: refine check for priv area size
+udp: disable gso with no_check_tx
+bpf: reject passing modified ctx to helper functions
+bpf: reject passing modified ctx to helper functions
+xsk: silence warning on memory allocation failure
+tls: fix use-after-free in tls_push_record
+net/ipv6: respect rcu grace period before freeing fib6_info
+sctp: not allow transport timeout value less than HZ/5 for hb_timer
+net/ipv6: fix lock imbalance in ip6_route_del()
+sctp: not allow transport timeout value less than HZ/5 for hb_timer
+sctp: not allow transport timeout value less than HZ/5 for hb_timer
+smc: convert to ->poll_mask
+rtnetlink: validate attributes in do_setlink()
+sctp: not allow transport timeout value less than HZ/5 for hb_timer
+bpf: reject passing modified ctx to helper functions
+tcp: add TCP_ZEROCOPY_RECEIVE support for zerocopy receive
+bpf: sockmap, fix crash when ipv6 sock is added
+bpf: reject passing modified ctx to helper functions
+bpf: reject passing modified ctx to helper functions
+bpf: undo prog rejection on read-only lock failure
+net/smc: return 0 for ioctl calls in states INIT and CLOSED
+sctp: not allow transport timeout value less than HZ/5 for hb_timer
+net/packet: refine check for priv area size
+udp: avoid refcount_t saturation in __udp_gso_segment()
+metrics: add proper netlink validation
+bpf: reject passing modified ctx to helper functions
+sctp: not allow transport timeout value less than HZ/5 for hb_timer
+net/ipv6: prevent use after free in ip6_route_mpath_notify
+bpf, xdp: fix crash in xdp_umem_unaccount_pages
+tls: fix use-after-free in tls_push_record
+net/ipv6: fix LOCKDEP issue in rt6_remove_exception_rt()
+net/packet: fix use-after-free
+net/smc: init conn.tx_work & conn.send_lock sooner
+net/ipv6: Fix ip6_convert_metrics() bug
+sctp: not allow transport timeout value less than HZ/5 for hb_timer
+net/ipv6: add rcu locking to ip6_negative_advice
+net/smc: fix shutdown in state SMC_LISTEN
+tuntap: fix use after free during release
+packet: fix reserve calculation
+packet: in packet_snd start writing at link layer allocation
+tun: fix use after free for ptr_ring
+kcm: Fix use-after-free caused by clonned sockets
+packet: in packet_snd start writing at link layer allocation
+xfrm6: avoid potential infinite loop in _decode_session6()
+ipmr: properly check rhltable_init() return value
+packet: in packet_snd start writing at link layer allocation
+sock_diag: fix use-after-free read in __sk_free
+packet: in packet_snd start writing at link layer allocation
+tcp: purge write queue in tcp_connect_init()
+net/smc: check for missing nlattrs in SMC_PNETID messages
+bdi: wake up concurrent wb_shutdown() callers.
+nsh: fix infinite loop
+cfg80211: limit wiphy names to 128 bytes
+tls: fix use after free in tls_sk_proto_close
+tipc: fix one byte leak in tipc_sk_set_orig_addr()
+sunrpc: Fix latency trace point crashes
+xfrm: Fix warning in xfrm6_tunnel_net_exit.
+af_key: Always verify length of provided sadb_key
+rds: do not leak kernel memory to user land
+net/smc: keep clcsock reference in smc_tcp_listen_work()
+net/smc: keep clcsock reference in smc_tcp_listen_work()
+tcp: fix TCP_REPAIR_QUEUE bound checking
+net/smc: keep clcsock reference in smc_tcp_listen_work()
+tcp: ignore Fast Open on repair mode
+net/smc: keep clcsock reference in smc_tcp_listen_work()
+net/smc: keep clcsock reference in smc_tcp_listen_work()
+net/smc: restrict non-blocking connect finish
+ipv6: fix uninit-value in ip6_multipath_l3_keys()
+tls: Use correct sk->sk_prot for IPV6
+l2tp: fix races with ipv4-mapped ipv6 addresses
+flow_dissector: properly cap thoff field
+kcm: lock lower socket in kcm_attach
+team: avoid adding twice the same option to the event list
+ip6_gre: better validate user provided tunnel names
+net: af_packet: fix race in PACKET_{R|T}X_RING
+inetpeer: fix uninit-value in inet_getpeer
+ipv6: add RTA_TABLE and RTA_PREFSRC to rtm_ipv6_policy
+sctp: do not leak kernel memory to user space
+soreuseport: initialise timewait reuseport field
+llc: delete timers synchronously in llc_sk_free()
+netlink: fix uninit-value in netlink_sendmsg
+llc: hold llc_sap before release_sock()
+net: initialize skb->peeked when cloning
+kobject: don't use WARN for registration failures
+ipvs: fix rtnl_lock lockups caused by start_sync_thread
+net: validate attribute sizes in neigh_dump_table()
+tcp: md5: reject TCP_MD5SIG or TCP_MD5SIG_EXT on established sockets
+ipv6: sit: better validate user provided tunnel names
+vti6: better validate user provided tunnel names
+ip_tunnel: better validate user provided tunnel names
+kcm: Call strp_stop before strp_done in kcm_attach
+ip6_tunnel: better validate user provided tunnel names
+net: fix rtnh_ok()
+l2tp: check sockaddr length in pppol2tp_connect()
+llc: fix NULL pointer deref for SOCK_ZAPPED
+vhost: fix vhost_vq_access_ok() log check
+vlan: Fix reading memory beyond skb->tail in skb_vlan_tagged_multi
+ipv4: fix uninit-value in ip_route_output_key_hash_rcu()
+pptp: remove a buggy dst release in pptp_connect()
+net: fix uninit-value in __hw_addr_add_ex()
+tipc: don't call sock_release() in atomic context
+l2tp: fix races in tunnel creation
+net: fix rtnh_ok()
+pppoe: check sockaddr length in pppoe_connect()
+net/smc: simplify wait when closing listen socket
+net/tls: Only attach to sockets in ESTABLISHED state
+vhost_net: stop device during reset owner
+ipv6: fix possible deadlock in rt6_age_examine_exception()
+net: avoid skb_warn_bad_offload on IS_ERR
+vlan: Fix vlan insertion for packets without ethernet header
+kcm: Only allow TCP sockets to be attached to a KCM mux
+ipv6: the entire IPv6 header chain must fit the first fragment
+vlan: Fix vlan insertion for packets without ethernet header
+vhost: correctly remove wait queue during poll failure
+vlan: Fix vlan insertion for packets without ethernet header
+vhost_net: add missing lock nesting notation
+ipv6: fix possible deadlock in rt6_age_examine_exception()
+vhost: validate log when IOTLB is enabled
+l2tp: fix races with ipv4-mapped ipv6 addresses
+l2tp: do not accept arbitrary sockets
+xfrm: Fix infinite loop in xfrm_get_dst_nexthop with transport mode.
+xfrm_user: uncoditionally validate esn replay attribute struct
+xfrm: Refuse to insert 32 bit userspace socket policies on 64 bit systems
+xfrm_user: uncoditionally validate esn replay attribute struct
+net/sched: fix uses after free
+l2tp: do not accept arbitrary sockets
+kcm: Only allow TCP sockets to be attached to a KCM mux
+l2tp: fix tunnel lookup use-after-free race
+tls: Use correct sk->sk_prot for IPV6
+net/smc: fix NULL pointer dereference on sock_create_kern() error path
+l2tp: fix tunnel lookup use-after-free race
+l2tp: fix tunnel lookup use-after-free race
+l2tp: fix tunnel lookup use-after-free race
+bpf: cpumap: use GFP_KERNEL instead of GFP_ATOMIC in __cpu_map_entry_alloc()
+mac80211_hwsim: don't use WQ_MEM_RECLAIM
+netfilter: drop outermost socket lock in getsockopt()
+bpf: cpumap: use GFP_KERNEL instead of GFP_ATOMIC in __cpu_map_entry_alloc()
+kernel/relay.c: limit kmalloc size to KMALLOC_MAX_SIZE
+ipv4: fix for a race condition in raw_sendmsg
+fix kcm_clone()
+SUNRPC: Destroy transport from the system workqueue
+xfrm: Fix stack-out-of-bounds with misconfigured transport mode policies.
+xfrm: Fix stack-out-of-bounds with misconfigured transport mode policies.
+ptr_ring: fail early if queue occupies more than KMALLOC_MAX_SIZE 0bf7800f1799 ptr_ring: try vmalloc() when kmalloc() fails
+netfilter: on sockopt() acquire sock lock only in the required scope
+ip6mr: fix stale iterator
+soreuseport: fix mem leak in reuseport_add_sock()
+igmp: add a missing rcu locking section
+netfilter: on sockopt() acquire sock lock only in the required scope
+sctp: fix the handling of ICMP Frag Needed for too small MTUs
+net_sched: properly check for empty skb array on error path
+ipv6: don't let tb6_root node share routes with other node
+ipv6: don't let tb6_root node share routes with other node
+vhost_net: stop device during reset owner
+ipv6: don't let tb6_root node share routes with other node
+ipv6: remove null_entry before adding default route
+rtnetlink: give a user socket to get_target_net()
+crypto: pcrypt - fix freeing pcrypt instances
+xfrm: defer daddr pointer assignment after spi parsing
+xfrm: skip policies marked as dead while rehashing
+fib: fib_dump_info can no longer use __in_dev_get_rtnl
+ipv6: fix general protection fault in fib6_add()
+vhost_net: stop device during reset owner
+net: ptr_ring: otherwise safe empty checks can overrun array bounds
+net_sched: gen_estimator: fix lockdep splat
+erspan: fix use-after-free
+erspan: fix use-after-free
+erspan: fix use-after-free
+tuntap: fix possible deadlock when fail to register netdev
+erspan: fix use-after-free
+tun: avoid calling xdp_rxq_info_unreg() twice
+xfrm: Fix stack-out-of-bounds with misconfigured transport mode policies.
+xfrm: check id proto in validate_tmpl()
+vhost: use mutex_lock_nested() in vhost_dev_lock_vqs()
+kcm: Check if sk_user_data already set in kcm_attach
+pppoe: take ->needed_headroom of lower device into account on xmit
+kcm: Only allow TCP sockets to be attached to a KCM mux
+net: qdisc_pkt_len_init() should be more robust
+ipv6: don't let tb6_root node share routes with other node
+xfrm: fix rcu usage in xfrm_get_type_offload
+esp: Fix GRO when the headers not fully in the linear part of the skb.
+ipv6: ip6_make_skb() needs to clear cork.base.dst
+netlink: extack needs to be reset each time through loop
+ipv6: don't let tb6_root node share routes with other node
+mac80211_hwsim: validate number of different channels
+xfrm: don't call xfrm_policy_cache_flush while holding spinlock
+net/tls: Only attach to sockets in ESTABLISHED state
+cfg80211: check dev_set_name() return value
+netlink: reset extack earlier in netlink_rcv_skb
+netlink: reset extack earlier in netlink_rcv_skb
+ipv6: don't let tb6_root node share routes with other node
+ipv6: remove null_entry before adding default route
+ipv6: remove null_entry before adding default route
+strparser: Call sock_owned_by_user_nocheck
+net: Fix double free and memory corruption in get_net_ns_by_id()
+net/packet: fix a race in packet_bind() and packet_notifier()
+make sock_alloc_file() do sock_release() on failures
+netlink: fix netlink_ack() extack race
+net/packet: fix a race in packet_bind() and packet_notifier()
+packet: fix crash in fanout_demux_rollover()
+tun: do not arm flow_gc_timer in tun_flow_init()
+tun: relax check on eth_get_headlen() return value
+net-tun: fix panics at dismantle time
+tcp: highest_sack fix
+ipv6: prevent user from adding cached routes
+vsock: always call vsock_init_tables()
+tcp: fix a lockdep issue in tcp_fastopen_reset_cipher()
+tcp: fix tcp_fastretrans_alert warning
+tcp: gso: avoid refcount_t warning from tcp_gso_segment()
+xfrm: Fix stack-out-of-bounds read in xfrm_state_find.
+soreuseport: fix initialization race
+packet: avoid panic in packet_getsockopt()
+ipv6: flowlabel: do not leave opt->tot_len with garbage
+ipv6: addrconf: increment ifp refcount before ipv6_del_addr()
+tun/tap: sanitize TUNSETSNDBUF input
+tcp/dccp: fix ireq->opt races
+ptr_ring: use kmalloc_array()
