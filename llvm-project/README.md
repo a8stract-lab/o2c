@@ -17,4 +17,5 @@ make -j32 && ./analyzer -struct msg_msg `find ~/Documents/ebpf-detector/linux-ll
 
 
 make -j32 && ./analyzer -func2alloc load_msg `find ~/Documents/ebpf-detector/linux-llvm-6.1/ipc -name "*.ll"`
+make -j32 && ./analyzer -func2struct load_msg `find ~/Documents/ebpf-detector/linux-llvm-6.1/ipc -name "*.ll"`
 ```
