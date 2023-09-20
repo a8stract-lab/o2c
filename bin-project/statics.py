@@ -19,8 +19,8 @@ import re
 
 debug = 0
 feature = 1
-output_path = "C:\\Users\\mouse\\Code\\research\\ebpf\\result\\"
-output_file = open(output_path+"result.csv","w+")
+output_path = "/home/ppw/Documents/on-the-fly-compartment/bin-project"
+output_file = open(output_path+"result-0919.csv","w+")
 csv_writer = csv.writer(output_file)
 
 class funcInfo:
