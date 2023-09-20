@@ -39,6 +39,38 @@ class statics():
             statics_file.write(key+": "+str(self.insCnt[key])+" rate: "+str(1.0*self.insCnt[key]/self.total)+"\n")
         statics_file.close()
 
+def parseOperand(raw_expression):
+    # filter use dirty trick
+    # if " " not in raw_expression:
+    #    return raw_expression#.strip("[]")
+    raw_expression = raw_expression.replace("["," ")
+    raw_expression = raw_expression.replace("]"," ")
+    tokens = raw_expression.split(" ")
+    expression = ""
+    prefix = "ctx->"
+    for token in tokens:
+        if token == "":
+            continue
+        if ":" in token:
+            expression += prefix+token[:token.index(":")].lower()
+            expression += "+"
+        elif token.startswith("-"):
+            expression = expression[:-1]
+            expression += "-" + token[1:]
+        elif token == "+" or token == "-":
+            expression += token
+        elif token.startswith("0x"):
+            expression += token
+        else:
+            expression += prefix+token.lower()
+    final = ""
+    for i in range(len(expression)):
+        if expression[i] in ["+","-","*"] and expression[i+1] != ">":
+            final += " "+expression[i]+" "
+        else:
+            final += expression[i]
+    return final
+
 def getHelp(x):
     help(x)
     exit(0)
@@ -51,8 +83,8 @@ def log2csv(function,offset,target_addr,instruction,type):
     # dest_pattern = re.compile(r'.word ptr \[.*\]')
     # _t = re.findall(dest_pattern,target_addr)
     if "ptr" in target_addr:
-        target_addr = re.sub(r'.word ptr ','',target_addr)
-    csv_writer.writerow([function,offset.rstrip("L"),target_addr,instruction,type])
+        target_addr = re.sub(r'(.word|byte) ptr ','',target_addr)
+    csv_writer.writerow([function,offset.rstrip("L"),parseOperand(target_addr),instruction,type])
 
 def insClassification(insStatics,funcinfo,insAddress,codeUnit,n,mnemonic):
     if (mnemonic.startswith('CALL')):
@@ -140,8 +172,8 @@ for function in functions:
     funcinfo.entrypoint = funcAddr
     funcinfo.name = function.getName()
     # func restriction to better develop and debug
-    # f funcAddr not in [0xffffffff831b5c4b]:
-    #     continue
+    #if funcAddr not in [0xffffffff81cff2b0]:
+    #    continue
     log("function: ",function.getName()," with addr ",hex(funcAddr))
     codeUnitIterator = currentProgram.getListing().getCodeUnits(function.getBody(), True)
 
