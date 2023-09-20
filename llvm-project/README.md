@@ -11,7 +11,6 @@ tasks:
 
 ```
 ./analyzer -struct bpf_prog `find ~/Documents/ebpf-detector/linux-llvm-6.1 -name "*.ll"`
-./analyzer -struct  `find ~/Documents/ebpf-detector/linux-llvm-6.1 -name "*.ll"`
 
 make -j32 && ./analyzer -struct msg_msg `find ~/Documents/ebpf-detector/linux-llvm-6.1/ipc -name "*.ll"`
 
