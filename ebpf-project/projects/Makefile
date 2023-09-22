@@ -25,7 +25,7 @@ CFLAGS := -g -Wall
 ALL_LDFLAGS := $(LDFLAGS) $(EXTRA_LDFLAGS)
 
 # =============================================================================================
-APPS = minimal bootstrap ksample klifecycle
+APPS = minimal bootstrap ksample klifecycle ksample_analysis
 
 # =============================================================================================
 
