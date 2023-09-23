@@ -19,9 +19,11 @@ import re
 
 debug = 0
 feature = 1
-output_path = "/home/ppw/Documents/on-the-fly-compartment/bin-project"
-output_file = open(output_path+"result-0919.csv","w+")
+output_path = "C:\\Users\\mouse\\Code\\research\\ebpf\\result\\"
+output_file = open(output_path+"result.csv","w+")
+tmp_file = open(output_path+"tmp.txt","w+")
 csv_writer = csv.writer(output_file)
+g_previousCall = False
 
 class funcInfo:
     def __init__(self):
@@ -31,13 +33,16 @@ class funcInfo:
 class statics():
     def __init__(self):
         self.total = 0
-        self.insCnt = {"MOV_WRITE":0,"MOV_READ":0,"CALL_DIRECT":0,"CALL_INDIRECT":0,"RET":0,"XCHG":0,"XCHG_WRITE":0,"STOS":0,"OUT":0,"REP":0}
+        self.insCnt = {"MOV_WRITE":0,"MOV_READ":0,"CALL_DIRECT":0,"CALL_INDIRECT":0,"RET":0,"XCHG":0,"XCHG_WRITE":0,"STOS":0,"OUT":0,"REP":0,"CALL_NEXT":0}
     def statics(self):
         statics_file = open(output_path+"statics.txt","w+")
         statics_file.write("total num of kernel instructions: "+str(self.total)+"\n")
         for key in self.insCnt:
             statics_file.write(key+": "+str(self.insCnt[key])+" rate: "+str(1.0*self.insCnt[key]/self.total)+"\n")
         statics_file.close()
+
+def log2tmp(*msg):
+    print >> tmp_file, msg
 
 def parseOperand(raw_expression):
     # filter use dirty trick
@@ -87,6 +92,14 @@ def log2csv(function,offset,target_addr,instruction,type):
     csv_writer.writerow([function,offset.rstrip("L"),parseOperand(target_addr),instruction,type])
 
 def insClassification(insStatics,funcinfo,insAddress,codeUnit,n,mnemonic):
+
+    global g_previousCall
+
+    if g_previousCall:
+        log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint)," ",codeUnit,"call next")
+        insStatics.insCnt["CALL_NEXT"] += 1
+        g_previousCall = False
+
     if (mnemonic.startswith('CALL')):
         # print(codeUnit.getOperandType(0),numOperands,OperandType.ADDRESS)
         if codeUnit.getOperandType(0) == (OperandType.ADDRESS | OperandType.CODE):
@@ -99,6 +112,7 @@ def insClassification(insStatics,funcinfo,insAddress,codeUnit,n,mnemonic):
             insStatics.insCnt["CALL_INDIRECT"] += 1
             log(funcinfo.name+"+"+hex(insAddress-funcinfo.entrypoint)+" in-direct call",codeUnit)
             log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),codeUnit.getDefaultOperandRepresentation(0),codeUnit,"in-direct call")
+        g_previousCall = True
     
     if (mnemonic.startswith('RET')):
         # log("\t this is a ret")
@@ -114,6 +128,12 @@ def insClassification(insStatics,funcinfo,insAddress,codeUnit,n,mnemonic):
                 # ignore mov reg, imm and mov reg, reg
                 print(codeUnit)
             return # we do not consider read operation in
+        
+        if codeUnit.getOperandType(0) == (OperandType.ADDRESS | OperandType.REGISTER):
+            # this condition contains: mov reg,reg and mov reg,addr , and we do not want op-1 is reg type
+            if codeUnit.getOperandType(1) != OperandType.REGISTER:
+                insStatics.insCnt["MOV_READ"] += 1
+            return
         
         # get the operand expression
         dest = codeUnit.getDefaultOperandRepresentation(0)
@@ -172,8 +192,8 @@ for function in functions:
     funcinfo.entrypoint = funcAddr
     funcinfo.name = function.getName()
     # func restriction to better develop and debug
-    #if funcAddr not in [0xffffffff81cff2b0]:
-    #    continue
+    #if funcAddr not in [0xffffffff833e86a3]:
+    #   continue
     log("function: ",function.getName()," with addr ",hex(funcAddr))
     codeUnitIterator = currentProgram.getListing().getCodeUnits(function.getBody(), True)
 
@@ -183,7 +203,7 @@ for function in functions:
         # ops = codeUnit.getOpObjects(0)
         mnemonic = codeUnit.getMnemonicString() # first op
         numOperands = codeUnit.getNumOperands()
-        # log(insAddress,codeUnit)
+        # print(hex(insAddress),codeUnit)
         insClassification(insStatics,funcinfo,insAddress,codeUnit,numOperands,mnemonic)
 
 insStatics.total = insCount
