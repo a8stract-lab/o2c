@@ -84,12 +84,15 @@ def log(*msg):
     if not feature:
         # print >> output_file, msg
         print(msg)
-def log2csv(function,offset,target_addr,instruction,type):
+def log2csv(function,offset,target_addr,instruction,type,need_parse=True):
     # dest_pattern = re.compile(r'.word ptr \[.*\]')
     # _t = re.findall(dest_pattern,target_addr)
     if "ptr" in target_addr:
-        target_addr = re.sub(r'(.word|byte) ptr ','',target_addr)
-    csv_writer.writerow([function,offset.rstrip("L"),parseOperand(target_addr),instruction,type])
+        target_addr = re.sub(r'(.*word|byte) ptr ','',target_addr)
+    if need_parse:
+        csv_writer.writerow([function,offset.rstrip("L"),parseOperand(target_addr),instruction,type])
+    else:
+        csv_writer.writerow([function,offset.rstrip("L"),target_addr,instruction,type])
 
 def insClassification(insStatics,funcinfo,insAddress,codeUnit,n,mnemonic):
 
@@ -105,8 +108,10 @@ def insClassification(insStatics,funcinfo,insAddress,codeUnit,n,mnemonic):
         if codeUnit.getOperandType(0) == (OperandType.ADDRESS | OperandType.CODE):
             # log("\t this is a direct call") # call register
             insStatics.insCnt["CALL_DIRECT"] += 1
+            targetFunAddr = codeUnit.getOpObjects(0)[0]
+            calledFunction = getFunctionAt(targetFunAddr)
             log(funcinfo.name+"+"+hex(insAddress-funcinfo.entrypoint)+" direct call",codeUnit)
-            log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),codeUnit.getDefaultOperandRepresentation(0),codeUnit,"direct call")
+            log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),calledFunction.toString(),codeUnit,"direct call",False)
         else:
             # log("\t this is a in-direct call") # call address
             insStatics.insCnt["CALL_INDIRECT"] += 1
@@ -192,8 +197,8 @@ for function in functions:
     funcinfo.entrypoint = funcAddr
     funcinfo.name = function.getName()
     # func restriction to better develop and debug
-    #if funcAddr not in [0xffffffff833e86a3]:
-    #   continue
+    # if funcAddr not in [0xffffffff8101e2e0]:
+    #     continue
     log("function: ",function.getName()," with addr ",hex(funcAddr))
     codeUnitIterator = currentProgram.getListing().getCodeUnits(function.getBody(), True)
 
