@@ -5,8 +5,8 @@
 #include <signal.h>
 #include <sys/resource.h>
 #include <bpf/libbpf.h>
-#include "ksample.skel.h"
-#include "ksample.h"
+#include "ksample_analysis.skel.h"
+#include "ksample_analysis.h"
 #include "trace_helpers.h"
 
 static int libbpf_print_fn(enum libbpf_print_level level, const char *format, va_list args)
@@ -50,7 +50,7 @@ static void sig_handler(int sig)
 
 int main(int argc, char **argv)
 {
-	struct ksample_bpf *skel;
+	struct ksample_analysis_bpf *skel;
 	struct ring_buffer *rb = NULL;
 	int err;
 
@@ -61,7 +61,7 @@ int main(int argc, char **argv)
 	load_kallsyms();
 
 	/* Open BPF application */
-	skel = ksample_bpf__open();
+	skel = ksample_analysis_bpf__open();
 	if (!skel) {
 		fprintf(stderr, "Failed to open BPF skeleton\n");
 		return 1;
@@ -71,14 +71,14 @@ int main(int argc, char **argv)
 	skel->bss->my_pid = getpid();
 
 	/* Load & verify BPF programs */
-	err = ksample_bpf__load(skel);
+	err = ksample_analysis_bpf__load(skel);
 	if (err) {
 		fprintf(stderr, "Failed to load and verify BPF skeleton\n");
 		goto cleanup;
 	}
 
 	/* Attach tracepoint handler */
-	err = ksample_bpf__attach(skel);
+	err = ksample_analysis_bpf__attach(skel);
 	if (err) {
 		fprintf(stderr, "Failed to attach BPF skeleton\n");
 		goto cleanup;
@@ -101,7 +101,7 @@ int main(int argc, char **argv)
 	// }
 
 	while (!exiting) {
-		err = ring_buffer__poll(rb, 100 /* timeout, ms */);
+		// err = ring_buffer__poll(rb, 100 /* timeout, ms */);
 		/* Ctrl-C will cause -EINTR */
 		if (err == -EINTR) {
 			err = 0;
@@ -114,6 +114,6 @@ int main(int argc, char **argv)
 	}
 
 cleanup:
-	ksample_bpf__destroy(skel);
+	ksample_analysis_bpf__destroy(skel);
 	return -err;
 }

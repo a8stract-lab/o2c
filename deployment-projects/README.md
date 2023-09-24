@@ -29,3 +29,12 @@ we use python to extract the csv and generate the instrumented bpf.
 first of all, we need to get all allocations, make sure which objects are allocated by kmem_cache_alloc, remove them.
 
 这个要不这样，先设置一个flag，在所有插装的里面都打开flag，如果flag被打开了，那么所有的object都在x中分配
+
+
+## 0922主要挑战
+
+给kmalloc插装查表开销太大了，一般能3%，osbench能到30-70%
+
+这意味着mov instruction插装查表开销也太大了
+
+最好能知道每个instruction 能写的类型是什么？ 相当于WIT有理论证明吗？ 看看uscope的基础项目

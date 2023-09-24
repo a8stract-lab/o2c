@@ -7,6 +7,7 @@ int count;
 struct event {
 	unsigned long call_site;
     char cache[32];
+    unsigned long cache_addr;
     unsigned int type;
     unsigned long sz;
 	unsigned long content[ALLOC_SZ];
