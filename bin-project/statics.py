@@ -19,7 +19,7 @@ import re
 
 debug = 0
 feature = 1
-output_path = "C:\\Users\\mouse\\Code\\research\\ebpf\\result\\"
+output_path = "/home/ppw/Documents/on-the-fly-compartment/bin-project/"
 output_file = open(output_path+"result.csv","w+")
 tmp_file = open(output_path+"tmp.txt","w+")
 csv_writer = csv.writer(output_file)
