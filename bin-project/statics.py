@@ -25,6 +25,8 @@ tmp_file = open(output_path+"tmp.txt","w+")
 csv_writer = csv.writer(output_file)
 g_previousCall = False
 
+skiplist = ['__fentry__']
+
 class funcInfo:
     def __init__(self):
         self.entrypoint = 0
@@ -44,6 +46,18 @@ class statics():
 def log2tmp(*msg):
     print >> tmp_file, msg
 
+def transform_registers(reg):
+    transformed_registers = ''
+   
+    if reg.startswith("r"):
+        if reg[1:].isdigit():
+            transformed_registers = (reg)
+        else:
+            transformed_registers = (reg[1:])
+        # else:
+        #     transformed_registers.append(reg)
+    return transformed_registers
+
 def parseOperand(raw_expression):
     # filter use dirty trick
     # if " " not in raw_expression:
@@ -57,7 +71,7 @@ def parseOperand(raw_expression):
         if token == "":
             continue
         if ":" in token:
-            expression += prefix+token[:token.index(":")].lower()
+            expression += prefix+ token[:token.index(":")].lower()
             expression += "+"
         elif token.startswith("-"):
             expression = expression[:-1]
@@ -67,7 +81,7 @@ def parseOperand(raw_expression):
         elif token.startswith("0x"):
             expression += token
         else:
-            expression += prefix+token.lower()
+            expression += prefix+transform_registers(token.lower())
     final = ""
     for i in range(len(expression)):
         if expression[i] in ["+","-","*"] and expression[i+1] != ">":
@@ -84,22 +98,22 @@ def log(*msg):
     if not feature:
         # print >> output_file, msg
         print(msg)
-def log2csv(function,offset,target_addr,instruction,type,need_parse=True):
+def log2csv(function,offset,target_addr,instruction,type,insaddr,need_parse=True):
     # dest_pattern = re.compile(r'.word ptr \[.*\]')
     # _t = re.findall(dest_pattern,target_addr)
     if "ptr" in target_addr:
         target_addr = re.sub(r'(.*word|byte) ptr ','',target_addr)
     if need_parse:
-        csv_writer.writerow([function,offset.rstrip("L"),parseOperand(target_addr),instruction,type])
+        csv_writer.writerow([function,offset.rstrip("L"),parseOperand(target_addr),instruction,type,insaddr.rstrip("L")])
     else:
-        csv_writer.writerow([function,offset.rstrip("L"),target_addr,instruction,type])
+        csv_writer.writerow([function,offset.rstrip("L"),target_addr,instruction,type,insaddr.rstrip("L")])
 
 def insClassification(insStatics,funcinfo,insAddress,codeUnit,n,mnemonic):
 
     global g_previousCall
 
     if g_previousCall:
-        log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint)," ",codeUnit,"call next")
+        log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint)," ",codeUnit,"call next", hex(insAddress))
         insStatics.insCnt["CALL_NEXT"] += 1
         g_previousCall = False
 
@@ -107,23 +121,25 @@ def insClassification(insStatics,funcinfo,insAddress,codeUnit,n,mnemonic):
         # print(codeUnit.getOperandType(0),numOperands,OperandType.ADDRESS)
         if codeUnit.getOperandType(0) == (OperandType.ADDRESS | OperandType.CODE):
             # log("\t this is a direct call") # call register
-            insStatics.insCnt["CALL_DIRECT"] += 1
             targetFunAddr = codeUnit.getOpObjects(0)[0]
             calledFunction = getFunctionAt(targetFunAddr)
+            if calledFunction.toString() in skiplist:
+                return
+            insStatics.insCnt["CALL_DIRECT"] += 1
             log(funcinfo.name+"+"+hex(insAddress-funcinfo.entrypoint)+" direct call",codeUnit)
-            log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),calledFunction.toString(),codeUnit,"direct call",False)
+            log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),calledFunction.toString(),codeUnit,"direct call", hex(insAddress),False)
         else:
             # log("\t this is a in-direct call") # call address
             insStatics.insCnt["CALL_INDIRECT"] += 1
             log(funcinfo.name+"+"+hex(insAddress-funcinfo.entrypoint)+" in-direct call",codeUnit)
-            log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),codeUnit.getDefaultOperandRepresentation(0),codeUnit,"in-direct call")
+            log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),codeUnit.getDefaultOperandRepresentation(0),codeUnit,"in-direct call", hex(insAddress))
         g_previousCall = True
     
     if (mnemonic.startswith('RET')):
         # log("\t this is a ret")
         insStatics.insCnt["RET"] += 1
         log(funcinfo.name+"+"+hex(insAddress-funcinfo.entrypoint)+" ret",codeUnit)
-        log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint)," ",codeUnit,"ret")
+        log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint)," ",codeUnit,"ret", hex(insAddress))
         
     if (mnemonic.startswith('MOV')):
         if codeUnit.getOperandType(0) == OperandType.REGISTER:
@@ -147,7 +163,7 @@ def insClassification(insStatics,funcinfo,insAddress,codeUnit,n,mnemonic):
             # log("\t this write data segment")
             insStatics.insCnt["MOV_WRITE"] += 1
             log(funcinfo.name+"+"+hex(insAddress-funcinfo.entrypoint)+" write .data to ",dest)
-            log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),dest,codeUnit,"write .data")
+            log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),dest,codeUnit,"write .data", hex(insAddress))
         else:
             insStatics.insCnt["MOV_WRITE"] += 1
             # need to examine every op in a operand
@@ -155,17 +171,17 @@ def insClassification(insStatics,funcinfo,insAddress,codeUnit,n,mnemonic):
                 if op.toString().startswith("RBP") or op.toString().startswith("RSP"):
                     # log("\t this write stack")
                     log(funcinfo.name+"+"+hex(insAddress-funcinfo.entrypoint)+" write stack to",dest)
-                    log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),dest,codeUnit,"write stack")
+                    log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),dest,codeUnit,"write stack", hex(insAddress))
                     return
                 if op.toString().startswith("RIP"):
                     # log("\t this write data segment")
                     log(funcinfo.name+"+"+hex(insAddress-funcinfo.entrypoint)+" write .data to",dest)
-                    log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),dest,codeUnit,"write .data")
+                    log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),dest,codeUnit,"write .data", hex(insAddress))
                     return
             # maybe write to .data, like MOV qword ptr [RAX + RBX*0x8 + 0x80],RDX
             # type ADDR | DYN
             log(funcinfo.name+"+"+hex(insAddress-funcinfo.entrypoint)+" write other [TODO] to",dest)
-            log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),dest,codeUnit,"write other [TODO]")
+            log2csv(funcinfo.name,hex(insAddress-funcinfo.entrypoint),dest,codeUnit,"write other [TODO]", hex(insAddress))
     
     if mnemonic.startswith('XCHG'):
         insStatics.insCnt["XCHG"] += 1
