@@ -112,3 +112,14 @@ int BPF_KPROBE(do_mov_{prog})
     return 0;
 }}
 '''
+
+
+sampling_mov_write = '''
+SEC("kprobe/{func} + {offset}")
+int BPF_KPROBE(do_mov_{prog})
+{{
+    u64 addr = {target_addr};
+    sampling(addr, ctx->ip);
+    return 0;
+}}
+'''

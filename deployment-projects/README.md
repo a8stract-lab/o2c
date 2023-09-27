@@ -10,7 +10,9 @@
 ```sh
 cd net/ipv6/
 
-find ./ -name "*.o" | xargs nm -g | grep ' T ' |  awk '{print $3}' > ipv6-function.txt
+find ./ -name "*.o" | xargs nm  | grep -i ' T ' |  awk '{print $3}' > ipv6-function.txt
+
+sudo bpftrace -l | grep kprobe | awk -F: '{print $2}' > kprobe_lists.txt
 ```
 
 ## step 2: get all structures
