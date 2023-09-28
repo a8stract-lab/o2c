@@ -26,6 +26,7 @@ for i in $(seq 1 100); do
   ab -n 100 -c 10 http://[::1]:8000/100kb.test
   ab -n 100 -c 10 http://[::1]:8000/1mb.test
   ab -n 100 -c 10 http://[::1]:8000/10mb.test
+  echo $i
 done
 ```
 

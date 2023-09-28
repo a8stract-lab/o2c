@@ -9,7 +9,7 @@ nft add chain ip fuzz_table fuzz_input { type filter hook input priority 0 \; }
 nft add chain ip fuzz_table fuzz_output { type filter hook output priority 0 \; }
 nft add chain ip fuzz_table fuzz_forward { type filter hook forward priority 0 \; }
 
-
+for i in $(seq 1 100); do
 # Fuzzing Commands (200 commands)
 for i in {1..50}; do
   nft add rule ip fuzz_table fuzz_input ip saddr 192.168.99.$i drop
@@ -95,7 +95,7 @@ nft add rule ip fuzz_table forward ip version 4 drop
 nft add rule ip fuzz_table input icmp type echo-request drop
 nft add rule ip fuzz_table output icmp type echo-reply accept
 nft add rule ip fuzz_table forward icmp type destination-unreachable drop
-
+done
 # Step 3: Remove Fuzzing Rules
 nft delete table ip fuzz_table
 
