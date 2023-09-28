@@ -10,14 +10,19 @@
 ```sh
 cd net/ipv6/
 
-find ./ -name "*.o" | xargs nm  | grep -i ' T ' |  awk '{print $3}' > ipv6-function.txt
+find ./ -name "*.o" | xargs nm  | grep -i ' T ' |  awk '{print $3}' > ipv6-functions.txt
+
+
+cd net/netfilter
+find ./ -name "*.o" | xargs nm  | grep -i ' T ' |  awk '{print $3}' > netfilter-functions.txt
+
 
 sudo bpftrace -l | grep kprobe | awk -F: '{print $2}' > kprobe_lists.txt
 ```
 
-## step 2: get all structures
+<!-- ## step 2: get all structures
 
-python scripts is `get_all_structs.py`, we need set `llvm_ir_path` and `llvm_analyze_path`
+python scripts is `get_all_structs.py`, we need set `llvm_ir_path` and `llvm_analyze_path` -->
 
 
 ## step 3: get all call / icall / ret / mov

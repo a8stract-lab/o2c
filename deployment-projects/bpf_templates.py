@@ -104,7 +104,7 @@ int BPF_KRETPROBE(do_exit_{prog})
 
 
 mov_write = '''
-SEC("kprobe/{func} + {offset}")
+SEC("kprobe/{func}+{offset}")
 int BPF_KPROBE(do_mov_{prog})
 {{
     u64 addr = {target_addr};
@@ -115,7 +115,7 @@ int BPF_KPROBE(do_mov_{prog})
 
 
 sampling_mov_write = '''
-SEC("kprobe/{func} + {offset}")
+SEC("kprobe/{func}+{offset}")
 int BPF_KPROBE(do_mov_{prog})
 {{
     u64 addr = {target_addr};

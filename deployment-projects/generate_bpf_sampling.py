@@ -6,7 +6,8 @@ import bpf_templates
 
 # print(bpf_templates.headers)
 
-target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/ipv6-functions.txt'
+# target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/ipv6-functions.txt'
+target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/netfilter-functions.txt'
 kprobe_list_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/kprobe_lists.txt'
 target_funcs = set()
 csv_file_path = '/home/ppw/Documents/on-the-fly-compartment/bin-project/result.csv'
@@ -69,4 +70,4 @@ with open(csv_file_path, 'r') as csvfile:
                     print(bpf_templates.sampling_mov_write.format(func=function_name, offset=offset, target_addr=target_addr, prog=str(cnt)))
                     cnt = cnt + 1
 
-# print(cnt)
+print(cnt)
