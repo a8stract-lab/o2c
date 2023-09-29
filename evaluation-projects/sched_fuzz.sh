@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# for i in {1..100}; do
 # Step 1: Save current tc rules and ip routes
 tc qdisc show dev enp109s0 > ./saved_tc_rules.txt
 ip route show > ./saved_ip_routes.txt
@@ -36,4 +36,4 @@ while IFS= read -r line; do
     ip route add $line || echo "Failed to add route: $line"
   fi
 done < ./saved_ip_routes.txt
-
+# done
