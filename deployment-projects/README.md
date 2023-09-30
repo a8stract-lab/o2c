@@ -18,6 +18,21 @@ find ./ -name "*.o" | xargs nm  | grep -i ' T ' |  awk '{print $3}' > netfilter-
 
 
 sudo bpftrace -l | grep kprobe | awk -F: '{print $2}' > kprobe_lists.txt
+
+
+
+
+find ipc/ -name '*.o' | xargs nm -g | grep ' T ' |  awk '{print $3}' > exported_functions.txt
+find arch/ -name '*.o' | xargs nm -g | grep ' T '|  awk '{print $3}' >> exported_functions.txt
+find block/ -name '*.o' | xargs nm -g | grep ' T '|  awk '{print $3}' >> exported_functions.txt
+find kernel/ -name '*.o' | xargs nm -g | grep ' T '|  awk '{print $3}' >> exported_functions.txt
+find mm/ -name '*.o' | xargs nm -g | grep ' T '|  awk '{print $3}' >> exported_functions.txt
+find security/ -name '*.o' | xargs nm -g | grep ' T '|  awk '{print $3}' >> exported_functions.txt
+find init/ -name '*.o' | xargs nm -g | grep ' T '|  awk '{print $3}' >> exported_functions.txt
+find virt/ -name '*.o' | xargs nm -g | grep ' T '|  awk '{print $3}' >> exported_functions.txt
+ls net/*.o | xargs nm -g | grep ' T '|  awk '{print $3}' >> exported_functions.txt
+ls net/core/*.o | xargs nm -g | grep ' T '|  awk '{print $3}' >> exported_functions.txt
+ls fs/*.o | xargs nm -g | grep ' T '|  awk '{print $3}' >> exported_functions.txt
 ```
 
 <!-- ## step 2: get all structures
@@ -45,3 +60,11 @@ first of all, we need to get all allocations, make sure which objects are alloca
 这意味着mov instruction插装查表开销也太大了
 
 最好能知道每个instruction 能写的类型是什么？ 相当于WIT有理论证明吗？ 看看uscope的基础项目
+
+
+## 优化
+
+只有`ctx->bp/sp + ctx->ax * x`,才需要监控，其他的`ctx->bp/sp + x`都没影响
+
+常量写通常都是`ctx->ip + x` 其实相当于一个具体的地址，也不需要监控
+
