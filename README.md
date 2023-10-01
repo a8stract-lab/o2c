@@ -46,3 +46,18 @@ It's important to note that an object's lifecycle is generally short-lived (> 96
 **毫无疑问，object在kfree时内容是最全面的，但是大概率和函数使用中的内容是不同的，既然已经打算做log&audition，不如在函数指令访问的时候只记录一个log，在object释放的时候，因为已经知道了具体的类型再进行audition （解决了不同阶段采样数据不同的问题）**
 
 - **how to get all accessed buddy memory in the function? static analysis seems cannot do that**
+
+
+
+<!-- 其中static/dynamic analyzer负责对内核代码和内核运行时binary进行静态和动态分析,该模块负责1.提炼出需要部署compartment策略的指令，2.提炼出对应指令所需的安全策略，3. 提炼出安全策略的优化提升系统性能。
+
+ML sampler借助了analyzer提炼出的指令集合，在内核中采样ML模型需要的训练数据及标签，经过训练生成ML model。
+
+policy generator将analyzer输出的工作阶段的安全策略和ML model产生的审计策略转化为eBPF 程序，并传递给phase0和1隔离不可信compartment
+
+
+phase0 是整个系统的过渡阶段，此时compartment策略已经安装进内核，但系统中仍有生命周期未结束的原始数据，这个阶段是之前工作无法实现on-the-fly compartment的主要原因。
+
+在这个阶段，\sys framework同时采用了两种compartment策略，首先working policy生效，检测当前使用数据是否合法，如非法则可能是载入前分配的未记录数据，此时\sys framework执行ML heuristic audition安全策略，dump出当前访问数据对象的内容，识别该访问是否合法。
+
+phase1阶段是正常工作阶段，此时\sys载入前分配的数据生命周期结束，因此系统中使用的数据对象都已被记录，故\sys关闭ML audition安全策略，仅保留working policy -->
