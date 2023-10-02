@@ -153,6 +153,7 @@ int BPF_KPROBE(do_switch_{prog})
     x_regs.flags = ctx->flags;
     x_regs.sp = ctx->sp;
     x_regs.ss = ctx->ss;
+    bpf_set_regs(ctx, &x_regs);
     return 0;
 }}
 '''
@@ -177,6 +178,7 @@ int BPF_KPROBE(do_mov_slab_{prog})
     if (cache == {target_cache}) {{}}
     else if (ML_enable) {{
         u64 start = bpf_get_slab_start(addr);
+        u64 val = 1;
         bpf_map_update_elem(&ml_record, &start, &val, BPF_ANY);
     }}
     return 0;
@@ -188,11 +190,12 @@ mov_buddy = '''
 SEC("kprobe/{func}+{offset}")
 int BPF_KPROBE(do_mov_stk_{prog})
 {{
-    u64 addr = {target_addr};
-    u64 *pv = bpf_map_lookup_elem(&buddy, &addr);
+    u64 addr = bpf_get_slab_start({target_addr});
+    u64 *pv = bpf_map_lookup_elem(&buddy_objs, &addr);
     if (pv) {{}}
     else {{
         if (ML_enable) {{
+            u64 val = 1;
             bpf_map_update_elem(&ml_record, &addr, &val, BPF_ANY);
         }} else {{ /* error happens */ }}
     }}
@@ -240,9 +243,10 @@ int BPF_KPROBE(do_icall_{prog})
 
 mov_general = '''
 SEC("kprobe/{func}+{offset}")
-int BPF_KPROBE(do_mov_{prog})
+int BPF_KPROBE(do_mov_general_{prog})
 {{
     u64 addr = {target_addr};
+    u64 val = 1;
     if (addr >= 0xffff888000000000 && addr < 0xffffc87fffffffff) {{
         struct kmem_cache *s = (struct kmem_cache *)bpf_get_slab_cache(addr);
         if (s) {{
@@ -253,10 +257,11 @@ int BPF_KPROBE(do_mov_{prog})
                 bpf_map_update_elem(&ml_record, &start, &val, BPF_ANY);
             }} else {{ /* error happens */ }}
         }} else {{
-            u64 *pv = bpf_map_lookup_elem(&buddy, &addr);
+            u64 k = bpf_get_slab_start(addr);
+            u64 *pv = bpf_map_lookup_elem(&buddy_objs, &k);
             if (pv) {{}}
             else if (ML_enable) {{
-                bpf_map_update_elem(&ml_record, &addr, &val, BPF_ANY);
+                bpf_map_update_elem(&ml_record, &k, &val, BPF_ANY);
             }} else {{ /* error happens */ }}
         }}
     }} else if (addr >= 0xffffea0000000000 && addr <= 0xffffeaffffffffff) {{
@@ -264,10 +269,45 @@ int BPF_KPROBE(do_mov_{prog})
     }} else if (addr >= 0xffffc90000000000 && addr <= 0xffffe8ffffffffff) {{
         struct vm_struct *vms = (struct vm_struct *)bpf_get_vm_struct(addr);
         u64 caller = BPF_CORE_READ(vms, caller);
-        u64 *pv = bpf_map_lookup_elem(&map, &pv);
+        u64 *pv = bpf_map_lookup_elem(&vmalloc_objs, &pv);
         if (pv) {{}}
         else {{ /* error happens */ }}
     }} else {{ /* error happens */ }}
     return 0;
+}}
+'''
+
+
+hotbpf = '''
+SEC("kprobe/{func}+{offset}")
+int BPF_KPROBE(do_hotbpf_{prog})
+{{
+	u64 alloc_addr = bpf_cache_alloc(cache8k, ctx->si);
+	u64 nxt_ip = {next_ip};
+	struct pt_regs x_regs = {{}};
+    x_regs.r15 = ctx->r15;
+    x_regs.r14 = ctx->r14;
+    x_regs.r13 = ctx->r13;
+    x_regs.r12 = ctx->r12;
+    x_regs.bp  = ctx->bp;
+    x_regs.bx  = ctx->bx;
+    x_regs.r11 = ctx->r11;
+    x_regs.r10 = ctx->r10;
+    x_regs.r9  = ctx->r9;
+    x_regs.r8  = ctx->r8;
+    x_regs.ax  = alloc_addr;
+    x_regs.cx  = ctx->cx;
+    x_regs.dx  = ctx->dx;
+    x_regs.si  = ctx->si;
+    x_regs.di  = ctx->di;
+    x_regs.orig_ax = ctx->orig_ax;
+    x_regs.ip = nxt_ip;
+    x_regs.cs = ctx->cs;
+    x_regs.flags = ctx->flags;
+    x_regs.sp = ctx->sp;
+    x_regs.ss = ctx->ss;
+	bpf_set_regs(ctx, &x_regs);
+
+	return 0;
 }}
 '''

@@ -50,7 +50,7 @@ def transform_registers(reg):
     transformed_registers = ''
    
     if reg.startswith("r"):
-        if reg[1].isdigit():
+        if reg[1] >= '0' and reg[1] <= '9':
             transformed_registers = (reg)
         else:
             transformed_registers = (reg[1:])
