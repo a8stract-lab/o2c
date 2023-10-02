@@ -170,10 +170,15 @@ int BPF_KPROBE(do_mov_stk_{prog})
 
 mov_slab = '''
 SEC("kprobe/{func}+{offset}")
-int BPF_KPROBE(do_mov_stk_{prog})
+int BPF_KPROBE(do_mov_slab_{prog})
 {{
     u64 addr = {target_addr};
-    if (addr >= ctx->sp && addr <= ctx->bp) {{}}
+    u64 cache = bpf_get_slab_cache(addr);
+    if (cache == {target_cache}) {{}}
+    else if (ML_enable) {{
+        u64 start = bpf_get_slab_start(addr);
+        bpf_map_update_elem(&ml_record, &start, &val, BPF_ANY);
+    }}
     return 0;
 }}
 '''
@@ -184,24 +189,34 @@ SEC("kprobe/{func}+{offset}")
 int BPF_KPROBE(do_mov_stk_{prog})
 {{
     u64 addr = {target_addr};
-    if (addr >= ctx->sp && addr <= ctx->bp) {{}}
+    u64 *pv = bpf_map_lookup_elem(&buddy, &addr);
+    if (pv) {{}}
+    else {{
+        if (ML_enable) {{
+            bpf_map_update_elem(&ml_record, &addr, &val, BPF_ANY);
+        }} else {{ /* error happens */ }}
+    }}
     return 0;
 }}
 '''
 
 mov_vmalloc = '''
 SEC("kprobe/{func}+{offset}")
-int BPF_KPROBE(do_mov_stk_{prog})
+int BPF_KPROBE(do_mov_vmalloc_{prog})
 {{
     u64 addr = {target_addr};
-    if (addr >= ctx->sp && addr <= ctx->bp) {{}}
+    u64 vms = bpf_get_vm_struct(addr);
+    u64 caller = BPF_CORE_READ(vms, caller);
+    u64 *pv = bpf_map_lookup_elem(&vmalloc, &caller);
+    if (pv) {{}}
+    else {{ /* error happens */ }}
     return 0;
 }}
 '''
 
 mov_page = '''
 SEC("kprobe/{func}+{offset}")
-int BPF_KPROBE(do_mov_stk_{prog})
+int BPF_KPROBE(do_mov_page_{prog})
 {{
     u64 addr = {target_addr};
     if (addr >= 0xffffea0000000000 && addr <= 0xffffeaffffffffff) {{}}
@@ -212,12 +227,47 @@ int BPF_KPROBE(do_mov_stk_{prog})
 
 icall = '''
 SEC("kprobe/{func}+{offset}")
-int BPF_KPROBE(do_mov_stk_{prog})
+int BPF_KPROBE(do_icall_{prog})
 {{
     u64 addr = {target_addr};
     u64 *pv = bpf_map_lookup_elem(&cfg, &addr);
     if (pv) {{}}
     else {{ /* error happens */ }}
+    return 0;
+}}
+'''
+
+
+mov_general = '''
+SEC("kprobe/{func}+{offset}")
+int BPF_KPROBE(do_mov_{prog})
+{{
+    u64 addr = {target_addr};
+    if (addr >= 0xffff888000000000 && addr < 0xffffc87fffffffff) {{
+        struct kmem_cache *s = (struct kmem_cache *)bpf_get_slab_cache(addr);
+        if (s) {{
+            u64 *pv = bpf_map_lookup_elem(&slabcaches, &s);
+            if (pv) {{}}
+            else if (ML_enable) {{
+                u64 start = bpf_get_slab_start(addr);
+                bpf_map_update_elem(&ml_record, &start, &val, BPF_ANY);
+            }} else {{ /* error happens */ }}
+        }} else {{
+            u64 *pv = bpf_map_lookup_elem(&buddy, &addr);
+            if (pv) {{}}
+            else if (ML_enable) {{
+                bpf_map_update_elem(&ml_record, &addr, &val, BPF_ANY);
+            }} else {{ /* error happens */ }}
+        }}
+    }} else if (addr >= 0xffffea0000000000 && addr <= 0xffffeaffffffffff) {{
+        
+    }} else if (addr >= 0xffffc90000000000 && addr <= 0xffffe8ffffffffff) {{
+        struct vm_struct *vms = (struct vm_struct *)bpf_get_vm_struct(addr);
+        u64 caller = BPF_CORE_READ(vms, caller);
+        u64 *pv = bpf_map_lookup_elem(&map, &pv);
+        if (pv) {{}}
+        else {{ /* error happens */ }}
+    }} else {{ /* error happens */ }}
     return 0;
 }}
 '''

@@ -101,17 +101,17 @@ optimization: 清楚地知道每条指令都在写什么，而且根据fuzzing�
 > todo: legal access range of an function!
 
 ```c
-if (is_direct_mapping(addr)) {
-    if (is_slab()) {
+if (addr >= 0xffff888000000000 && addr < 0xffffc87fffffffff) {
+    struct kmem_cache *s = bpf_get_slab_cache(addr);
+    if (s) {
         // slab: match cache
         u64 cache = bpf_get_slab_cache(addr);
-        u64 *pv = bpf_map_lookup_elem(&map, &cache);
-        if (pv);
+        u64 *pv = bpf_map_lookup_elem(&slabcaches, &cache);
+        if (pv) {}
     } else {
         // buddy: match call trace
-        u64 stkid = bpf_get_stackid();
         u64 *pv = bpf_map_lookup_elem(&buddy, &addr);
-        if (pv && stkid == *pv);
+        if (pv && stkid == *pv) {}
     } else {
         if (ML_enable) {
             bpf_map_update_elem(&ml_record, &addr, &val, BPF_ANY);
@@ -141,7 +141,8 @@ u64 cache = bpf_get_slab_cache(addr);
 if (cache == HOTBPF_CACHE/DEDICATE_CACHE) {}
 else {
     if (ML_enable) {
-        bpf_map_update_elem(&ml_record, &addr, &val, BPF_ANY);
+        u64 start = bpf_get_slab_start(addr);
+        bpf_map_update_elem(&ml_record, &start, &val, BPF_ANY);
     } else { /* error happens */ }
 }
 ```

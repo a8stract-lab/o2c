@@ -23,6 +23,9 @@ target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-proje
 # target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/netfilter-functions.txt'
 # target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/sched-functions.txt'
 
+target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/odin_data/comp_ipv6_sample_policy.csv'
+# target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/odin_data/comp_netfilter_sample_policy.csv'
+# target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/odin_data/comp_sched_sample_policy.csv'
 
 exported_func_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/exported_functions.txt'
 exported_funcs = set()
@@ -55,6 +58,21 @@ with open(exported_func_path, 'r') as infile:
         f = func[:-1]
         exported_funcs.add(f)
 
+policy_dict = dict()
+with open(target_policy_path, 'r') as infile:
+    for line in infile.readlines():
+        x = line.split(', ')
+        if len(x) != 3:
+            print("=====================")
+            continue
+        k = int('0x'+x[1], 16) - 1
+        v1 = '0x'+x[2][:-1]
+        if k in policy_dict:
+            print('-------------------')
+        else:
+            policy_dict[str(hex(k))] = (x[0], int(v1, base=16))
+
+# print(policy_dict)
 
 
 # startup_64,0x31,0xffffffff810007b0,CALL 0xffffffff810007b0,direct call
@@ -80,7 +98,7 @@ with open(csv_file_path, 'r') as csvfile:
             match insttype:
                 case 'in-direct call':
                     cnt_icall = cnt_icall + 1
-                    print(bpf_templates.switch_gate.format(func=function_name, offset=offset, target_addr=target_addr,prog=str(cnt_icall)))
+                    print(bpf_templates.icall.format(func=function_name, offset=offset, target_addr=target_addr,prog=str(cnt_icall)))
                 case 'direct call':
                     if target_addr in exported_funcs and target_addr not in skiplist:
                         cnt_call = cnt_call + 1
@@ -108,15 +126,49 @@ with open(csv_file_path, 'r') as csvfile:
                     # print(a,b,instruction)
                     # print(bpf_templates.sampling_mov_write.format(func=function_name, offset=offset, target_addr=target_addr, prog=str(cnt)))
                     cnt_write = cnt_write + 1
+                    if ip in policy_dict:
+                        # print('++++++++', ip, policy_dict[ip])
+                        if policy_dict[ip][0] == '0':
+                            # slab general cache
+                            print(bpf_templates.mov_slab.format(func=function_name, offset=offset, target_addr=target_addr, prog=str(cnt_write), target_cache='cache8k'))
+                        elif policy_dict[ip][0] == '1':
+                            # slab dedicate cache
+                            print(bpf_templates.mov_slab.format(func=function_name, offset=offset, target_addr=target_addr, prog=str(cnt_write), target_cache=str(hex(policy_dict[ip][1]))))
+                        elif policy_dict[ip][0] == '2':
+                            # buddy
+                            print()
+                        elif policy_dict[ip][0] == '3':
+                            # vmalloc
+                            print(bpf_templates.mov_vmalloc.format(func=function_name, offset=offset, target_addr=target_addr, prog=str(cnt_write)))
+                        elif policy_dict[ip][0] == '4':
+                            # pages
+                            print(bpf_templates.mov_page.format(func=function_name, offset=offset, target_addr=target_addr, prog=str(cnt_write)))
+                        elif policy_dict[ip][0] == '5':
+                            # unknown
+                            continue
+                        else:
+                            print(bpf_templates.mov_page.format(func=function_name, offset=offset, target_addr=target_addr, prog=str(cnt_write)))
+
+
+
+
+# // type:
+#     // 0-> slab - generic cache
+#     // 1-> slab - dedicate cache
+#     // 2-> buddy
+#     // 3-> vmalloc - caller
+#     // 4-> pages
+#     // 5-> undefined
+
 
 # print(cnt)
 print('call', cnt_call )
 print('write stk', cnt_stack)
 print('write', cnt_write)
 
-# used_set = sorted(used_set, reverse=True)
-sorted_x = sorted(used_set.items(), key=lambda kv: kv[1], reverse=True)
-print(len(used_set))
-for x in sorted_x:
-    # print(x, sorted_x[x])
-    print(x)
+# # used_set = sorted(used_set, reverse=True)
+# sorted_x = sorted(used_set.items(), key=lambda kv: kv[1], reverse=True)
+# print(len(used_set))
+# for x in sorted_x:
+#     # print(x, sorted_x[x])
+#     print(x)
