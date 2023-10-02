@@ -123,3 +123,101 @@ int BPF_KPROBE(do_mov_{prog})
     return 0;
 }}
 '''
+
+switch_gate = '''
+SEC("kprobe/{func}+{offset}")
+int BPF_KPROBE(do_switch_{prog})
+{{
+    u32 pid = bpf_get_current_pid_tgid();
+    u64 cpu = bpf_get_smp_processor_id();
+    u64 *pv = bpf_map_update_elem(&private_stk, &cpu);
+    struct pt_regs x_regs = {{}};
+    x_regs.r15 = ctx->r15 ;
+    x_regs.r14 = ctx->r14 ;
+    x_regs.r13 = ctx->r13 ;
+    x_regs.r12 = ctx->r12 ;
+    x_regs.bp  = ctx->bp  ;
+    x_regs.bx  = ctx->bx  ;
+    x_regs.r11 = ctx->r11;
+    x_regs.r10 = ctx->r10;
+    x_regs.r9  = ctx->r9 ;
+    x_regs.r8  = ctx->r8 ;
+    x_regs.ax  = ctx->ax ;
+    x_regs.cx  = ctx->cx ;
+    x_regs.dx  = ctx->dx ;
+    x_regs.si  = ctx->si ;
+    x_regs.di  = ctx->di ;
+    x_regs.orig_ax = ctx->orig_ax;
+    x_regs.ip = ctx->ip;
+    x_regs.cs = ctx->cs;
+    x_regs.flags = ctx->flags;
+    x_regs.sp = ctx->sp;
+    x_regs.ss = ctx->ss;
+    return 0;
+}}
+'''
+
+mov_stk = '''
+SEC("kprobe/{func}+{offset}")
+int BPF_KPROBE(do_mov_stk_{prog})
+{{
+    u64 addr = {target_addr};
+    if (addr >= ctx->sp && addr <= ctx->bp) {{}}
+    return 0;
+}}
+'''
+
+
+mov_slab = '''
+SEC("kprobe/{func}+{offset}")
+int BPF_KPROBE(do_mov_stk_{prog})
+{{
+    u64 addr = {target_addr};
+    if (addr >= ctx->sp && addr <= ctx->bp) {{}}
+    return 0;
+}}
+'''
+
+
+mov_buddy = '''
+SEC("kprobe/{func}+{offset}")
+int BPF_KPROBE(do_mov_stk_{prog})
+{{
+    u64 addr = {target_addr};
+    if (addr >= ctx->sp && addr <= ctx->bp) {{}}
+    return 0;
+}}
+'''
+
+mov_vmalloc = '''
+SEC("kprobe/{func}+{offset}")
+int BPF_KPROBE(do_mov_stk_{prog})
+{{
+    u64 addr = {target_addr};
+    if (addr >= ctx->sp && addr <= ctx->bp) {{}}
+    return 0;
+}}
+'''
+
+mov_page = '''
+SEC("kprobe/{func}+{offset}")
+int BPF_KPROBE(do_mov_stk_{prog})
+{{
+    u64 addr = {target_addr};
+    if (addr >= 0xffffea0000000000 && addr <= 0xffffeaffffffffff) {{}}
+    else {{ /* error happens */ }}
+    return 0;
+}}
+'''
+
+icall = '''
+SEC("kprobe/{func}+{offset}")
+int BPF_KPROBE(do_mov_stk_{prog})
+{{
+    u64 addr = {target_addr};
+    u64 *pv = bpf_map_lookup_elem(&cfg, &addr);
+    if (pv) {{}}
+    else {{ /* error happens */ }}
+    return 0;
+}}
+'''

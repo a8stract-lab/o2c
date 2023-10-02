@@ -19,16 +19,17 @@ skiplist = {'kfree', 'kfree_skb_reason', 'kmem_cache_alloc', 'kmem_cache_free','
 
 # modify here
 
-# target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/ipv6-functions.txt'
+target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/ipv6-functions.txt'
 # target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/netfilter-functions.txt'
-target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/sched-functions.txt'
+# target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/sched-functions.txt'
 
 
 exported_func_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/exported_functions.txt'
 exported_funcs = set()
 kprobe_list_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/kprobe_lists.txt'
 target_funcs = set()
-csv_file_path = '/home/ppw/Documents/on-the-fly-compartment/bin-project/result.csv'
+# csv_file_path = '/home/ppw/Documents/on-the-fly-compartment/bin-project/result.csv'
+csv_file_path = '/home/ppw/Documents/on-the-fly-compartment/bin-project/optimized_result.csv'
 
 
 # print(bpf_templates.maps.format(map_name='map'))
@@ -60,6 +61,7 @@ with open(exported_func_path, 'r') as infile:
 cnt_call = 0
 cnt_stack = 0
 cnt_write = 0
+cnt_icall = 0
 
 
 stk_switch_back = 0
@@ -76,6 +78,9 @@ with open(csv_file_path, 'r') as csvfile:
                 continue
 
             match insttype:
+                case 'in-direct call':
+                    cnt_icall = cnt_icall + 1
+                    print(bpf_templates.switch_gate.format(func=function_name, offset=offset, target_addr=target_addr,prog=str(cnt_icall)))
                 case 'direct call':
                     if target_addr in exported_funcs and target_addr not in skiplist:
                         cnt_call = cnt_call + 1
@@ -84,15 +89,18 @@ with open(csv_file_path, 'r') as csvfile:
                             used_set[target_addr] = used_set[target_addr]+1
                         else:
                             used_set[target_addr] = 1
+                        print(bpf_templates.switch_gate.format(func=function_name, offset=offset, prog=str(cnt_call)))
                         # print('call kernel function: ', target_addr)
                 case 'call next':
                     if stk_switch_back == 1:
                         stk_switch_back = 0
+                        print(bpf_templates.switch_gate.format(func=function_name, offset=offset, prog=str(cnt_call)))
                     # cnt_call = cnt_call + 1
                 case 'write stack':
                     x = re.search('.*ctx.*ctx.*', target_addr)
                     if x:
                         cnt_stack = cnt_stack + 1
+                        print(bpf_templates.mov_stk.format(func=function_name, offset=offset, target_addr=target_addr, prog=str(cnt_stack)))
                 case 'write other [TODO]':
                     # print('write other [TODO]')
                     # a,b = extract_register_and_offset(target_addr)
