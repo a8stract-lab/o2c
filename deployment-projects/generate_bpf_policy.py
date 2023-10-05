@@ -77,13 +77,13 @@ ipv6_file = {'dst_output', 'ip6_append_data', '__ip6_append_data.isra.0', 'ip6_a
 
 # modify here
 
-target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/ipv6-functions.txt'
+# target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/ipv6-functions.txt'
 # target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/netfilter-functions.txt'
-# target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/sched-functions.txt'
+target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/sched-functions.txt'
 
-target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/odin_data/comp_ipv6_sample_policy.csv'
-# target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/odin_data/comp_netfilter_sample_policy.csv'
-# target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/odin_data/comp_sched_sample_policy.csv'
+# target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/samples/ebpf/comp_ipv6_sample_policy.csv'
+# target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/samples/ebpf/comp_netfilter_sample_policy.csv'
+target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/samples/ebpf/comp_sched_sample_policy.csv'
 
 exported_func_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/exported_functions.txt'
 exported_funcs = set()
@@ -117,6 +117,8 @@ with open(exported_func_path, 'r') as infile:
         exported_funcs.add(f)
 
 policy_dict = dict()
+call_stk = set()
+caches = set()
 with open(target_policy_path, 'r') as infile:
     for line in infile.readlines():
         x = line.split(', ')
@@ -153,17 +155,17 @@ with open(csv_file_path, 'r') as csvfile:
             # print(row)
             if function_name not in target_funcs:
                 continue
-            # if function_name not in sched_file:
-            #     continue
+            if function_name not in sched_file:
+                continue
             # if function_name not in netfilter_file:
             #     continue
             # if function_name not in ipv6_file:
             #     continue
 
             match insttype:
-                case 'in-direct call':
-                    cnt_icall = cnt_icall + 1
-                    print(bpf_templates.icall.format(func=function_name, offset=offset, target_addr=target_addr,prog=str(cnt_icall)))
+                # case 'in-direct call':
+                #     cnt_icall = cnt_icall + 1
+                #     print(bpf_templates.icall.format(func=function_name, offset=offset, target_addr=target_addr,prog=str(cnt_icall)))
                 case 'direct call':
                     if target_addr in exported_funcs and target_addr not in skiplist:
                         cnt_call = cnt_call + 1
@@ -174,18 +176,16 @@ with open(csv_file_path, 'r') as csvfile:
                             used_set[target_addr] = 1
                         print(bpf_templates.switch_gate.format(func=function_name, offset=offset, prog=str(cnt_call)))
                     if target_addr == '__kmalloc' or target_addr == 'kmalloc_trace':
-                        hotbpf_start.append(function_name)
-                        hotbpf_start.append(offset)
-                        hotbpf_start.append(cnt_call)
+                        print(bpf_templates.hotbpf.format(func=function_name, offset=offset, prog=str(cnt_call)))
                         # print('call kernel function: ', target_addr)
                 case 'call next':
                     cnt_call = cnt_call + 1
                     if stk_switch_back == 1:
                         stk_switch_back = 0
                         print(bpf_templates.switch_gate.format(func=function_name, offset=offset, prog=str(cnt_call)))
-                    if len(hotbpf_start) != 0:
-                        print(bpf_templates.hotbpf.format(func=hotbpf_start[0], offset=hotbpf_start[1], prog=hotbpf_start[2], next_ip=ip))
-                        hotbpf_start.clear()
+                    # if len(hotbpf_start) != 0:
+                    #     print(bpf_templates.hotbpf.format(func=hotbpf_start[0], offset=hotbpf_start[1], prog=hotbpf_start[2], next_ip=ip))
+                    #     hotbpf_start.clear()
                     # cnt_call = cnt_call + 1
                 case 'write stack':
                     x = re.search('.*ctx.*ctx.*', target_addr)
@@ -207,9 +207,11 @@ with open(csv_file_path, 'r') as csvfile:
                         elif policy_dict[ip][0] == '1':
                             # slab dedicate cache
                             print(bpf_templates.mov_slab.format(func=function_name, offset=offset, target_addr=target_addr, prog=str(cnt_write), target_cache=str(hex(policy_dict[ip][1]))))
+                            caches.add(str(hex(policy_dict[ip][1])))
                         elif policy_dict[ip][0] == '2':
                             # buddy
                             print(bpf_templates.mov_buddy.format(func=function_name, offset=offset, target_addr=target_addr, prog=str(cnt_write)))
+                            call_stk.add(str(hex(policy_dict[ip][1])))
                         elif policy_dict[ip][0] == '3':
                             # vmalloc
                             print(bpf_templates.mov_vmalloc.format(func=function_name, offset=offset, target_addr=target_addr, prog=str(cnt_write)))
@@ -238,6 +240,8 @@ with open(csv_file_path, 'r') as csvfile:
 print('call', cnt_call )
 print('write stk', cnt_stack)
 print('write', cnt_write)
+print('caches: ', caches)
+print('call stks: ', call_stk)
 
 # # used_set = sorted(used_set, reverse=True)
 # sorted_x = sorted(used_set.items(), key=lambda kv: kv[1], reverse=True)

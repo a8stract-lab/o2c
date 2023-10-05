@@ -46,6 +46,49 @@ the results shows >= 96% object last less than 1s, average lifetime is 0.18s, me
 
 ![distribution](../figs/lifecycle%20distribution.png)
 
+```sh
+sudo bpftrace -e '
+tracepoint:kmem:kmalloc {@rec[args->ptr]=nsecs;}
+tracepoint:kmem:kfree /@rec[args->ptr]!=0/{print(nsecs-@rec[args->ptr]); delete(@rec[args->ptr]);}
+interval:s:1200 {exit();}
+' -o trace-kmalloc.txt
+
+sudo bpftrace -e '
+tracepoint:kmem:kmem_cache_alloc {@rec[args->ptr]=nsecs;}
+tracepoint:kmem:kmem_cache_free /@rec[args->ptr]!=0/{print(nsecs-@rec[args->ptr]); delete(@rec[args->ptr]);}
+interval:s:1200 {exit();}
+' -o trace-kmem_cache_alloc.txt
+
+sudo bpftrace -e '
+tracepoint:kmem:mm_page_alloc {@rec[args->pfn]=nsecs;}
+tracepoint:kmem:mm_page_free /@rec[args->pfn]!=0/{print(nsecs-@rec[args->pfn]); delete(@rec[args->pfn]);}
+interval:s:1200 {exit();}
+' -o trace-mm_page_alloc.txt
+
+# ===========================================
+
+sudo bpftrace -e '
+tracepoint:kmem:kmalloc {@rec[args->ptr]=nsecs;}
+tracepoint:kmem:kfree /@rec[args->ptr]!=0/{$x=(nsecs-@rec[args->ptr]); if ($x > 10*1000000000){@[kstack()]=count();} delete(@rec[args->ptr]);}
+interval:s:1200 {exit();}
+' -o trace-kmalloc1.txt
+
+sudo bpftrace -e '
+tracepoint:kmem:kmem_cache_alloc {@rec[args->ptr]=nsecs;}
+tracepoint:kmem:kmem_cache_free /@rec[args->ptr]!=0/{$x=(nsecs-@rec[args->ptr]); if ($x > 60*1000000000){@[kstack()]=count();} delete(@rec[args->ptr]);}
+interval:s:1200 {exit();}
+' -o trace-kmem_cache_alloc1.txt
+
+sudo bpftrace -e '
+tracepoint:kmem:mm_page_alloc {@rec[args->pfn]=nsecs;}
+tracepoint:kmem:mm_page_free /@rec[args->pfn]!=0/{$x=(nsecs-@rec[args->pfn]); if ($x > 60*1000000000){@[kstack()]=count();} delete(@rec[args->pfn]);}
+interval:s:1200 {exit();}
+' -o trace-mm_page_alloc1.txt
+
+
+```
+
+
 
 # 3. count allocations per second
 

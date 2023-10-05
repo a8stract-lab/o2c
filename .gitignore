@@ -1,2 +1,3 @@
 /train-data
 /evaluation-projects/*.test
+/ebpf-project/*.txt

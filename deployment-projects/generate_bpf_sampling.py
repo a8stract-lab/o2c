@@ -7,14 +7,15 @@ import bpf_templates
 # modify here
 
 # target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/ipv6-functions.txt'
-target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/netfilter-functions.txt'
-# target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/sched-functions.txt'
+# target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/netfilter-functions.txt'
+target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/sched-functions.txt'
 
 
 
 kprobe_list_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/kprobe_lists.txt'
 target_funcs = set()
-csv_file_path = '/home/ppw/Documents/on-the-fly-compartment/bin-project/result.csv'
+# csv_file_path = '/home/ppw/Documents/on-the-fly-compartment/bin-project/result.csv'
+csv_file_path = '/home/ppw/Documents/on-the-fly-compartment/bin-project/optimized_result.csv'
 
 
 # print(bpf_templates.maps.format(map_name='map'))

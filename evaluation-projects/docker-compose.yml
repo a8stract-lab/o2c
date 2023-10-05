@@ -1,0 +1,7 @@
+version: '3'
+services:
+  ipv6-nginx:
+    build: .
+    network_mode: host
+    volumes:
+      - /home/ppw/Documents/on-the-fly-compartment/evaluation-projects:/data

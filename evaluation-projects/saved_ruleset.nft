@@ -1,26 +1,26 @@
 table ip filter {
 	chain LIBVIRT_INP {
-		iifname "virbr0" udp dport 53 counter packets 0 bytes 0 accept
-		iifname "virbr0" tcp dport 53 counter packets 0 bytes 0 accept
-		iifname "virbr0" udp dport 67 counter packets 0 bytes 0 accept
-		iifname "virbr0" tcp dport 67 counter packets 0 bytes 0 accept
+		iifname "virbr0" meta l4proto udp udp dport 53 counter packets 0 bytes 0 accept
+		iifname "virbr0" meta l4proto tcp tcp dport 53 counter packets 0 bytes 0 accept
+		iifname "virbr0" meta l4proto udp udp dport 67 counter packets 0 bytes 0 accept
+		iifname "virbr0" meta l4proto tcp tcp dport 67 counter packets 0 bytes 0 accept
 	}
 
 	chain INPUT {
 		type filter hook input priority filter; policy accept;
-		counter packets 5169796 bytes 6624060472 jump LIBVIRT_INP
+		counter packets 6015938 bytes 148605272822 jump LIBVIRT_INP
 	}
 
 	chain LIBVIRT_OUT {
-		oifname "virbr0" udp dport 53 counter packets 0 bytes 0 accept
-		oifname "virbr0" tcp dport 53 counter packets 0 bytes 0 accept
-		oifname "virbr0" udp dport 68 counter packets 0 bytes 0 accept
-		oifname "virbr0" tcp dport 68 counter packets 0 bytes 0 accept
+		oifname "virbr0" meta l4proto udp udp dport 53 counter packets 0 bytes 0 accept
+		oifname "virbr0" meta l4proto tcp tcp dport 53 counter packets 0 bytes 0 accept
+		oifname "virbr0" meta l4proto udp udp dport 68 counter packets 0 bytes 0 accept
+		oifname "virbr0" meta l4proto tcp tcp dport 68 counter packets 0 bytes 0 accept
 	}
 
 	chain OUTPUT {
 		type filter hook output priority filter; policy accept;
-		counter packets 705466 bytes 56756160 jump LIBVIRT_OUT
+		counter packets 5987133 bytes 148581443601 jump LIBVIRT_OUT
 	}
 
 	chain LIBVIRT_FWO {
@@ -32,7 +32,7 @@ table ip filter {
 		type filter hook forward priority filter; policy accept;
 		counter packets 0 bytes 0 jump DOCKER-USER
 		counter packets 0 bytes 0 jump DOCKER-ISOLATION-STAGE-1
-		oifname "docker0" ct state established,related counter packets 0 bytes 0 accept
+		oifname "docker0" ct state related,established counter packets 0 bytes 0 accept
 		oifname "docker0" counter packets 0 bytes 0 jump DOCKER
 		iifname "docker0" oifname != "docker0" counter packets 0 bytes 0 accept
 		iifname "docker0" oifname "docker0" counter packets 0 bytes 0 accept
@@ -42,7 +42,7 @@ table ip filter {
 	}
 
 	chain LIBVIRT_FWI {
-		oifname "virbr0" ip daddr 192.168.122.0/24 ct state established,related counter packets 0 bytes 0 accept
+		oifname "virbr0" ip daddr 192.168.122.0/24 ct state related,established counter packets 0 bytes 0 accept
 		oifname "virbr0" counter packets 0 bytes 0 reject
 	}
 
@@ -69,17 +69,17 @@ table ip filter {
 }
 table ip nat {
 	chain LIBVIRT_PRT {
-		ip saddr 192.168.122.0/24 ip daddr 224.0.0.0/24 counter packets 14 bytes 1300 return
+		ip saddr 192.168.122.0/24 ip daddr 224.0.0.0/24 counter packets 7 bytes 547 return
 		ip saddr 192.168.122.0/24 ip daddr 255.255.255.255 counter packets 0 bytes 0 return
-		meta l4proto tcp ip saddr 192.168.122.0/24 ip daddr != 192.168.122.0/24 counter packets 55 bytes 3300 masquerade to :1024-65535
-		meta l4proto udp ip saddr 192.168.122.0/24 ip daddr != 192.168.122.0/24 counter packets 1 bytes 635 masquerade to :1024-65535
-		ip saddr 192.168.122.0/24 ip daddr != 192.168.122.0/24 counter packets 0 bytes 0 masquerade
+		meta l4proto tcp ip saddr 192.168.122.0/24 ip daddr != 192.168.122.0/24 counter packets 55 bytes 3300 masquerade to :1024-65535 
+		meta l4proto udp ip saddr 192.168.122.0/24 ip daddr != 192.168.122.0/24 counter packets 1 bytes 635 masquerade to :1024-65535 
+		ip saddr 192.168.122.0/24 ip daddr != 192.168.122.0/24 counter packets 0 bytes 0 masquerade 
 	}
 
 	chain POSTROUTING {
 		type nat hook postrouting priority srcnat; policy accept;
-		oifname != "docker0" ip saddr 172.17.0.0/16 counter packets 110 bytes 15400 masquerade
-		counter packets 5315 bytes 758988 jump LIBVIRT_PRT
+		oifname != "docker0" ip saddr 172.17.0.0/16 counter packets 0 bytes 0 masquerade 
+		counter packets 74320 bytes 4586244 jump LIBVIRT_PRT
 	}
 
 	chain DOCKER {
@@ -88,22 +88,22 @@ table ip nat {
 
 	chain PREROUTING {
 		type nat hook prerouting priority dstnat; policy accept;
-		fib daddr type local counter packets 0 bytes 0 jump DOCKER
+		fib daddr type local counter packets 10 bytes 520 jump DOCKER
 	}
 
 	chain OUTPUT {
 		type nat hook output priority -100; policy accept;
-		ip daddr != 127.0.0.0/8 fib daddr type local counter packets 110 bytes 15400 jump DOCKER
+		ip daddr != 127.0.0.0/8 fib daddr type local counter packets 0 bytes 0 jump DOCKER
 	}
 }
 table ip mangle {
 	chain LIBVIRT_PRT {
-		oifname "virbr0" udp dport 68 counter packets 0 bytes 0
+		oifname "virbr0" meta l4proto udp udp dport 68 counter packets 0 bytes 0 # CHECKSUM fill
 	}
 
 	chain POSTROUTING {
 		type filter hook postrouting priority mangle; policy accept;
-		counter packets 705684 bytes 56858526 jump LIBVIRT_PRT
+		counter packets 5987208 bytes 148581450603 jump LIBVIRT_PRT
 	}
 }
 table ip6 filter {
@@ -112,7 +112,7 @@ table ip6 filter {
 
 	chain INPUT {
 		type filter hook input priority filter; policy accept;
-		counter packets 397659 bytes 53655981 jump LIBVIRT_INP
+		counter packets 7850589 bytes 214617110034 jump LIBVIRT_INP
 	}
 
 	chain LIBVIRT_OUT {
@@ -120,7 +120,7 @@ table ip6 filter {
 
 	chain OUTPUT {
 		type filter hook output priority filter; policy accept;
-		counter packets 397680 bytes 53657465 jump LIBVIRT_OUT
+		counter packets 7850615 bytes 214617112525 jump LIBVIRT_OUT
 	}
 
 	chain LIBVIRT_FWO {
@@ -154,6 +154,6 @@ table ip6 mangle {
 
 	chain POSTROUTING {
 		type filter hook postrouting priority mangle; policy accept;
-		counter packets 397713 bytes 53661024 jump LIBVIRT_PRT
+		counter packets 7850636 bytes 214617114763 jump LIBVIRT_PRT
 	}
 }

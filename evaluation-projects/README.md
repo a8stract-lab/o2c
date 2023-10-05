@@ -3,7 +3,7 @@
 
 ## ipv6
 
-```
+```sh
 python -m http.server --bind ::1  8000
 
 ab -n 100 -c 10 http://[::1]:8000/
@@ -28,6 +28,21 @@ for i in $(seq 1 100); do
   ab -n 100 -c 10 http://[::1]:8000/10mb.test
   echo $i
 done
+
+
+# ================cmp to apachebench
+for i in $(seq 1 20); do
+  ab -n 1000 -c 1 http://[::1]:8000/100kb.test >> ab-res/1003-vanilla-100kb-c1.txt
+done
+
+for i in $(seq 1 20); do
+  ab -n 1000 -c 10 http://[::1]:8000/100kb.test >> ab-res/1003-vanilla-100kb-c10.txt
+done
+
+for i in $(seq 1 20); do
+  ab -n 1000 -c 100 http://[::1]:8000/100kb.test >> ab-res/1003-vanilla-100kb-c100.txt
+done
+
 ```
 
 ## netfilter
