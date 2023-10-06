@@ -140,6 +140,7 @@ cnt_call = 0
 cnt_stack = 0
 cnt_write = 0
 cnt_icall = 0
+cnt_stk = 0
 
 
 stk_switch_back = 0
@@ -155,16 +156,16 @@ with open(csv_file_path, 'r') as csvfile:
             # print(row)
             if function_name not in target_funcs:
                 continue
-            if function_name not in sched_file:
-                continue
+            # if function_name not in sched_file:
+            #     continue
             # if function_name not in netfilter_file:
             #     continue
             # if function_name not in ipv6_file:
             #     continue
 
             match insttype:
-                # case 'in-direct call':
-                #     cnt_icall = cnt_icall + 1
+                case 'in-direct call':
+                    cnt_icall = cnt_icall + 1
                 #     print(bpf_templates.icall.format(func=function_name, offset=offset, target_addr=target_addr,prog=str(cnt_icall)))
                 case 'direct call':
                     if target_addr in exported_funcs and target_addr not in skiplist:
@@ -188,6 +189,7 @@ with open(csv_file_path, 'r') as csvfile:
                     #     hotbpf_start.clear()
                     # cnt_call = cnt_call + 1
                 case 'write stack':
+                    cnt_stk = cnt_stk + 1
                     x = re.search('.*ctx.*ctx.*', target_addr)
                     if x:
                         cnt_stack = cnt_stack + 1
@@ -238,14 +240,11 @@ with open(csv_file_path, 'r') as csvfile:
 
 # print(cnt)
 print('call', cnt_call )
-print('write stk', cnt_stack)
+print('writestk', cnt_stack)
 print('write', cnt_write)
-print('caches: ', caches)
-print('call stks: ', call_stk)
+print('icall', cnt_icall)
+print('allwstk', cnt_stk)
 
-# # used_set = sorted(used_set, reverse=True)
-# sorted_x = sorted(used_set.items(), key=lambda kv: kv[1], reverse=True)
-# print(len(used_set))
-# for x in sorted_x:
-#     # print(x, sorted_x[x])
-#     print(x)
+# print('caches: ', caches)
+# print('call stks: ', call_stk)
+
