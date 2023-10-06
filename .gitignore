@@ -2,4 +2,6 @@
 /evaluation-projects/*.test
 /evaluation-projects/ab-res/*.txt
 /evaluation-projects/ab-res-bak/*.txt
+/evaluation-projects/ab-res-bak/*.txt
+/evaluation-projects/ab-res-1005/*.txt
 /ebpf-project/*.txt
