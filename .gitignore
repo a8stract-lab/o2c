@@ -1,3 +1,5 @@
 /train-data
 /evaluation-projects/*.test
+/evaluation-projects/ab-res/*.txt
+/evaluation-projects/ab-res-bak/*.txt
 /ebpf-project/*.txt
