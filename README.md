@@ -92,10 +92,16 @@ Comparts的私有栈包括属于compart数据结构类型的专用slab cache，�
 
 
 
+<!-- 我们针对eBPF framework的不支持浮点计算、不支持过多指令的缺点，选取合适的机器学习算法，并将该模型修改为eBPF程序植入内核中 -->
 
+the goal of object profiler is to collect labeled data from running kernel.
+However, there are 3 challenges, 1. how to get the object type on-the-fly, 2. if the object is accessed by the compart, 3. when to profile the object content, because there are multiple memory accesses in the period from the data object allocation to free.
+below are solutions.
 
+the type of the data object serves as the label of training data, we can derive the type from the caller (call trace) of the object allocation site.
+Because once the 
 
-
+ hook all the memory allocation site
 
 
 
