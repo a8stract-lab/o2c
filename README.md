@@ -173,9 +173,17 @@ We also choose phoronix test suites to evaluate the real world applications, inc
 For the compartments, We've chosen three modules, and for each of them we've built two separate compartments, one that isolates just one of the module's vulnerable files, and one that isolates the entire module.
 the vulnerable files are ip6_output.c in ipv6, nf_tables_api.c in netfilter, cls_route.c in sched, they include, x, y, z eBPF hooks.
 and the module ipv6, netfilter, sched, their compartment include x1, y1, z1 eBPF hooks.
-Because in phase 0, there is addtional ML audition in \sys compartmentalizaiton, 
-so we test each compartment when are using ML audition and not using ML audition.
+We also want to know the scalability, when install 3 compartments in the system at the same time.
+Besides, Because in phase 0, there is addtional ML audition in \sys compartmentalizaiton, 
+so we test each compartment and 3 compartments together, when are using ML audition and not using ML audition.
 
 For the second research question, we want to find the performance overhead to the comparted modules, so we design experiments by testing the its main ser ice's performance loss.
 So we choose apache Bench to test the ipv6 compartment's performance loss on request per second and transfer rate.
-and like the first experiment, we test 2 compartments, when using the ML audition and not using it.
+The experiment setup is identical with the related work HAKC, by access 3 files, 100kb, 1mb, and 10mb for 1000 times through a ipv6 address.
+we setup a ipv6 local webserver with \Code{python -m http.server --bind [::1]:8000},because our IST doesn't support ipv6 services to the world wide web.
+and similar to the first experiment, we test apache bench 2 compartments, compartment a vulnerable file and the entire module, and under 2 situations, using the ML audition and not using it.
+
+experiment result
+
+
+
