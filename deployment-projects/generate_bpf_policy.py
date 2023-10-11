@@ -78,12 +78,12 @@ ipv6_file = {'dst_output', 'ip6_append_data', '__ip6_append_data.isra.0', 'ip6_a
 # modify here
 
 # target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/ipv6-functions.txt'
-# target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/netfilter-functions.txt'
-target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/sched-functions.txt'
+target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/netfilter-functions.txt'
+# target_funcs_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/sched-functions.txt'
 
 # target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/samples/ebpf/comp_ipv6_sample_policy.csv'
-# target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/samples/ebpf/comp_netfilter_sample_policy.csv'
-target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/samples/ebpf/comp_sched_sample_policy.csv'
+target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/samples/ebpf/comp_netfilter_sample_policy.csv'
+# target_policy_path = '/home/ppw/Documents/ebpf-detector/linux-6.1/samples/ebpf/comp_sched_sample_policy.csv'
 
 exported_func_path = '/home/ppw/Documents/on-the-fly-compartment/deployment-projects/exported_functions.txt'
 exported_funcs = set()
@@ -158,8 +158,8 @@ with open(csv_file_path, 'r') as csvfile:
                 continue
             # if function_name not in sched_file:
             #     continue
-            # if function_name not in netfilter_file:
-            #     continue
+            if function_name not in netfilter_file:
+                continue
             # if function_name not in ipv6_file:
             #     continue
 

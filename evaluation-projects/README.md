@@ -87,3 +87,25 @@ nft delete table ip fuzz_table
 # Step 4: Recover Saved Netfilter Rules
 nft -f /path/to/saved_ruleset.nft
 ```
+
+
+
+## object life time
+
+
+```sh
+
+sudo bpftrace -e '
+    tracepoint:kmem:kmalloc {@stk[args->ptr]=kstack(4);  @times[args->ptr]=nsecs;}
+    tracepoint:kmem:kfree /@times[args->ptr]!=0/ {
+      $t = nsecs - @times[args->ptr];
+      if ($t > 1000000000) {
+        $x = @stk[args->ptr];
+        print($x); printf("%lu\n", $t/1000000);
+        delete(@stk[args->ptr]); delete(@times[args->ptr]);
+      }
+    }
+    interval:s:120 {exit();}
+' -o collect-type.txt
+
+```
