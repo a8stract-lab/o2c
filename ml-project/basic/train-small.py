@@ -27,6 +27,8 @@ print("decision tree test_acc:",accuracy_score(test_y,pred_y))
 print('decision tree Macro precision', precision_score(test_y, pred_y, average='macro'))
 print('decision tree Macro recall', recall_score(test_y, pred_y, average='macro'))
 
+print(dt.tree_.max_depth)
+
 # current_logdir = "res/"
 # with open('%s/childrenLeft' % current_logdir, 'wb') as f:
 #     dt.tree_.children_left.tofile(f)

@@ -105,7 +105,7 @@ sudo bpftrace -e '
         delete(@stk[args->ptr]); delete(@times[args->ptr]);
       }
     }
-    interval:s:120 {exit();}
+    interval:s:1200 {exit();}
 ' -o collect-type.txt
 
 ```
