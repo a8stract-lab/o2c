@@ -1,7 +1,25 @@
 # on-the-fly-compartment
 
 https://docs.google.com/presentation/d/1fVZlfJtHDvP3GEj31bMvFD9OVvtb9nGEMj6EDqXMRcI/edit#slide=id.p
+## new insight
+1. point out and solve the object life timesystem during the on-the-fly comparmentalization.
+2. fully understand what happened of a object's lifetime, when compartmentalization loaded by object not freed.
+3. 为什么要在free的时候做数据对象的预测，在dereference的时候不行吗？（目前的想法是free的时候数据最全，可以促进ai预测，但是如果dereference的时候呢，有什么影响？如果第一次预测就能预测出来，后面不就不用预测了？）
 
+
+## task
+- object数据对象生命周期，分配次数等等（eBPF直接干）
+- object在不同阶段数据的变化
+    - 证明object在生命周期的全过程是不停变化的，静态分析看看write情况（某个struct 有多少write指令）
+        - 静态分析结果应该包括，哪些函数修改了struct，修改了struct的哪些member
+    - 动态分析具体看一下数据的变化和对ml的影响
+        - 分配时记录地址，然后在数据对象被修改的函数结尾处dump记录地址的内存，查看修改情况，最后丢给ML看看预测结果
+
+
+
+
+----------------------------------------------------------------------
+2024 eurosys rejected, reason:1.story telling not focus on phase 0, 2.ptr deference(attack) to free, has a time window for attacker. 3.Bad reviewers.
 ## Insight: 
 
 on-the-fly kernel compartmentalization can quickly remediate the 0-day hotspots (i.e. 0-day Vulnerability Highly Exposed Areas), 2 research questions are solved,
