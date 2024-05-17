@@ -5,3 +5,5 @@
 /evaluation-projects/ab-res-bak/*.txt
 /evaluation-projects/ab-res-1005/*.txt
 /ebpf-project/*.txt
+/struct-analysis/*.txt
+/bin-probject/*.csv

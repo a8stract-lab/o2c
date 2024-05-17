@@ -1,0 +1,1779 @@
+decision tree time: 0.014345169067382812
+decision tree test_acc: 0.9880191693290735
+decision tree Macro precision 0.09967767929089444
+decision tree Macro recall 0.09943729903536977
+14
+Depth of the Decision Tree: 14
+Number of Nodes: 187
+Node Weights:
+Node 0 Weight: 4000.0
+Node 1 Weight: 3833.0
+Node 2 Weight: 406.0
+Node 3 Weight: 211.0
+Node 4 Weight: 15.0
+Node 5 Weight: 14.0
+Node 7 Weight: 5.0
+Node 9 Weight: 4.0
+Node 13 Weight: 196.0
+Node 14 Weight: 28.0
+Node 16 Weight: 9.0
+Node 17 Weight: 8.0
+Node 19 Weight: 6.0
+Node 20 Weight: 5.0
+Node 25 Weight: 168.0
+Node 27 Weight: 45.0
+Node 29 Weight: 43.0
+Node 30 Weight: 18.0
+Node 34 Weight: 195.0
+Node 35 Weight: 101.0
+Node 36 Weight: 44.0
+Node 37 Weight: 10.0
+Node 39 Weight: 6.0
+Node 40 Weight: 3.0
+Node 42 Weight: 2.0
+Node 45 Weight: 3.0
+Node 48 Weight: 34.0
+Node 49 Weight: 17.0
+Node 50 Weight: 3.0
+Node 54 Weight: 17.0
+Node 55 Weight: 10.0
+Node 56 Weight: 4.0
+Node 59 Weight: 6.0
+Node 60 Weight: 5.0
+Node 62 Weight: 4.0
+Node 63 Weight: 3.0
+Node 68 Weight: 7.0
+Node 71 Weight: 57.0
+Node 72 Weight: 29.0
+Node 74 Weight: 25.0
+Node 75 Weight: 22.0
+Node 76 Weight: 5.0
+Node 80 Weight: 3.0
+Node 83 Weight: 28.0
+Node 84 Weight: 17.0
+Node 85 Weight: 7.0
+Node 87 Weight: 4.0
+Node 90 Weight: 10.0
+Node 93 Weight: 11.0
+Node 95 Weight: 8.0
+Node 96 Weight: 5.0
+Node 100 Weight: 94.0
+Node 101 Weight: 67.0
+Node 102 Weight: 25.0
+Node 104 Weight: 16.0
+Node 105 Weight: 7.0
+Node 107 Weight: 6.0
+Node 109 Weight: 4.0
+Node 112 Weight: 9.0
+Node 113 Weight: 4.0
+Node 116 Weight: 5.0
+Node 117 Weight: 3.0
+Node 121 Weight: 42.0
+Node 122 Weight: 34.0
+Node 123 Weight: 18.0
+Node 124 Weight: 2.0
+Node 127 Weight: 16.0
+Node 128 Weight: 12.0
+Node 129 Weight: 8.0
+Node 130 Weight: 3.0
+Node 134 Weight: 4.0
+Node 136 Weight: 3.0
+Node 138 Weight: 2.0
+Node 142 Weight: 16.0
+Node 143 Weight: 5.0
+Node 146 Weight: 11.0
+Node 147 Weight: 5.0
+Node 149 Weight: 3.0
+Node 152 Weight: 6.0
+Node 154 Weight: 4.0
+Node 155 Weight: 3.0
+Node 159 Weight: 8.0
+Node 161 Weight: 3.0
+Node 163 Weight: 2.0
+Node 166 Weight: 27.0
+Node 168 Weight: 10.0
+Node 170 Weight: 7.0
+Node 171 Weight: 2.0
+Node 174 Weight: 5.0
+Node 175 Weight: 4.0
+Node 177 Weight: 3.0
+Node 179 Weight: 2.0
+Node 184 Weight: 167.0
+Node importance:
+Feature 0 Importance: 1.0
+Feature 1 Importance: 0.0
+Feature 2 Importance: 0.0
+Feature 3 Importance: 0.0
+Feature 4 Importance: 0.0
+Feature 5 Importance: 0.0
+Feature 6 Importance: 0.0
+Feature 7 Importance: 0.0
+Feature 8 Importance: 0.0
+Feature 9 Importance: 0.0
+Feature 10 Importance: 0.0
+Feature 11 Importance: 0.0
+Feature 12 Importance: 0.0
+Feature 13 Importance: 0.0
+Feature 14 Importance: 0.0
+Feature 15 Importance: 0.0
+Feature 16 Importance: 0.0
+Feature 17 Importance: 0.0
+Feature 18 Importance: 0.0
+Feature 19 Importance: 0.0
+Feature 20 Importance: 0.0
+Feature 21 Importance: 0.0
+Feature 22 Importance: 0.0
+Feature 23 Importance: 0.0
+Feature 24 Importance: 0.0
+Feature 25 Importance: 0.0
+Feature 26 Importance: 0.0
+Feature 27 Importance: 0.0
+Feature 28 Importance: 0.0
+Feature 29 Importance: 0.0
+Feature 30 Importance: 0.0
+Feature 31 Importance: 0.0
+Feature 32 Importance: 0.0
+Feature 33 Importance: 0.0
+Feature 34 Importance: 0.0
+Feature 35 Importance: 0.0
+Feature 36 Importance: 0.0
+Feature 37 Importance: 0.0
+Feature 38 Importance: 0.0
+Feature 39 Importance: 0.0
+Feature 40 Importance: 0.0
+Feature 41 Importance: 0.0
+Feature 42 Importance: 0.0
+Feature 43 Importance: 0.0
+Feature 44 Importance: 0.0
+Feature 45 Importance: 0.0
+Feature 46 Importance: 0.0
+Feature 47 Importance: 0.0
+Feature 48 Importance: 0.0
+Feature 49 Importance: 0.0
+Feature 50 Importance: 0.0
+Feature 51 Importance: 0.0
+Feature 52 Importance: 0.0
+Feature 53 Importance: 0.0
+Feature 54 Importance: 0.0
+Feature 55 Importance: 0.0
+Feature 56 Importance: 0.0
+Feature 57 Importance: 0.0
+Feature 58 Importance: 0.0
+Feature 59 Importance: 0.0
+Feature 60 Importance: 0.0
+Feature 61 Importance: 0.0
+Feature 62 Importance: 0.0
+Feature 63 Importance: 0.0
+Feature 64 Importance: 0.0
+Feature 65 Importance: 0.0
+Feature 66 Importance: 0.0
+Feature 67 Importance: 0.0
+Feature 68 Importance: 0.0
+Feature 69 Importance: 0.0
+Feature 70 Importance: 0.0
+Feature 71 Importance: 0.0
+Feature 72 Importance: 0.0
+Feature 73 Importance: 0.0
+Feature 74 Importance: 0.0
+Feature 75 Importance: 0.0
+Feature 76 Importance: 0.0
+Feature 77 Importance: 0.0
+Feature 78 Importance: 0.0
+Feature 79 Importance: 0.0
+Feature 80 Importance: 0.0
+Feature 81 Importance: 0.0
+Feature 82 Importance: 0.0
+Feature 83 Importance: 0.0
+Feature 84 Importance: 0.0
+Feature 85 Importance: 0.0
+Feature 86 Importance: 0.0
+Feature 87 Importance: 0.0
+Feature 88 Importance: 0.0
+Feature 89 Importance: 0.0
+Feature 90 Importance: 0.0
+Feature 91 Importance: 0.0
+Feature 92 Importance: 0.0
+Feature 93 Importance: 0.0
+Feature 94 Importance: 0.0
+Feature 95 Importance: 0.0
+Feature 96 Importance: 0.0
+Feature 97 Importance: 0.0
+Feature 98 Importance: 0.0
+Feature 99 Importance: 0.0
+Feature 100 Importance: 0.0
+Feature 101 Importance: 0.0
+Feature 102 Importance: 0.0
+Feature 103 Importance: 0.0
+Feature 104 Importance: 0.0
+Feature 105 Importance: 0.0
+Feature 106 Importance: 0.0
+Feature 107 Importance: 0.0
+Feature 108 Importance: 0.0
+Feature 109 Importance: 0.0
+Feature 110 Importance: 0.0
+Feature 111 Importance: 0.0
+Feature 112 Importance: 0.0
+Feature 113 Importance: 0.0
+Feature 114 Importance: 0.0
+Feature 115 Importance: 0.0
+Feature 116 Importance: 0.0
+Feature 117 Importance: 0.0
+Feature 118 Importance: 0.0
+Feature 119 Importance: 0.0
+Feature 120 Importance: 0.0
+Feature 121 Importance: 0.0
+Feature 122 Importance: 0.0
+Feature 123 Importance: 0.0
+Feature 124 Importance: 0.0
+Feature 125 Importance: 0.0
+Feature 126 Importance: 0.0
+Feature 127 Importance: 0.0
+Feature 128 Importance: 0.0
+Feature 129 Importance: 0.0
+Feature 130 Importance: 0.0
+Feature 131 Importance: 0.0
+Feature 132 Importance: 0.0
+Feature 133 Importance: 0.0
+Feature 134 Importance: 0.0
+Feature 135 Importance: 0.0
+Feature 136 Importance: 0.0
+Feature 137 Importance: 0.0
+Feature 138 Importance: 0.0
+Feature 139 Importance: 0.0
+Feature 140 Importance: 0.0
+Feature 141 Importance: 0.0
+Feature 142 Importance: 0.0
+Feature 143 Importance: 0.0
+Feature 144 Importance: 0.0
+Feature 145 Importance: 0.0
+Feature 146 Importance: 0.0
+Feature 147 Importance: 0.0
+Feature 148 Importance: 0.0
+Feature 149 Importance: 0.0
+Feature 150 Importance: 0.0
+Feature 151 Importance: 0.0
+Feature 152 Importance: 0.0
+Feature 153 Importance: 0.0
+Feature 154 Importance: 0.0
+Feature 155 Importance: 0.0
+Feature 156 Importance: 0.0
+Feature 157 Importance: 0.0
+Feature 158 Importance: 0.0
+Feature 159 Importance: 0.0
+Feature 160 Importance: 0.0
+Feature 161 Importance: 0.0
+Feature 162 Importance: 0.0
+Feature 163 Importance: 0.0
+Feature 164 Importance: 0.0
+Feature 165 Importance: 0.0
+Feature 166 Importance: 0.0
+Feature 167 Importance: 0.0
+Feature 168 Importance: 0.0
+Feature 169 Importance: 0.0
+Feature 170 Importance: 0.0
+Feature 171 Importance: 0.0
+Feature 172 Importance: 0.0
+Feature 173 Importance: 0.0
+Feature 174 Importance: 0.0
+Feature 175 Importance: 0.0
+Feature 176 Importance: 0.0
+Feature 177 Importance: 0.0
+Feature 178 Importance: 0.0
+Feature 179 Importance: 0.0
+Feature 180 Importance: 0.0
+Feature 181 Importance: 0.0
+Feature 182 Importance: 0.0
+Feature 183 Importance: 0.0
+Feature 184 Importance: 0.0
+Feature 185 Importance: 0.0
+Feature 186 Importance: 0.0
+Feature 187 Importance: 0.0
+Feature 188 Importance: 0.0
+Feature 189 Importance: 0.0
+Feature 190 Importance: 0.0
+Feature 191 Importance: 0.0
+Feature 192 Importance: 0.0
+Feature 193 Importance: 0.0
+Feature 194 Importance: 0.0
+Feature 195 Importance: 0.0
+Feature 196 Importance: 0.0
+Feature 197 Importance: 0.0
+Feature 198 Importance: 0.0
+Feature 199 Importance: 0.0
+Feature 200 Importance: 0.0
+Feature 201 Importance: 0.0
+Feature 202 Importance: 0.0
+Feature 203 Importance: 0.0
+Feature 204 Importance: 0.0
+Feature 205 Importance: 0.0
+Feature 206 Importance: 0.0
+Feature 207 Importance: 0.0
+Feature 208 Importance: 0.0
+Feature 209 Importance: 0.0
+Feature 210 Importance: 0.0
+Feature 211 Importance: 0.0
+Feature 212 Importance: 0.0
+Feature 213 Importance: 0.0
+Feature 214 Importance: 0.0
+Feature 215 Importance: 0.0
+Feature 216 Importance: 0.0
+Feature 217 Importance: 0.0
+Feature 218 Importance: 0.0
+Feature 219 Importance: 0.0
+Feature 220 Importance: 0.0
+Feature 221 Importance: 0.0
+Feature 222 Importance: 0.0
+Feature 223 Importance: 0.0
+Feature 224 Importance: 0.0
+Feature 225 Importance: 0.0
+Feature 226 Importance: 0.0
+Feature 227 Importance: 0.0
+Feature 228 Importance: 0.0
+Feature 229 Importance: 0.0
+Feature 230 Importance: 0.0
+Feature 231 Importance: 0.0
+Feature 232 Importance: 0.0
+Feature 233 Importance: 0.0
+Feature 234 Importance: 0.0
+Feature 235 Importance: 0.0
+Feature 236 Importance: 0.0
+Feature 237 Importance: 0.0
+Feature 238 Importance: 0.0
+Feature 239 Importance: 0.0
+Feature 240 Importance: 0.0
+Feature 241 Importance: 0.0
+Feature 242 Importance: 0.0
+Feature 243 Importance: 0.0
+Feature 244 Importance: 0.0
+Feature 245 Importance: 0.0
+Feature 246 Importance: 0.0
+Feature 247 Importance: 0.0
+Feature 248 Importance: 0.0
+Feature 249 Importance: 0.0
+Feature 250 Importance: 0.0
+Feature 251 Importance: 0.0
+Feature 252 Importance: 0.0
+Feature 253 Importance: 0.0
+Feature 254 Importance: 0.0
+Feature 255 Importance: 0.0
+Feature 256 Importance: 0.0
+Feature 257 Importance: 0.0
+Feature 258 Importance: 0.0
+Feature 259 Importance: 0.0
+Feature 260 Importance: 0.0
+Feature 261 Importance: 0.0
+Feature 262 Importance: 0.0
+Feature 263 Importance: 0.0
+Feature 264 Importance: 0.0
+Feature 265 Importance: 0.0
+Feature 266 Importance: 0.0
+Feature 267 Importance: 0.0
+Feature 268 Importance: 0.0
+Feature 269 Importance: 0.0
+Feature 270 Importance: 0.0
+Feature 271 Importance: 0.0
+Feature 272 Importance: 0.0
+Feature 273 Importance: 0.0
+Feature 274 Importance: 0.0
+Feature 275 Importance: 0.0
+Feature 276 Importance: 0.0
+Feature 277 Importance: 0.0
+Feature 278 Importance: 0.0
+Feature 279 Importance: 0.0
+Feature 280 Importance: 0.0
+Feature 281 Importance: 0.0
+Feature 282 Importance: 0.0
+Feature 283 Importance: 0.0
+Feature 284 Importance: 0.0
+Feature 285 Importance: 0.0
+Feature 286 Importance: 0.0
+Feature 287 Importance: 0.0
+Feature 288 Importance: 0.0
+Feature 289 Importance: 0.0
+Feature 290 Importance: 0.0
+Feature 291 Importance: 0.0
+Feature 292 Importance: 0.0
+Feature 293 Importance: 0.0
+Feature 294 Importance: 0.0
+Feature 295 Importance: 0.0
+Feature 296 Importance: 0.0
+Feature 297 Importance: 0.0
+Feature 298 Importance: 0.0
+Feature 299 Importance: 0.0
+Feature 300 Importance: 0.0
+Feature 301 Importance: 0.0
+Feature 302 Importance: 0.0
+Feature 303 Importance: 0.0
+Feature 304 Importance: 0.0
+Feature 305 Importance: 0.0
+Feature 306 Importance: 0.0
+Feature 307 Importance: 0.0
+Feature 308 Importance: 0.0
+Feature 309 Importance: 0.0
+Feature 310 Importance: 0.0
+Feature 311 Importance: 0.0
+Feature 312 Importance: 0.0
+Feature 313 Importance: 0.0
+Feature 314 Importance: 0.0
+Feature 315 Importance: 0.0
+Feature 316 Importance: 0.0
+Feature 317 Importance: 0.0
+Feature 318 Importance: 0.0
+Feature 319 Importance: 0.0
+Feature 320 Importance: 0.0
+Feature 321 Importance: 0.0
+Feature 322 Importance: 0.0
+Feature 323 Importance: 0.0
+Feature 324 Importance: 0.0
+Feature 325 Importance: 0.0
+Feature 326 Importance: 0.0
+Feature 327 Importance: 0.0
+Feature 328 Importance: 0.0
+Feature 329 Importance: 0.0
+Feature 330 Importance: 0.0
+Feature 331 Importance: 0.0
+Feature 332 Importance: 0.0
+Feature 333 Importance: 0.0
+Feature 334 Importance: 0.0
+Feature 335 Importance: 0.0
+Feature 336 Importance: 0.0
+Feature 337 Importance: 0.0
+Feature 338 Importance: 0.0
+Feature 339 Importance: 0.0
+Feature 340 Importance: 0.0
+Feature 341 Importance: 0.0
+Feature 342 Importance: 0.0
+Feature 343 Importance: 0.0
+Feature 344 Importance: 0.0
+Feature 345 Importance: 0.0
+Feature 346 Importance: 0.0
+Feature 347 Importance: 0.0
+Feature 348 Importance: 0.0
+Feature 349 Importance: 0.0
+Feature 350 Importance: 0.0
+Feature 351 Importance: 0.0
+Feature 352 Importance: 0.0
+Feature 353 Importance: 0.0
+Feature 354 Importance: 0.0
+Feature 355 Importance: 0.0
+Feature 356 Importance: 0.0
+Feature 357 Importance: 0.0
+Feature 358 Importance: 0.0
+Feature 359 Importance: 0.0
+Feature 360 Importance: 0.0
+Feature 361 Importance: 0.0
+Feature 362 Importance: 0.0
+Feature 363 Importance: 0.0
+Feature 364 Importance: 0.0
+Feature 365 Importance: 0.0
+Feature 366 Importance: 0.0
+Feature 367 Importance: 0.0
+Feature 368 Importance: 0.0
+Feature 369 Importance: 0.0
+Feature 370 Importance: 0.0
+Feature 371 Importance: 0.0
+Feature 372 Importance: 0.0
+Feature 373 Importance: 0.0
+Feature 374 Importance: 0.0
+Feature 375 Importance: 0.0
+Feature 376 Importance: 0.0
+Feature 377 Importance: 0.0
+Feature 378 Importance: 0.0
+Feature 379 Importance: 0.0
+Feature 380 Importance: 0.0
+Feature 381 Importance: 0.0
+Feature 382 Importance: 0.0
+Feature 383 Importance: 0.0
+Feature 384 Importance: 0.0
+Feature 385 Importance: 0.0
+Feature 386 Importance: 0.0
+Feature 387 Importance: 0.0
+Feature 388 Importance: 0.0
+Feature 389 Importance: 0.0
+Feature 390 Importance: 0.0
+Feature 391 Importance: 0.0
+Feature 392 Importance: 0.0
+Feature 393 Importance: 0.0
+Feature 394 Importance: 0.0
+Feature 395 Importance: 0.0
+Feature 396 Importance: 0.0
+Feature 397 Importance: 0.0
+Feature 398 Importance: 0.0
+Feature 399 Importance: 0.0
+Feature 400 Importance: 0.0
+Feature 401 Importance: 0.0
+Feature 402 Importance: 0.0
+Feature 403 Importance: 0.0
+Feature 404 Importance: 0.0
+Feature 405 Importance: 0.0
+Feature 406 Importance: 0.0
+Feature 407 Importance: 0.0
+Feature 408 Importance: 0.0
+Feature 409 Importance: 0.0
+Feature 410 Importance: 0.0
+Feature 411 Importance: 0.0
+Feature 412 Importance: 0.0
+Feature 413 Importance: 0.0
+Feature 414 Importance: 0.0
+Feature 415 Importance: 0.0
+Feature 416 Importance: 0.0
+Feature 417 Importance: 0.0
+Feature 418 Importance: 0.0
+Feature 419 Importance: 0.0
+Feature 420 Importance: 0.0
+Feature 421 Importance: 0.0
+Feature 422 Importance: 0.0
+Feature 423 Importance: 0.0
+Feature 424 Importance: 0.0
+Feature 425 Importance: 0.0
+Feature 426 Importance: 0.0
+Feature 427 Importance: 0.0
+Feature 428 Importance: 0.0
+Feature 429 Importance: 0.0
+Feature 430 Importance: 0.0
+Feature 431 Importance: 0.0
+Feature 432 Importance: 0.0
+Feature 433 Importance: 0.0
+Feature 434 Importance: 0.0
+Feature 435 Importance: 0.0
+Feature 436 Importance: 0.0
+Feature 437 Importance: 0.0
+Feature 438 Importance: 0.0
+Feature 439 Importance: 0.0
+Feature 440 Importance: 0.0
+Feature 441 Importance: 0.0
+Feature 442 Importance: 0.0
+Feature 443 Importance: 0.0
+Feature 444 Importance: 0.0
+Feature 445 Importance: 0.0
+Feature 446 Importance: 0.0
+Feature 447 Importance: 0.0
+Feature 448 Importance: 0.0
+Feature 449 Importance: 0.0
+Feature 450 Importance: 0.0
+Feature 451 Importance: 0.0
+Feature 452 Importance: 0.0
+Feature 453 Importance: 0.0
+Feature 454 Importance: 0.0
+Feature 455 Importance: 0.0
+Feature 456 Importance: 0.0
+Feature 457 Importance: 0.0
+Feature 458 Importance: 0.0
+Feature 459 Importance: 0.0
+Feature 460 Importance: 0.0
+Feature 461 Importance: 0.0
+Feature 462 Importance: 0.0
+Feature 463 Importance: 0.0
+Feature 464 Importance: 0.0
+Feature 465 Importance: 0.0
+Feature 466 Importance: 0.0
+Feature 467 Importance: 0.0
+Feature 468 Importance: 0.0
+Feature 469 Importance: 0.0
+Feature 470 Importance: 0.0
+Feature 471 Importance: 0.0
+Feature 472 Importance: 0.0
+Feature 473 Importance: 0.0
+Feature 474 Importance: 0.0
+Feature 475 Importance: 0.0
+Feature 476 Importance: 0.0
+Feature 477 Importance: 0.0
+Feature 478 Importance: 0.0
+Feature 479 Importance: 0.0
+Feature 480 Importance: 0.0
+Feature 481 Importance: 0.0
+Feature 482 Importance: 0.0
+Feature 483 Importance: 0.0
+Feature 484 Importance: 0.0
+Feature 485 Importance: 0.0
+Feature 486 Importance: 0.0
+Feature 487 Importance: 0.0
+Feature 488 Importance: 0.0
+Feature 489 Importance: 0.0
+Feature 490 Importance: 0.0
+Feature 491 Importance: 0.0
+Feature 492 Importance: 0.0
+Feature 493 Importance: 0.0
+Feature 494 Importance: 0.0
+Feature 495 Importance: 0.0
+Feature 496 Importance: 0.0
+Feature 497 Importance: 0.0
+Feature 498 Importance: 0.0
+Feature 499 Importance: 0.0
+Feature 500 Importance: 0.0
+Feature 501 Importance: 0.0
+Feature 502 Importance: 0.0
+Feature 503 Importance: 0.0
+Feature 504 Importance: 0.0
+Feature 505 Importance: 0.0
+Feature 506 Importance: 0.0
+Feature 507 Importance: 0.0
+Feature 508 Importance: 0.0
+Feature 509 Importance: 0.0
+Feature 510 Importance: 0.0
+Feature 511 Importance: 0.0
+Feature 512 Importance: 0.0
+Feature 513 Importance: 0.0
+Feature 514 Importance: 0.0
+Feature 515 Importance: 0.0
+Feature 516 Importance: 0.0
+Feature 517 Importance: 0.0
+Feature 518 Importance: 0.0
+Feature 519 Importance: 0.0
+Feature 520 Importance: 0.0
+Feature 521 Importance: 0.0
+Feature 522 Importance: 0.0
+Feature 523 Importance: 0.0
+Feature 524 Importance: 0.0
+Feature 525 Importance: 0.0
+Feature 526 Importance: 0.0
+Feature 527 Importance: 0.0
+Feature 528 Importance: 0.0
+Feature 529 Importance: 0.0
+Feature 530 Importance: 0.0
+Feature 531 Importance: 0.0
+Feature 532 Importance: 0.0
+Feature 533 Importance: 0.0
+Feature 534 Importance: 0.0
+Feature 535 Importance: 0.0
+Feature 536 Importance: 0.0
+Feature 537 Importance: 0.0
+Feature 538 Importance: 0.0
+Feature 539 Importance: 0.0
+Feature 540 Importance: 0.0
+Feature 541 Importance: 0.0
+Feature 542 Importance: 0.0
+Feature 543 Importance: 0.0
+Feature 544 Importance: 0.0
+Feature 545 Importance: 0.0
+Feature 546 Importance: 0.0
+Feature 547 Importance: 0.0
+Feature 548 Importance: 0.0
+Feature 549 Importance: 0.0
+Feature 550 Importance: 0.0
+Feature 551 Importance: 0.0
+Feature 552 Importance: 0.0
+Feature 553 Importance: 0.0
+Feature 554 Importance: 0.0
+Feature 555 Importance: 0.0
+Feature 556 Importance: 0.0
+Feature 557 Importance: 0.0
+Feature 558 Importance: 0.0
+Feature 559 Importance: 0.0
+Feature 560 Importance: 0.0
+Feature 561 Importance: 0.0
+Feature 562 Importance: 0.0
+Feature 563 Importance: 0.0
+Feature 564 Importance: 0.0
+Feature 565 Importance: 0.0
+Feature 566 Importance: 0.0
+Feature 567 Importance: 0.0
+Feature 568 Importance: 0.0
+Feature 569 Importance: 0.0
+Feature 570 Importance: 0.0
+Feature 571 Importance: 0.0
+Feature 572 Importance: 0.0
+Feature 573 Importance: 0.0
+Feature 574 Importance: 0.0
+Feature 575 Importance: 0.0
+Feature 576 Importance: 0.0
+Feature 577 Importance: 0.0
+Feature 578 Importance: 0.0
+Feature 579 Importance: 0.0
+Feature 580 Importance: 0.0
+Feature 581 Importance: 0.0
+Feature 582 Importance: 0.0
+Feature 583 Importance: 0.0
+Feature 584 Importance: 0.0
+Feature 585 Importance: 0.0
+Feature 586 Importance: 0.0
+Feature 587 Importance: 0.0
+Feature 588 Importance: 0.0
+Feature 589 Importance: 0.0
+Feature 590 Importance: 0.0
+Feature 591 Importance: 0.0
+Feature 592 Importance: 0.0
+Feature 593 Importance: 0.0
+Feature 594 Importance: 0.0
+Feature 595 Importance: 0.0
+Feature 596 Importance: 0.0
+Feature 597 Importance: 0.0
+Feature 598 Importance: 0.0
+Feature 599 Importance: 0.0
+Feature 600 Importance: 0.0
+Feature 601 Importance: 0.0
+Feature 602 Importance: 0.0
+Feature 603 Importance: 0.0
+Feature 604 Importance: 0.0
+Feature 605 Importance: 0.0
+Feature 606 Importance: 0.0
+Feature 607 Importance: 0.0
+Feature 608 Importance: 0.0
+Feature 609 Importance: 0.0
+Feature 610 Importance: 0.0
+Feature 611 Importance: 0.0
+Feature 612 Importance: 0.0
+Feature 613 Importance: 0.0
+Feature 614 Importance: 0.0
+Feature 615 Importance: 0.0
+Feature 616 Importance: 0.0
+Feature 617 Importance: 0.0
+Feature 618 Importance: 0.0
+Feature 619 Importance: 0.0
+Feature 620 Importance: 0.0
+Feature 621 Importance: 0.0
+Feature 622 Importance: 0.0
+Feature 623 Importance: 0.0
+Feature 624 Importance: 0.0
+Feature 625 Importance: 0.0
+Feature 626 Importance: 0.0
+Feature 627 Importance: 0.0
+Feature 628 Importance: 0.0
+Feature 629 Importance: 0.0
+Feature 630 Importance: 0.0
+Feature 631 Importance: 0.0
+Feature 632 Importance: 0.0
+Feature 633 Importance: 0.0
+Feature 634 Importance: 0.0
+Feature 635 Importance: 0.0
+Feature 636 Importance: 0.0
+Feature 637 Importance: 0.0
+Feature 638 Importance: 0.0
+Feature 639 Importance: 0.0
+Feature 640 Importance: 0.0
+Feature 641 Importance: 0.0
+Feature 642 Importance: 0.0
+Feature 643 Importance: 0.0
+Feature 644 Importance: 0.0
+Feature 645 Importance: 0.0
+Feature 646 Importance: 0.0
+Feature 647 Importance: 0.0
+Feature 648 Importance: 0.0
+Feature 649 Importance: 0.0
+Feature 650 Importance: 0.0
+Feature 651 Importance: 0.0
+Feature 652 Importance: 0.0
+Feature 653 Importance: 0.0
+Feature 654 Importance: 0.0
+Feature 655 Importance: 0.0
+Feature 656 Importance: 0.0
+Feature 657 Importance: 0.0
+Feature 658 Importance: 0.0
+Feature 659 Importance: 0.0
+Feature 660 Importance: 0.0
+Feature 661 Importance: 0.0
+Feature 662 Importance: 0.0
+Feature 663 Importance: 0.0
+Feature 664 Importance: 0.0
+Feature 665 Importance: 0.0
+Feature 666 Importance: 0.0
+Feature 667 Importance: 0.0
+Feature 668 Importance: 0.0
+Feature 669 Importance: 0.0
+Feature 670 Importance: 0.0
+Feature 671 Importance: 0.0
+Feature 672 Importance: 0.0
+Feature 673 Importance: 0.0
+Feature 674 Importance: 0.0
+Feature 675 Importance: 0.0
+Feature 676 Importance: 0.0
+Feature 677 Importance: 0.0
+Feature 678 Importance: 0.0
+Feature 679 Importance: 0.0
+Feature 680 Importance: 0.0
+Feature 681 Importance: 0.0
+Feature 682 Importance: 0.0
+Feature 683 Importance: 0.0
+Feature 684 Importance: 0.0
+Feature 685 Importance: 0.0
+Feature 686 Importance: 0.0
+Feature 687 Importance: 0.0
+Feature 688 Importance: 0.0
+Feature 689 Importance: 0.0
+Feature 690 Importance: 0.0
+Feature 691 Importance: 0.0
+Feature 692 Importance: 0.0
+Feature 693 Importance: 0.0
+Feature 694 Importance: 0.0
+Feature 695 Importance: 0.0
+Feature 696 Importance: 0.0
+Feature 697 Importance: 0.0
+Feature 698 Importance: 0.0
+Feature 699 Importance: 0.0
+Feature 700 Importance: 0.0
+Feature 701 Importance: 0.0
+Feature 702 Importance: 0.0
+Feature 703 Importance: 0.0
+Feature 704 Importance: 0.0
+Feature 705 Importance: 0.0
+Feature 706 Importance: 0.0
+Feature 707 Importance: 0.0
+Feature 708 Importance: 0.0
+Feature 709 Importance: 0.0
+Feature 710 Importance: 0.0
+Feature 711 Importance: 0.0
+Feature 712 Importance: 0.0
+Feature 713 Importance: 0.0
+Feature 714 Importance: 0.0
+Feature 715 Importance: 0.0
+Feature 716 Importance: 0.0
+Feature 717 Importance: 0.0
+Feature 718 Importance: 0.0
+Feature 719 Importance: 0.0
+Feature 720 Importance: 0.0
+Feature 721 Importance: 0.0
+Feature 722 Importance: 0.0
+Feature 723 Importance: 0.0
+Feature 724 Importance: 0.0
+Feature 725 Importance: 0.0
+Feature 726 Importance: 0.0
+Feature 727 Importance: 0.0
+Feature 728 Importance: 0.0
+Feature 729 Importance: 0.0
+Feature 730 Importance: 0.0
+Feature 731 Importance: 0.0
+Feature 732 Importance: 0.0
+Feature 733 Importance: 0.0
+Feature 734 Importance: 0.0
+Feature 735 Importance: 0.0
+Feature 736 Importance: 0.0
+Feature 737 Importance: 0.0
+Feature 738 Importance: 0.0
+Feature 739 Importance: 0.0
+Feature 740 Importance: 0.0
+Feature 741 Importance: 0.0
+Feature 742 Importance: 0.0
+Feature 743 Importance: 0.0
+Feature 744 Importance: 0.0
+Feature 745 Importance: 0.0
+Feature 746 Importance: 0.0
+Feature 747 Importance: 0.0
+Feature 748 Importance: 0.0
+Feature 749 Importance: 0.0
+Feature 750 Importance: 0.0
+Feature 751 Importance: 0.0
+Feature 752 Importance: 0.0
+Feature 753 Importance: 0.0
+Feature 754 Importance: 0.0
+Feature 755 Importance: 0.0
+Feature 756 Importance: 0.0
+Feature 757 Importance: 0.0
+Feature 758 Importance: 0.0
+Feature 759 Importance: 0.0
+Feature 760 Importance: 0.0
+Feature 761 Importance: 0.0
+Feature 762 Importance: 0.0
+Feature 763 Importance: 0.0
+Feature 764 Importance: 0.0
+Feature 765 Importance: 0.0
+Feature 766 Importance: 0.0
+Feature 767 Importance: 0.0
+Feature 768 Importance: 0.0
+Feature 769 Importance: 0.0
+Feature 770 Importance: 0.0
+Feature 771 Importance: 0.0
+Feature 772 Importance: 0.0
+Feature 773 Importance: 0.0
+Feature 774 Importance: 0.0
+Feature 775 Importance: 0.0
+Feature 776 Importance: 0.0
+Feature 777 Importance: 0.0
+Feature 778 Importance: 0.0
+Feature 779 Importance: 0.0
+Feature 780 Importance: 0.0
+Feature 781 Importance: 0.0
+Feature 782 Importance: 0.0
+Feature 783 Importance: 0.0
+Feature 784 Importance: 0.0
+Feature 785 Importance: 0.0
+Feature 786 Importance: 0.0
+Feature 787 Importance: 0.0
+Feature 788 Importance: 0.0
+Feature 789 Importance: 0.0
+Feature 790 Importance: 0.0
+Feature 791 Importance: 0.0
+Feature 792 Importance: 0.0
+Feature 793 Importance: 0.0
+Feature 794 Importance: 0.0
+Feature 795 Importance: 0.0
+Feature 796 Importance: 0.0
+Feature 797 Importance: 0.0
+Feature 798 Importance: 0.0
+Feature 799 Importance: 0.0
+Feature 800 Importance: 0.0
+Feature 801 Importance: 0.0
+Feature 802 Importance: 0.0
+Feature 803 Importance: 0.0
+Feature 804 Importance: 0.0
+Feature 805 Importance: 0.0
+Feature 806 Importance: 0.0
+Feature 807 Importance: 0.0
+Feature 808 Importance: 0.0
+Feature 809 Importance: 0.0
+Feature 810 Importance: 0.0
+Feature 811 Importance: 0.0
+Feature 812 Importance: 0.0
+Feature 813 Importance: 0.0
+Feature 814 Importance: 0.0
+Feature 815 Importance: 0.0
+Feature 816 Importance: 0.0
+Feature 817 Importance: 0.0
+Feature 818 Importance: 0.0
+Feature 819 Importance: 0.0
+Feature 820 Importance: 0.0
+Feature 821 Importance: 0.0
+Feature 822 Importance: 0.0
+Feature 823 Importance: 0.0
+Feature 824 Importance: 0.0
+Feature 825 Importance: 0.0
+Feature 826 Importance: 0.0
+Feature 827 Importance: 0.0
+Feature 828 Importance: 0.0
+Feature 829 Importance: 0.0
+Feature 830 Importance: 0.0
+Feature 831 Importance: 0.0
+Feature 832 Importance: 0.0
+Feature 833 Importance: 0.0
+Feature 834 Importance: 0.0
+Feature 835 Importance: 0.0
+Feature 836 Importance: 0.0
+Feature 837 Importance: 0.0
+Feature 838 Importance: 0.0
+Feature 839 Importance: 0.0
+Feature 840 Importance: 0.0
+Feature 841 Importance: 0.0
+Feature 842 Importance: 0.0
+Feature 843 Importance: 0.0
+Feature 844 Importance: 0.0
+Feature 845 Importance: 0.0
+Feature 846 Importance: 0.0
+Feature 847 Importance: 0.0
+Feature 848 Importance: 0.0
+Feature 849 Importance: 0.0
+Feature 850 Importance: 0.0
+Feature 851 Importance: 0.0
+Feature 852 Importance: 0.0
+Feature 853 Importance: 0.0
+Feature 854 Importance: 0.0
+Feature 855 Importance: 0.0
+Feature 856 Importance: 0.0
+Feature 857 Importance: 0.0
+Feature 858 Importance: 0.0
+Feature 859 Importance: 0.0
+Feature 860 Importance: 0.0
+Feature 861 Importance: 0.0
+Feature 862 Importance: 0.0
+Feature 863 Importance: 0.0
+Feature 864 Importance: 0.0
+Feature 865 Importance: 0.0
+Feature 866 Importance: 0.0
+Feature 867 Importance: 0.0
+Feature 868 Importance: 0.0
+Feature 869 Importance: 0.0
+Feature 870 Importance: 0.0
+Feature 871 Importance: 0.0
+Feature 872 Importance: 0.0
+Feature 873 Importance: 0.0
+Feature 874 Importance: 0.0
+Feature 875 Importance: 0.0
+Feature 876 Importance: 0.0
+Feature 877 Importance: 0.0
+Feature 878 Importance: 0.0
+Feature 879 Importance: 0.0
+Feature 880 Importance: 0.0
+Feature 881 Importance: 0.0
+Feature 882 Importance: 0.0
+Feature 883 Importance: 0.0
+Feature 884 Importance: 0.0
+Feature 885 Importance: 0.0
+Feature 886 Importance: 0.0
+Feature 887 Importance: 0.0
+Feature 888 Importance: 0.0
+Feature 889 Importance: 0.0
+Feature 890 Importance: 0.0
+Feature 891 Importance: 0.0
+Feature 892 Importance: 0.0
+Feature 893 Importance: 0.0
+Feature 894 Importance: 0.0
+Feature 895 Importance: 0.0
+Feature 896 Importance: 0.0
+Feature 897 Importance: 0.0
+Feature 898 Importance: 0.0
+Feature 899 Importance: 0.0
+Feature 900 Importance: 0.0
+Feature 901 Importance: 0.0
+Feature 902 Importance: 0.0
+Feature 903 Importance: 0.0
+Feature 904 Importance: 0.0
+Feature 905 Importance: 0.0
+Feature 906 Importance: 0.0
+Feature 907 Importance: 0.0
+Feature 908 Importance: 0.0
+Feature 909 Importance: 0.0
+Feature 910 Importance: 0.0
+Feature 911 Importance: 0.0
+Feature 912 Importance: 0.0
+Feature 913 Importance: 0.0
+Feature 914 Importance: 0.0
+Feature 915 Importance: 0.0
+Feature 916 Importance: 0.0
+Feature 917 Importance: 0.0
+Feature 918 Importance: 0.0
+Feature 919 Importance: 0.0
+Feature 920 Importance: 0.0
+Feature 921 Importance: 0.0
+Feature 922 Importance: 0.0
+Feature 923 Importance: 0.0
+Feature 924 Importance: 0.0
+Feature 925 Importance: 0.0
+Feature 926 Importance: 0.0
+Feature 927 Importance: 0.0
+Feature 928 Importance: 0.0
+Feature 929 Importance: 0.0
+Feature 930 Importance: 0.0
+Feature 931 Importance: 0.0
+Feature 932 Importance: 0.0
+Feature 933 Importance: 0.0
+Feature 934 Importance: 0.0
+Feature 935 Importance: 0.0
+Feature 936 Importance: 0.0
+Feature 937 Importance: 0.0
+Feature 938 Importance: 0.0
+Feature 939 Importance: 0.0
+Feature 940 Importance: 0.0
+Feature 941 Importance: 0.0
+Feature 942 Importance: 0.0
+Feature 943 Importance: 0.0
+Feature 944 Importance: 0.0
+Feature 945 Importance: 0.0
+Feature 946 Importance: 0.0
+Feature 947 Importance: 0.0
+Feature 948 Importance: 0.0
+Feature 949 Importance: 0.0
+Feature 950 Importance: 0.0
+Feature 951 Importance: 0.0
+Feature 952 Importance: 0.0
+Feature 953 Importance: 0.0
+Feature 954 Importance: 0.0
+Feature 955 Importance: 0.0
+Feature 956 Importance: 0.0
+Feature 957 Importance: 0.0
+Feature 958 Importance: 0.0
+Feature 959 Importance: 0.0
+Feature 960 Importance: 0.0
+Feature 961 Importance: 0.0
+Feature 962 Importance: 0.0
+Feature 963 Importance: 0.0
+Feature 964 Importance: 0.0
+Feature 965 Importance: 0.0
+Feature 966 Importance: 0.0
+Feature 967 Importance: 0.0
+Feature 968 Importance: 0.0
+Feature 969 Importance: 0.0
+Feature 970 Importance: 0.0
+Feature 971 Importance: 0.0
+Feature 972 Importance: 0.0
+Feature 973 Importance: 0.0
+Feature 974 Importance: 0.0
+Feature 975 Importance: 0.0
+Feature 976 Importance: 0.0
+Feature 977 Importance: 0.0
+Feature 978 Importance: 0.0
+Feature 979 Importance: 0.0
+Feature 980 Importance: 0.0
+Feature 981 Importance: 0.0
+Feature 982 Importance: 0.0
+Feature 983 Importance: 0.0
+Feature 984 Importance: 0.0
+Feature 985 Importance: 0.0
+Feature 986 Importance: 0.0
+Feature 987 Importance: 0.0
+Feature 988 Importance: 0.0
+Feature 989 Importance: 0.0
+Feature 990 Importance: 0.0
+Feature 991 Importance: 0.0
+Feature 992 Importance: 0.0
+Feature 993 Importance: 0.0
+Feature 994 Importance: 0.0
+Feature 995 Importance: 0.0
+Feature 996 Importance: 0.0
+Feature 997 Importance: 0.0
+Feature 998 Importance: 0.0
+Feature 999 Importance: 0.0
+Feature 1000 Importance: 0.0
+Feature 1001 Importance: 0.0
+Feature 1002 Importance: 0.0
+Feature 1003 Importance: 0.0
+Feature 1004 Importance: 0.0
+Feature 1005 Importance: 0.0
+Feature 1006 Importance: 0.0
+Feature 1007 Importance: 0.0
+Feature 1008 Importance: 0.0
+Feature 1009 Importance: 0.0
+Feature 1010 Importance: 0.0
+Feature 1011 Importance: 0.0
+Feature 1012 Importance: 0.0
+Feature 1013 Importance: 0.0
+Feature 1014 Importance: 0.0
+Feature 1015 Importance: 0.0
+Feature 1016 Importance: 0.0
+Feature 1017 Importance: 0.0
+Feature 1018 Importance: 0.0
+Feature 1019 Importance: 0.0
+Feature 1020 Importance: 0.0
+Feature 1021 Importance: 0.0
+Feature 1022 Importance: 0.0
+Feature 1023 Importance: 0.0
+most important feature
+Nodes using the feature: [0, 1, 2, 3, 4, 5, 7, 9, 13, 14, 16, 17, 19, 20, 25, 27, 29, 30, 34, 35, 36, 37, 39, 40, 42, 45, 48, 49, 50, 54, 55, 56, 59, 60, 62, 63, 68, 71, 72, 74, 75, 76, 80, 83, 84, 85, 87, 90, 93, 95, 96, 100, 101, 102, 104, 105, 107, 109, 112, 113, 116, 117, 121, 122, 123, 124, 127, 128, 129, 130, 134, 136, 138, 142, 143, 146, 147, 149, 152, 154, 155, 159, 161, 163, 166, 168, 170, 171, 174, 175, 177, 179, 184] 93
+Node ID: 0
+Threshold for split: 1.8446681401546768e+19
+Left child: 1
+Right child: 184
+Impurity: 0.18350275000000005
+Number of samples: 4000
+------
+Node ID: 1
+Threshold for split: 9.259204571048182e+18
+Left child: 2
+Right child: 183
+Impurity: 0.1126582156998327
+Number of samples: 3833
+------
+Node ID: 2
+Threshold for split: 1629.0
+Left child: 3
+Right child: 34
+Impurity: 0.7532213836783227
+Number of samples: 406
+------
+Node ID: 3
+Threshold for split: 9.0
+Left child: 4
+Right child: 13
+Impurity: 0.1883156263336403
+Number of samples: 211
+------
+Node ID: 4
+Threshold for split: 4.5
+Left child: 5
+Right child: 12
+Impurity: 0.9244444444444444
+Number of samples: 15
+------
+Node ID: 5
+Threshold for split: 0.5
+Left child: 6
+Right child: 7
+Impurity: 0.9183673469387755
+Number of samples: 14
+------
+Node ID: 7
+Threshold for split: 1.5
+Left child: 8
+Right child: 9
+Impurity: 0.8
+Number of samples: 5
+------
+Node ID: 9
+Threshold for split: 2.5
+Left child: 10
+Right child: 11
+Impurity: 0.75
+Number of samples: 4
+------
+Node ID: 13
+Threshold for split: 66.5
+Left child: 14
+Right child: 25
+Impurity: 0.06991878384006667
+Number of samples: 196
+------
+Node ID: 14
+Threshold for split: 46.5
+Left child: 15
+Right child: 16
+Impurity: 0.3163265306122449
+Number of samples: 28
+------
+Node ID: 16
+Threshold for split: 60.0
+Left child: 17
+Right child: 24
+Impurity: 0.7160493827160495
+Number of samples: 9
+------
+Node ID: 17
+Threshold for split: 47.5
+Left child: 18
+Right child: 19
+Impurity: 0.65625
+Number of samples: 8
+------
+Node ID: 19
+Threshold for split: 52.5
+Left child: 20
+Right child: 23
+Impurity: 0.6111111111111112
+Number of samples: 6
+------
+Node ID: 20
+Threshold for split: 48.5
+Left child: 21
+Right child: 22
+Impurity: 0.64
+Number of samples: 5
+------
+Node ID: 25
+Threshold for split: 257.5
+Left child: 26
+Right child: 27
+Impurity: 0.023596938775510168
+Number of samples: 168
+------
+Node ID: 27
+Threshold for split: 258.5
+Left child: 28
+Right child: 29
+Impurity: 0.08592592592592596
+Number of samples: 45
+------
+Node ID: 29
+Threshold for split: 275.5
+Left child: 30
+Right child: 33
+Impurity: 0.045429962141698255
+Number of samples: 43
+------
+Node ID: 30
+Threshold for split: 274.5
+Left child: 31
+Right child: 32
+Impurity: 0.1049382716049383
+Number of samples: 18
+------
+Node ID: 34
+Threshold for split: 64349601792.0
+Left child: 35
+Right child: 100
+Impurity: 0.8919921104536489
+Number of samples: 195
+------
+Node ID: 35
+Threshold for split: 529972288.0
+Left child: 36
+Right child: 71
+Impurity: 0.8669738260954809
+Number of samples: 101
+------
+Node ID: 36
+Threshold for split: 530458.0
+Left child: 37
+Right child: 48
+Impurity: 0.7138429752066116
+Number of samples: 44
+------
+Node ID: 37
+Threshold for split: 13521.5
+Left child: 38
+Right child: 39
+Impurity: 0.6799999999999999
+Number of samples: 10
+------
+Node ID: 39
+Threshold for split: 65663.5
+Left child: 40
+Right child: 45
+Impurity: 0.7777777777777778
+Number of samples: 6
+------
+Node ID: 40
+Threshold for split: 21489.0
+Left child: 41
+Right child: 42
+Impurity: 0.6666666666666667
+Number of samples: 3
+------
+Node ID: 42
+Threshold for split: 47029.5
+Left child: 43
+Right child: 44
+Impurity: 0.5
+Number of samples: 2
+------
+Node ID: 45
+Threshold for split: 229761.0
+Left child: 46
+Right child: 47
+Impurity: 0.4444444444444444
+Number of samples: 3
+------
+Node ID: 48
+Threshold for split: 2078516.5
+Left child: 49
+Right child: 54
+Impurity: 0.57439446366782
+Number of samples: 34
+------
+Node ID: 49
+Threshold for split: 667827.0
+Left child: 50
+Right child: 53
+Impurity: 0.11072664359861595
+Number of samples: 17
+------
+Node ID: 50
+Threshold for split: 667699.5
+Left child: 51
+Right child: 52
+Impurity: 0.4444444444444444
+Number of samples: 3
+------
+Node ID: 54
+Threshold for split: 170962608.0
+Left child: 55
+Right child: 68
+Impurity: 0.754325259515571
+Number of samples: 17
+------
+Node ID: 55
+Threshold for split: 12333239.5
+Left child: 56
+Right child: 59
+Impurity: 0.7
+Number of samples: 10
+------
+Node ID: 56
+Threshold for split: 5394225.0
+Left child: 57
+Right child: 58
+Impurity: 0.375
+Number of samples: 4
+------
+Node ID: 59
+Threshold for split: 110630936.0
+Left child: 60
+Right child: 67
+Impurity: 0.6111111111111112
+Number of samples: 6
+------
+Node ID: 60
+Threshold for split: 25165825.0
+Left child: 61
+Right child: 62
+Impurity: 0.48
+Number of samples: 5
+------
+Node ID: 62
+Threshold for split: 42008576.0
+Left child: 63
+Right child: 66
+Impurity: 0.5
+Number of samples: 4
+------
+Node ID: 63
+Threshold for split: 33619968.0
+Left child: 64
+Right child: 65
+Impurity: 0.4444444444444444
+Number of samples: 3
+------
+Node ID: 68
+Threshold for split: 194811552.0
+Left child: 69
+Right child: 70
+Impurity: 0.40816326530612246
+Number of samples: 7
+------
+Node ID: 71
+Threshold for split: 1406323968.0
+Left child: 72
+Right child: 83
+Impurity: 0.8070175438596492
+Number of samples: 57
+------
+Node ID: 72
+Threshold for split: 808377824.0
+Left child: 73
+Right child: 74
+Impurity: 0.44708680142687274
+Number of samples: 29
+------
+Node ID: 74
+Threshold for split: 1246743552.0
+Left child: 75
+Right child: 80
+Impurity: 0.26880000000000004
+Number of samples: 25
+------
+Node ID: 75
+Threshold for split: 810799552.0
+Left child: 76
+Right child: 79
+Impurity: 0.1652892561983471
+Number of samples: 22
+------
+Node ID: 76
+Threshold for split: 809911744.0
+Left child: 77
+Right child: 78
+Impurity: 0.48
+Number of samples: 5
+------
+Node ID: 80
+Threshold for split: 1389548544.0
+Left child: 81
+Right child: 82
+Impurity: 0.4444444444444444
+Number of samples: 3
+------
+Node ID: 83
+Threshold for split: 27917352960.0
+Left child: 84
+Right child: 93
+Impurity: 0.8239795918367347
+Number of samples: 28
+------
+Node ID: 84
+Threshold for split: 3132633472.0
+Left child: 85
+Right child: 90
+Impurity: 0.754325259515571
+Number of samples: 17
+------
+Node ID: 85
+Threshold for split: 1583405568.0
+Left child: 86
+Right child: 87
+Impurity: 0.653061224489796
+Number of samples: 7
+------
+Node ID: 87
+Threshold for split: 1894900416.0
+Left child: 88
+Right child: 89
+Impurity: 0.5
+Number of samples: 4
+------
+Node ID: 90
+Threshold for split: 12884901888.0
+Left child: 91
+Right child: 92
+Impurity: 0.45999999999999996
+Number of samples: 10
+------
+Node ID: 93
+Threshold for split: 38655295488.0
+Left child: 94
+Right child: 95
+Impurity: 0.628099173553719
+Number of samples: 11
+------
+Node ID: 95
+Threshold for split: 53687156736.0
+Left child: 96
+Right child: 99
+Impurity: 0.71875
+Number of samples: 8
+------
+Node ID: 96
+Threshold for split: 45097156608.0
+Left child: 97
+Right child: 98
+Impurity: 0.64
+Number of samples: 5
+------
+Node ID: 100
+Threshold for split: 205473735245824.0
+Left child: 101
+Right child: 166
+Impurity: 0.8116794929832504
+Number of samples: 94
+------
+Node ID: 101
+Threshold for split: 206571380736.0
+Left child: 102
+Right child: 121
+Impurity: 0.8567609712630875
+Number of samples: 67
+------
+Node ID: 102
+Threshold for split: 70883737600.0
+Left child: 103
+Right child: 104
+Impurity: 0.6016
+Number of samples: 25
+------
+Node ID: 104
+Threshold for split: 135274692608.0
+Left child: 105
+Right child: 112
+Impurity: 0.6953125
+Number of samples: 16
+------
+Node ID: 105
+Threshold for split: 75161927680.0
+Left child: 106
+Right child: 107
+Impurity: 0.4897959183673469
+Number of samples: 7
+------
+Node ID: 107
+Threshold for split: 100931731456.0
+Left child: 108
+Right child: 109
+Impurity: 0.5
+Number of samples: 6
+------
+Node ID: 109
+Threshold for split: 128849018880.0
+Left child: 110
+Right child: 111
+Impurity: 0.5
+Number of samples: 4
+------
+Node ID: 112
+Threshold for split: 146028888064.0
+Left child: 113
+Right child: 116
+Impurity: 0.617283950617284
+Number of samples: 9
+------
+Node ID: 113
+Threshold for split: 137422176256.0
+Left child: 114
+Right child: 115
+Impurity: 0.375
+Number of samples: 4
+------
+Node ID: 116
+Threshold for split: 201863462912.0
+Left child: 117
+Right child: 120
+Impurity: 0.64
+Number of samples: 5
+------
+Node ID: 117
+Threshold for split: 176093659136.0
+Left child: 118
+Right child: 119
+Impurity: 0.4444444444444444
+Number of samples: 3
+------
+Node ID: 121
+Threshold for split: 5897402712064.0
+Left child: 122
+Right child: 159
+Impurity: 0.844671201814059
+Number of samples: 42
+------
+Node ID: 122
+Threshold for split: 251710382080.0
+Left child: 123
+Right child: 142
+Impurity: 0.78719723183391
+Number of samples: 34
+------
+Node ID: 123
+Threshold for split: 209728692224.0
+Left child: 124
+Right child: 127
+Impurity: 0.5864197530864197
+Number of samples: 18
+------
+Node ID: 124
+Threshold for split: 207497453568.0
+Left child: 125
+Right child: 126
+Impurity: 0.5
+Number of samples: 2
+------
+Node ID: 127
+Threshold for split: 235119788032.0
+Left child: 128
+Right child: 141
+Impurity: 0.484375
+Number of samples: 16
+------
+Node ID: 128
+Threshold for split: 228685758464.0
+Left child: 129
+Right child: 134
+Impurity: 0.5833333333333333
+Number of samples: 12
+------
+Node ID: 129
+Threshold for split: 217923174400.0
+Left child: 130
+Right child: 133
+Impurity: 0.21875
+Number of samples: 8
+------
+Node ID: 130
+Threshold for split: 215792467968.0
+Left child: 131
+Right child: 132
+Impurity: 0.4444444444444444
+Number of samples: 3
+------
+Node ID: 134
+Threshold for split: 230378545152.0
+Left child: 135
+Right child: 136
+Impurity: 0.625
+Number of samples: 4
+------
+Node ID: 136
+Threshold for split: 232357797888.0
+Left child: 137
+Right child: 138
+Impurity: 0.6666666666666667
+Number of samples: 3
+------
+Node ID: 138
+Threshold for split: 232955592704.0
+Left child: 139
+Right child: 140
+Impurity: 0.5
+Number of samples: 2
+------
+Node ID: 142
+Threshold for split: 279913283584.0
+Left child: 143
+Right child: 146
+Impurity: 0.8515625
+Number of samples: 16
+------
+Node ID: 143
+Threshold for split: 266287972352.0
+Left child: 144
+Right child: 145
+Impurity: 0.56
+Number of samples: 5
+------
+Node ID: 146
+Threshold for split: 435324092416.0
+Left child: 147
+Right child: 152
+Impurity: 0.7768595041322314
+Number of samples: 11
+------
+Node ID: 147
+Threshold for split: 289184907264.0
+Left child: 148
+Right child: 149
+Impurity: 0.31999999999999995
+Number of samples: 5
+------
+Node ID: 149
+Threshold for split: 327663452160.0
+Left child: 150
+Right child: 151
+Impurity: 0.4444444444444444
+Number of samples: 3
+------
+Node ID: 152
+Threshold for split: 495622881280.0
+Left child: 153
+Right child: 154
+Impurity: 0.7222222222222222
+Number of samples: 6
+------
+Node ID: 154
+Threshold for split: 542025400320.0
+Left child: 155
+Right child: 158
+Impurity: 0.625
+Number of samples: 4
+------
+Node ID: 155
+Threshold for split: 495640084480.0
+Left child: 156
+Right child: 157
+Impurity: 0.4444444444444444
+Number of samples: 3
+------
+Node ID: 159
+Threshold for split: 58109433217024.0
+Left child: 160
+Right child: 161
+Impurity: 0.5625
+Number of samples: 8
+------
+Node ID: 161
+Threshold for split: 91217413013504.0
+Left child: 162
+Right child: 163
+Impurity: 0.6666666666666667
+Number of samples: 3
+------
+Node ID: 163
+Threshold for split: 126357602304000.0
+Left child: 164
+Right child: 165
+Impurity: 0.5
+Number of samples: 2
+------
+Node ID: 166
+Threshold for split: 422178122104832.0
+Left child: 167
+Right child: 168
+Impurity: 0.5294924554183813
+Number of samples: 27
+------
+Node ID: 168
+Threshold for split: 7352095489392640.0
+Left child: 169
+Right child: 170
+Impurity: 0.8
+Number of samples: 10
+------
+Node ID: 170
+Threshold for split: 3.107914785803469e+16
+Left child: 171
+Right child: 174
+Impurity: 0.7755102040816326
+Number of samples: 7
+------
+Node ID: 171
+Threshold for split: 2.148913818422477e+16
+Left child: 172
+Right child: 173
+Impurity: 0.5
+Number of samples: 2
+------
+Node ID: 174
+Threshold for split: 5.298020722881331e+16
+Left child: 175
+Right child: 182
+Impurity: 0.64
+Number of samples: 5
+------
+Node ID: 175
+Threshold for split: 3.2760447165792256e+16
+Left child: 176
+Right child: 177
+Impurity: 0.5
+Number of samples: 4
+------
+Node ID: 177
+Threshold for split: 3.332338101308621e+16
+Left child: 178
+Right child: 179
+Impurity: 0.4444444444444444
+Number of samples: 3
+------
+Node ID: 179
+Threshold for split: 3.40342066905088e+16
+Left child: 180
+Right child: 181
+Impurity: 0.5
+Number of samples: 2
+------
+Node ID: 184
+Threshold for split: 1.8446736926883971e+19
+Left child: 185
+Right child: 186
+Impurity: 0.023665244361576243
+Number of samples: 167
+------
