@@ -9,3 +9,7 @@
 - ebpf-project: other eBPF programs for statistics
 - evaluation-project: performance evaluation
 - ml-project: sample ML training
+- kernel: modified kernel for on-the-fly compartmentalization, eBPF programs see kernel/samples/eBPF.
+    - comp_*_sample, dump the objects from running kernel
+    - comp_*_working, compartmentalize the untrusted driver
+    - comp_*_working1, compartmentalizes part of untrusted driver, rather than the entire driver.
