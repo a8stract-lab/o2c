@@ -13,3 +13,7 @@
     - comp_*_sample, dump the objects from running kernel
     - comp_*_working, compartmentalize the untrusted driver
     - comp_*_working1, compartmentalizes part of untrusted driver, rather than the entire driver.
+
+
+<!-- `!!!!!!!!!!!!  git push new-origin lss !!!!!!!!!!!!!` -->
+<!-- origin will push to the on-the-fly-compartment.git -->
