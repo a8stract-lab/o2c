@@ -10,11 +10,16 @@ char LICENSE[] SEC("license") = "Dual BSD/GPL";
 
 int my_pid = 0;
 
+struct kmem_event {
+	u64 sz;
+	u64 call_site;
+};
+
 struct {
 	__uint(type, BPF_MAP_TYPE_HASH);
 	__uint(max_entries, 8192);
 	__type(key, u64);
-	__type(value, u64);
+	__type(value, struct kmem_event);
 } record SEC(".maps");
 
 struct {
@@ -33,7 +38,11 @@ SEC("tp/kmem/kmalloc")
 int handle_kmalloc(struct trace_event_raw_kmalloc *ctx)
 {
 	u64 k = (u64) ctx->ptr;
-	u64 v = (u64) ctx->call_site;
+	// u64 v = (u64) ctx->call_site;
+	struct kmem_event v = {
+	.call_site = ctx->call_site,
+	.sz = ctx->bytes_alloc,
+	};
 	// 1. all memory is allocated from kmalloc-xxx, not kmalloc-cg/kmalloc-dma
 	if ((ctx->gfp_flags & KMALLOC_NOT_NORMAL_BITS) == 0 && ctx->bytes_alloc == ALLOC_SZ) {
 		bpf_map_update_elem(&record, &k, &v, BPF_ANY);
@@ -41,23 +50,25 @@ int handle_kmalloc(struct trace_event_raw_kmalloc *ctx)
 	return 0;
 }
 
-SEC("kprobe/__kmem_cache_free")
-int BPF_KPROBE(do_kfree, struct kmem_cache *s, void *x)
+SEC("tp/kmem/kfree")
+//int BPF_KPROBE(do_kfree, struct kmem_cache *s, void *x)
+int handle_kfree(struct trace_event_raw_kfree *ctx)
 {
 	struct event *e;
 	u64 k = (u64) x;
-	u64 s_size = BPF_CORE_READ(s, size);
-	const char *s_name_addr = BPF_CORE_READ(s, name);
+	//u64 s_size = BPF_CORE_READ(s, size);
+	//const char *s_name_addr = BPF_CORE_READ(s, name);
 
-	u64 *pv = bpf_map_lookup_elem(&record, &k);
+	struct kmem_event *pv = bpf_map_lookup_elem(&record, &k);
 	if (pv) {
 		e = bpf_ringbuf_reserve(&rb, sizeof(*e), 0);
 		if (!e)
 			return 0;
 		
-		bpf_core_read_str(e->cache, 32, s_name_addr);
-		e->sz = s_size;
-		e->call_site = *pv;
+		// bpf_core_read_str(e->cache, 32, s_name_addr);
+		
+		e->sz = pv->sz; // kmalloc-sz
+		e->call_site = pv->call_site;
 		bpf_core_read(e->content, ALLOC_SZ, k);
 
 		bpf_map_delete_elem(&record, &k);
