@@ -39,40 +39,45 @@ int handle_kmalloc(struct trace_event_raw_kmalloc *ctx)
 {
 	u64 k = (u64) ctx->ptr;
 	// u64 v = (u64) ctx->call_site;
+	// bpf_printk("kmalloc: %lx\n", k);
 	struct kmem_event v = {
-	.call_site = ctx->call_site,
-	.sz = ctx->bytes_alloc,
+		.call_site = ctx->call_site,
+		.sz = ctx->bytes_alloc,
 	};
 	// 1. all memory is allocated from kmalloc-xxx, not kmalloc-cg/kmalloc-dma
 	if ((ctx->gfp_flags & KMALLOC_NOT_NORMAL_BITS) == 0 && ctx->bytes_alloc == ALLOC_SZ) {
+	// if (ctx->bytes_alloc == ALLOC_SZ) {
 		bpf_map_update_elem(&record, &k, &v, BPF_ANY);
 	}
 	return 0;
 }
 
 SEC("tp/kmem/kfree")
-//int BPF_KPROBE(do_kfree, struct kmem_cache *s, void *x)
+// SEC("tp/kmem/kfree")
 int handle_kfree(struct trace_event_raw_kfree *ctx)
 {
+
 	struct event *e;
-	u64 k = (u64) x;
-	//u64 s_size = BPF_CORE_READ(s, size);
-	//const char *s_name_addr = BPF_CORE_READ(s, name);
+	u64 k = (u64) ctx->ptr;
+	// const char *s_name_addr = BPF_CORE_READ(s, name);
 
 	struct kmem_event *pv = bpf_map_lookup_elem(&record, &k);
 	if (pv) {
+		// bpf_printk("found\n");
 		e = bpf_ringbuf_reserve(&rb, sizeof(*e), 0);
 		if (!e)
 			return 0;
 		
 		// bpf_core_read_str(e->cache, 32, s_name_addr);
-		
-		e->sz = pv->sz; // kmalloc-sz
+		e->sz = pv->sz;
 		e->call_site = pv->call_site;
+		e->timestamp = bpf_ktime_get_ns();
 		bpf_core_read(e->content, ALLOC_SZ, k);
 
 		bpf_map_delete_elem(&record, &k);
 		bpf_ringbuf_submit(e, 0);
+	} else {
+		// bpf_printk("not found\n");
 	}
 
 	return 0;
