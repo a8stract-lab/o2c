@@ -9,6 +9,7 @@ struct event {
     char cache[32];
     unsigned long sz;
 	unsigned long content[ALLOC_SZ];
+    unsigned long long timestamp;
 };
 
 #define ___GFP_DMA		0x01u
