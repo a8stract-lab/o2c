@@ -28,15 +28,15 @@ static int handle_event(void *ctx, void *data, size_t data_sz)
 		return -1;
 	}
 
-	printf("%s,%d,", sym->name, ALLOC_SZ);
+	printf("%llu,%s,%d,",e->timestamp, sym->name, ALLOC_SZ);
 	for (int i = 0;i < ALLOC_SZ/8;i++) {
 		printf("%016lx", e->content[i]);
 	}
 	printf("\n");
 
-	if (++cnt >= MAX_ITEMS) {
-		exiting = true;
-	}
+	// if (++cnt >= MAX_ITEMS) {
+	// 	exiting = true;
+	// }
 	return 0;
 }
 
